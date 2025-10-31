@@ -17,7 +17,7 @@ public class InputReader : ScriptableObject, IMovementActions
         {
             playerInput = new PlayerInputActions();
             playerInput.Movement.SetCallbacks(this);
-            DisableAll();
+            SetMovement();
         }
     }
 

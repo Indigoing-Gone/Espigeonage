@@ -17,5 +17,6 @@ public class Player : MonoBehaviour
     private void Update()
     {
         playerMovement.ProcessInput(playerInput.MoveDirection);
+        playerCamera.ProcessInput(playerInput.LookDirection);
     }
 }

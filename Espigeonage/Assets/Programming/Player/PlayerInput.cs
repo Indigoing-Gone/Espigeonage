@@ -5,7 +5,7 @@ public class PlayerInput : ScriptableObject
 {
     [SerializeField] private InputReader input;
 
-    private Vector2 moveDirection;
+    [SerializeField] private Vector2 moveDirection;
     private Vector2 lookDirection;
     private bool pressingInteract;
 
