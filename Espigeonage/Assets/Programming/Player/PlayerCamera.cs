@@ -6,12 +6,12 @@ using UnityEngine.InputSystem;
 public class PlayerCamera : MonoBehaviour
 {
     [Header("Components")]
-    [SerializeField] CinemachineInputAxisController cameraInputController;
-    [SerializeField] Transform orientation;
+    private Transform orientation;
+    public Transform Orientation { get => orientation; set { if (!orientation) orientation = value; } }
 
     [Header("Camera Settings")]
-    [SerializeField] Vector2 pitchMinMax;
-    [SerializeField] Vector2 sensitivity;
+    [SerializeField] private Vector2 pitchMinMax;
+    [SerializeField] private Vector2 sensitivity;
 
     [Header("Calculations")]
     private Vector2 lookDirection;

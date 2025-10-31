@@ -1,10 +1,12 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Components")]
     private Rigidbody rb;
-    [SerializeField] private Transform orientation;
+    private Transform orientation;
+    public Transform Orientation { get => orientation; set { if (!orientation) orientation = value; } }
 
     [Header("Movement")]
     [SerializeField] private float maxSpeed;
