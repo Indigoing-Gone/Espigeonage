@@ -12,7 +12,7 @@ public class RaycastInteractor : Interactor
     protected override void HandleInteract()
     {
         bool _hit = Physics.Raycast(orientation.position, orientation.forward, out RaycastHit _hitInfo,
-            interactDistance, interactLayer, QueryTriggerInteraction.Ignore);
+            interactDistance, interactLayer, QueryTriggerInteraction.Collide);
 
         if (!_hit) return;
 
