@@ -113,6 +113,74 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Inspect",
+            "id": "f7fe489f-4e79-4fb3-aca5-c97b4abc59af",
+            "actions": [
+                {
+                    "name": "Drag",
+                    "type": "Button",
+                    "id": "d33670b6-82ff-4965-b4b0-50f48362e498",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Position",
+                    "type": "PassThrough",
+                    "id": "df0996df-db2c-4035-91f4-ade2dd664868",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Exit",
+                    "type": "Button",
+                    "id": "93163e61-d3e3-4fee-9bd4-a2f1fd7c58a2",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "cf4109f7-5b1f-4838-aebb-fd92cbe57464",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Drag",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "70466bac-78b5-4009-a67c-4ed2ccfff20b",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Position",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "224939f7-d260-4476-a74d-80151aa80ea5",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Exit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

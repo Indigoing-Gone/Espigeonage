@@ -199,6 +199,74 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Inspect"",
+            ""id"": ""f7fe489f-4e79-4fb3-aca5-c97b4abc59af"",
+            ""actions"": [
+                {
+                    ""name"": ""Drag"",
+                    ""type"": ""Button"",
+                    ""id"": ""d33670b6-82ff-4965-b4b0-50f48362e498"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Position"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""df0996df-db2c-4035-91f4-ade2dd664868"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Exit"",
+                    ""type"": ""Button"",
+                    ""id"": ""93163e61-d3e3-4fee-9bd4-a2f1fd7c58a2"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""cf4109f7-5b1f-4838-aebb-fd92cbe57464"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Drag"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""70466bac-78b5-4009-a67c-4ed2ccfff20b"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Position"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""224939f7-d260-4476-a74d-80151aa80ea5"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Exit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -208,11 +276,17 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Movement_Move = m_Movement.FindAction("Move", throwIfNotFound: true);
         m_Movement_Look = m_Movement.FindAction("Look", throwIfNotFound: true);
         m_Movement_Interact = m_Movement.FindAction("Interact", throwIfNotFound: true);
+        // Inspect
+        m_Inspect = asset.FindActionMap("Inspect", throwIfNotFound: true);
+        m_Inspect_Drag = m_Inspect.FindAction("Drag", throwIfNotFound: true);
+        m_Inspect_Position = m_Inspect.FindAction("Position", throwIfNotFound: true);
+        m_Inspect_Exit = m_Inspect.FindAction("Exit", throwIfNotFound: true);
     }
 
     ~@PlayerInputActions()
     {
         UnityEngine.Debug.Assert(!m_Movement.enabled, "This will cause a leak and performance issues, PlayerInputActions.Movement.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_Inspect.enabled, "This will cause a leak and performance issues, PlayerInputActions.Inspect.Disable() has not been called.");
     }
 
     /// <summary>
@@ -402,6 +476,124 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="MovementActions" /> instance referencing this action map.
     /// </summary>
     public MovementActions @Movement => new MovementActions(this);
+
+    // Inspect
+    private readonly InputActionMap m_Inspect;
+    private List<IInspectActions> m_InspectActionsCallbackInterfaces = new List<IInspectActions>();
+    private readonly InputAction m_Inspect_Drag;
+    private readonly InputAction m_Inspect_Position;
+    private readonly InputAction m_Inspect_Exit;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "Inspect".
+    /// </summary>
+    public struct InspectActions
+    {
+        private @PlayerInputActions m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public InspectActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "Inspect/Drag".
+        /// </summary>
+        public InputAction @Drag => m_Wrapper.m_Inspect_Drag;
+        /// <summary>
+        /// Provides access to the underlying input action "Inspect/Position".
+        /// </summary>
+        public InputAction @Position => m_Wrapper.m_Inspect_Position;
+        /// <summary>
+        /// Provides access to the underlying input action "Inspect/Exit".
+        /// </summary>
+        public InputAction @Exit => m_Wrapper.m_Inspect_Exit;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_Inspect; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="InspectActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(InspectActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="InspectActions" />
+        public void AddCallbacks(IInspectActions instance)
+        {
+            if (instance == null || m_Wrapper.m_InspectActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_InspectActionsCallbackInterfaces.Add(instance);
+            @Drag.started += instance.OnDrag;
+            @Drag.performed += instance.OnDrag;
+            @Drag.canceled += instance.OnDrag;
+            @Position.started += instance.OnPosition;
+            @Position.performed += instance.OnPosition;
+            @Position.canceled += instance.OnPosition;
+            @Exit.started += instance.OnExit;
+            @Exit.performed += instance.OnExit;
+            @Exit.canceled += instance.OnExit;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="InspectActions" />
+        private void UnregisterCallbacks(IInspectActions instance)
+        {
+            @Drag.started -= instance.OnDrag;
+            @Drag.performed -= instance.OnDrag;
+            @Drag.canceled -= instance.OnDrag;
+            @Position.started -= instance.OnPosition;
+            @Position.performed -= instance.OnPosition;
+            @Position.canceled -= instance.OnPosition;
+            @Exit.started -= instance.OnExit;
+            @Exit.performed -= instance.OnExit;
+            @Exit.canceled -= instance.OnExit;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="InspectActions.UnregisterCallbacks(IInspectActions)" />.
+        /// </summary>
+        /// <seealso cref="InspectActions.UnregisterCallbacks(IInspectActions)" />
+        public void RemoveCallbacks(IInspectActions instance)
+        {
+            if (m_Wrapper.m_InspectActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="InspectActions.AddCallbacks(IInspectActions)" />
+        /// <seealso cref="InspectActions.RemoveCallbacks(IInspectActions)" />
+        /// <seealso cref="InspectActions.UnregisterCallbacks(IInspectActions)" />
+        public void SetCallbacks(IInspectActions instance)
+        {
+            foreach (var item in m_Wrapper.m_InspectActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_InspectActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="InspectActions" /> instance referencing this action map.
+    /// </summary>
+    public InspectActions @Inspect => new InspectActions(this);
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Movement" which allows adding and removing callbacks.
     /// </summary>
@@ -430,5 +622,34 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnInteract(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Inspect" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="InspectActions.AddCallbacks(IInspectActions)" />
+    /// <seealso cref="InspectActions.RemoveCallbacks(IInspectActions)" />
+    public interface IInspectActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "Drag" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnDrag(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Position" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnPosition(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Exit" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnExit(InputAction.CallbackContext context);
     }
 }

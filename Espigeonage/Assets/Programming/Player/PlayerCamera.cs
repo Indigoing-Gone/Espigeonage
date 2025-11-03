@@ -20,9 +20,6 @@ public class PlayerCamera : MonoBehaviour
 
     private void Awake()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-
         pitch = 0;
         yaw = 0;
     }

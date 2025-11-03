@@ -19,10 +19,10 @@ public abstract class Interactor : MonoBehaviour
     {
         if (canInteract && !isInteracting)
         {
-            HandleInteract();
             isInteracting = true;
+            HandleInteract();
         }
 
-        if (!_state) isInteracting = false;
+        if (!_state && isInteracting) isInteracting = false;
     }
 }

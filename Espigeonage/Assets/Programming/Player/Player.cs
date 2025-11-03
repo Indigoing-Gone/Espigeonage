@@ -1,3 +1,4 @@
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,6 +10,8 @@ public class Player : MonoBehaviour
 {
     [Header("Components")]
     [SerializeField] private PlayerInput playerInput;
+    [SerializeField] private CinemachineCamera cam;
+    public CinemachineCamera Cam => cam;
     [SerializeField] private Transform cameraOrientation;
 
     private PlayerMovement playerMovement;
