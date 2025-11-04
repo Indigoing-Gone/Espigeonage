@@ -4,9 +4,10 @@ public abstract class Interactor : MonoBehaviour
 {
     [Header("Parameters")]
     [SerializeField] protected LayerMask interactLayer;
+    public GameState CurrentState { get; private set; }
 
     protected bool isInteracting;
-    protected bool canInteract;
+    [SerializeField] protected bool canInteract;
 
     protected virtual void Awake()
     {
@@ -25,4 +26,5 @@ public abstract class Interactor : MonoBehaviour
 
         if (!_state && isInteracting) isInteracting = false;
     }
+    public virtual void UpdateState(GameState _newState) => CurrentState = _newState;
 }

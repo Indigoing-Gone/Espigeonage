@@ -3,15 +3,15 @@ using UnityEngine;
 public class RaycastInteractor : Interactor
 {
     [Header("Components")]
-    private Transform orientation;
-    public Transform Orientation { get => orientation; set { if (!orientation) orientation = value; } }
+    private Transform origin;
+    public Transform Origin { get => origin; set { if (!origin) origin = value; } }
 
     [Header("Parameters")]
     [SerializeField] private float interactDistance;
 
     protected override void HandleInteract()
     {
-        bool _hit = Physics.Raycast(orientation.position, orientation.forward, out RaycastHit _hitInfo,
+        bool _hit = Physics.Raycast(origin.position, origin.forward, out RaycastHit _hitInfo,
             interactDistance, interactLayer, QueryTriggerInteraction.Collide);
 
         if (!_hit) return;
@@ -23,6 +23,6 @@ public class RaycastInteractor : Interactor
     private void OnDrawGizmos()
     {
         if (!Application.isPlaying) return;
-        Debug.DrawLine(orientation.position, orientation.position + (orientation.forward * interactDistance), Color.red);
+        Debug.DrawLine(origin.position, origin.position + (origin.forward * interactDistance), Color.red);
     }
 }

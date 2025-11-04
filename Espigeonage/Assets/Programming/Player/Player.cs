@@ -2,8 +2,8 @@ using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(PlayerMovement))]
-[RequireComponent(typeof(PlayerCamera))]
+[RequireComponent(typeof(FirstPersonMovement))]
+[RequireComponent(typeof(FirstPersonCamera))]
 [RequireComponent(typeof(RaycastInteractor))]
 public class Player : MonoBehaviour
 {
@@ -13,8 +13,8 @@ public class Player : MonoBehaviour
     public CinemachineCamera Cam => cam;
     [SerializeField] private Transform cameraOrientation;
 
-    private PlayerMovement playerMovement;
-    private PlayerCamera playerCamera;
+    private FirstPersonMovement playerMovement;
+    private FirstPersonCamera playerCamera;
     private RaycastInteractor playerInteract;
 
     private void OnEnable()
@@ -29,13 +29,13 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        playerMovement = GetComponent<PlayerMovement>();
-        playerCamera = GetComponent<PlayerCamera>();
+        playerMovement = GetComponent<FirstPersonMovement>();
+        playerCamera = GetComponent<FirstPersonCamera>();
         playerInteract = GetComponent<RaycastInteractor>();
 
         playerMovement.Orientation = cameraOrientation;
         playerCamera.Orientation = cameraOrientation;
-        playerInteract.Orientation = cameraOrientation;
+        playerInteract.Origin = cameraOrientation;
     }
 
     private void Update()
