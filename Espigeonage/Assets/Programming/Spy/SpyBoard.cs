@@ -16,7 +16,7 @@ public class SpyBoard
     private int width;
     private int height;
     private SpaceType[,] board;
-    private List<BoardUnit> units;
+    private List<BoardUnit> units = new();
 
     Vector2Int startPos;
     Vector2Int endPos;
@@ -46,15 +46,23 @@ public class SpyBoard
     {
         // Parse Functions ---------------------------------------------------
 
-        // Consumes a token string from start of text, throws exception if failed
-        void ConsumeToken(string _token)
+        // Matches and consumes a token string from start of text
+        void MatchToken(string _token)
         {
             if (_text.StartsWith(_token)) _text = _text[_token.Length..];
             else throw new FormatException("FAILED TO PARSE TOKEN " + _token);
         }
 
-        // Consumes and returns string ending in ending char from text, 
-        // (not including the ending character), throws exception if failed
+        // Consumes and returns char at start of text
+        char ConsumeChar()
+        {
+            if (_text.Length == 0) throw new FormatException("CANNOT PARSE CHAR FROM EMPTY STRING");
+            char c = _text[0];
+            _text = _text[1..];
+            return c;
+        }
+
+        // Consumes and returns string ending in ending char from text (not including the ending character)
         string ConsumeString(char _end)
         {
             int _index = _text.IndexOf(_end);
@@ -85,8 +93,26 @@ public class SpyBoard
             return _str;
         }
 
+        // Consumes all spaces and control characters at start of text
+        void ConsumeEmpty()
+        {
+            if (_text.Length == 0) return;
+
+            int index = 0;
+            while (char.IsWhiteSpace(_text[index]) || char.IsControl(_text[index]))
+            {
+                index++;
+                if (index == _text.Length)
+                {
+                    _text = "";
+                    return;
+                }
+            }
+            
+            _text = _text[index..];
+        }
+
         // Consumes and returns integer at start of text ending in ending char
-        // throws exception if failed
         int ConsumeInt(char _end)
         {
             int _index = _text.IndexOf(_end);
@@ -146,11 +172,51 @@ public class SpyBoard
             }
         }
 
-        // Parses board unit from line
-        void ParseUnit(string _line)
+        // Consumes and returns a coordinate at start of text
+        Vector2Int ConsumeCoordinate()
         {
-            if (_line.Length == 0) return;
-            Debug.Log("Parsing unit from " + _line);
+            MatchToken("(");
+            int x = ConsumeInt(',');
+            int y = ConsumeInt(')');
+            return new Vector2Int(x, y);    
+        }
+
+        // Consumes and returns a list of type T from text using a function which consumes that type
+        List<T> ConsumeList<T>(Func<T> _elementConsumer)
+        {
+            MatchToken("(");
+            List<T> list = new();
+            while (_text[0] != ')')  list.Append(_elementConsumer());
+            MatchToken(")");
+            return list;
+        }
+
+        // Consumes and construsts a guard unit from text
+        void ConsumeGuard()
+        {
+            List<Vector2Int> patrolPath = ConsumeList(ConsumeCoordinate);
+            MatchToken(",");
+            char direction = ConsumeChar();
+            MatchToken(",");
+            int range = ConsumeInt(')');
+            // TODO: Create guard
+            Debug.Log("Parsed Guard");
+        }
+
+        // Consumes and constructs board unit from text
+        void ConsumeUnit()
+        {
+            string unit = ConsumeString('(');
+            switch (unit)
+            {
+                case "Guard":
+                    ConsumeGuard();
+                    break;
+
+                default:
+                    throw new FormatException("CANNOT PARSE UNIT " + unit);
+            }
+            ConsumeEmpty();
         }
 
        // -------------------------------------------------------------------
@@ -158,22 +224,24 @@ public class SpyBoard
         try
         {
             // Parse name
-            ConsumeToken("\"");
+            MatchToken("\"");
             name = ConsumeString('\"');
-            ConsumeLine();
-            ConsumeLine();
+            ConsumeEmpty();
             Debug.Log("Parsed name: " + name);
 
             // Parse map width and height
             width = ConsumeInt('\n');
             height = ConsumeInt('\n');
-            ConsumeLine();
+            ConsumeEmpty();
             Debug.Log("Parsed width: " + width + " Parsed height: " + height);
 
             // Parse board
             ConsumeBoard();
+            
+            ConsumeEmpty();
 
-            while (_text.Length > 0) ParseUnit(ConsumeLine());
+            // Parse units
+            while (_text.Length > 0) ConsumeUnit();
 
             Debug.Log("Parse successful");
 
@@ -184,6 +252,7 @@ public class SpyBoard
         }
     }
 
+    // Determines if playerPos is a valid move based on the board space
     public bool EvaluatePosition(Vector2Int playerPos)
     {
         return board[playerPos[0], playerPos[1]] switch
@@ -194,15 +263,18 @@ public class SpyBoard
         };
     }
 
+    // Determines if playerPos is a valid move based on board units
     public bool EvaluateUnits(Vector2Int playerPos)
     {
         for (int i = 0; i < units.Count; i++)
         {
-            if (!units[i].Update(playerPos)) return false;
+            if (!units[i].Update(playerPos, board)) return false;
+            
         }
         return true;
     }
 
+    // Determines if path through board is valid (assumes path is connected)
     public bool EvaluatePath(List<Vector2Int> path)
     {
         if (path.Count < 2) return false;
