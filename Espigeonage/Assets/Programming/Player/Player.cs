@@ -4,7 +4,6 @@ using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(PlayerMovement))]
 [RequireComponent(typeof(PlayerCamera))]
-[RequireComponent(typeof(PlayerGrabber))]
 [RequireComponent(typeof(RaycastInteractor))]
 public class Player : MonoBehaviour
 {
@@ -16,7 +15,6 @@ public class Player : MonoBehaviour
 
     private PlayerMovement playerMovement;
     private PlayerCamera playerCamera;
-    private PlayerGrabber playerGrabber;
     private RaycastInteractor playerInteract;
 
     private void OnEnable()
@@ -33,7 +31,6 @@ public class Player : MonoBehaviour
     {
         playerMovement = GetComponent<PlayerMovement>();
         playerCamera = GetComponent<PlayerCamera>();
-        playerGrabber = GetComponent<PlayerGrabber>();
         playerInteract = GetComponent<RaycastInteractor>();
 
         playerMovement.Orientation = cameraOrientation;
