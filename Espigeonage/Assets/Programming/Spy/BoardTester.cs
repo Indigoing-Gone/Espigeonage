@@ -8,7 +8,7 @@ public class BoardTester : MonoBehaviour
     private TextAsset testFile;
 
     [SerializeField]
-    private List<Vector2> path;
+    private List<Vector2Int> path;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
