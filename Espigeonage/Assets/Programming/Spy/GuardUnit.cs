@@ -31,9 +31,11 @@ public class GuardUnit : BoardUnit
     // Searches for player at position in direction with range, returns if player was found
     private bool Search(Vector2Int _playerPos, SpaceType[,] _board)
     {
-        for (int i = 0; i < range; i++)
+        if (position == _playerPos) return true;
+
+        for (int i = 1; i <= range; i++)
         {
-            Vector2Int checkPos = position + direction * range;
+            Vector2Int checkPos = position + direction * i;
             if (checkPos == _playerPos) return true;
             if (!SpyBoard.InBounds(checkPos, _board.GetLength(1), _board.GetLength(0))) return false;
             if (_board[checkPos[0], checkPos[1]] == SpaceType.WALL) return false;       
@@ -46,7 +48,7 @@ public class GuardUnit : BoardUnit
         if (patrolPath.Length == 1 || firstTurn)
         {
             firstTurn = false;
-            return Search(_playerPos, _board);
+            return !Search(_playerPos, _board);
         }
 
         int prevIndex = patrolIndex;
@@ -55,6 +57,6 @@ public class GuardUnit : BoardUnit
 
         position = patrolPath[patrolIndex];
         direction = position - patrolPath[prevIndex];
-        return Search(_playerPos, _board);
+        return !Search(_playerPos, _board);
     }
 }

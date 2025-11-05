@@ -198,7 +198,7 @@ public class SpyBoard
         {
             MatchToken("(");
             List<T> list = new();
-            while (_text[0] != ')')  list.Append(_elementConsumer());
+            while (_text[0] != ')') list.Add(_elementConsumer());
             MatchToken(")");
             return list;
         }
@@ -207,6 +207,7 @@ public class SpyBoard
         void ConsumeGuard()
         {
             List<Vector2Int> patrolPath = ConsumeList(ConsumeCoordinate);
+            if (patrolPath.Count == 0) throw new FormatException("GUARD PATROL PATH CANNOT BE EMPTY");
             MatchToken(",");
             char direction = ConsumeChar();
             MatchToken(",");
