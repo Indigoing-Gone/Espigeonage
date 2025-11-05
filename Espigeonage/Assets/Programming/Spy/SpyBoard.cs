@@ -42,6 +42,13 @@ public class SpyBoard
         ParseBoard(_boardFile.text);
     }
 
+    // Gets a space on the board given a coordinate in standard form
+    public SpaceType GetStandard(Vector2Int coord)
+    {
+        Vector2Int pos = ToRowMajor(coord);
+        return board[pos[0], pos[1]];
+    }
+
     /* 
      * Parses a text file to generate board
      * 
@@ -193,7 +200,7 @@ public class SpyBoard
             MatchToken("(");
             int x = ConsumeInt(',');
             int y = ConsumeInt(')');
-            return new Vector2Int(x, y);    
+            return ToRowMajor(new Vector2Int(x, y));    
         }
 
         // Consumes and returns a list of type T from text using a function which consumes that type
@@ -294,6 +301,9 @@ public class SpyBoard
     public bool EvaluatePath(List<Vector2Int> path)
     {
         if (path.Count < 2) return false;
+
+        path = path.Select(ToRowMajor).ToList();
+
         if (path[0] != startPos || path[^1] != endPos) return false;
 
         for (int i = 0; i < path.Count; i++)
@@ -344,7 +354,7 @@ public class SpyBoard
         }
 
         // Construct string from char matrix
-        StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new();
         for (int i = 0; i < height; i++)
         {
             for (int j = 0; j < width; j++)
@@ -354,6 +364,22 @@ public class SpyBoard
             sb.Append('\n');
         }
         return sb.ToString();
+    }
+
+    // Convert a coordinate in format (x, y) with origin at bottom left
+    // to row major coordinate
+    public Vector2Int ToRowMajor(Vector2Int coord)
+    {
+        int i = height - 1 - coord[1];
+        int j = coord[0];
+        return new Vector2Int(i, j);
+    }
+
+    public Vector2Int ToStandardCoordinate(Vector2Int coord)
+    {
+        int x = coord[1];
+        int y = height - 1 - coord[0];
+        return new Vector2Int(x, y);
     }
 
     // Helper function for checking if a position is within the bounds of a board
