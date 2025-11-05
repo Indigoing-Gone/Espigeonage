@@ -1,12 +1,13 @@
 public abstract class PlayerStateBase
 {
-    protected PlayerStateManager manager;
+    protected PlayerStateMachine player;
 
-    protected PlayerStateBase(PlayerStateManager _manager)
+    protected PlayerStateBase(PlayerStateMachine _player)
     {
-        manager = _manager;
+        player = _player;
     }
 
     public abstract GameState EnterState();
+    public abstract void UpdateState();
     public abstract void ExitState();
 }

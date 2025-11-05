@@ -5,7 +5,7 @@ using static PlayerInputActions;
 
 [CreateAssetMenu(menuName = "Input/InputReader")]
 [DefaultExecutionOrder(-1)]
-public class InputReader : ScriptableObject, IMovementActions, IInspectActions
+public class InputReader : ScriptableObject, IMovementActions, IInspectActions, IInteractActions
 {
     private PlayerInputActions playerInput;
 
@@ -18,6 +18,7 @@ public class InputReader : ScriptableObject, IMovementActions, IInspectActions
             playerInput = new PlayerInputActions();
             playerInput.Movement.SetCallbacks(this);
             playerInput.Inspect.SetCallbacks(this);
+            playerInput.Interact.SetCallbacks(this);
             DisableAll();
         }
     }
@@ -25,19 +26,22 @@ public class InputReader : ScriptableObject, IMovementActions, IInspectActions
     public void SetMovement()
     {
         playerInput.Movement.Enable();
-        playerInput.Inspect.Enable();
+        playerInput.Inspect.Disable();
+        playerInput.Interact.Enable();
     }
 
     public void SetInspect()
     {
         playerInput.Movement.Disable();
         playerInput.Inspect.Enable();
+        playerInput.Interact.Enable();
     }
 
     public void DisableAll()
     {
         playerInput.Movement.Disable();
         playerInput.Inspect.Disable();
+        playerInput.Interact.Disable();
     }
 
     #endregion
@@ -47,12 +51,14 @@ public class InputReader : ScriptableObject, IMovementActions, IInspectActions
     //Movement
     public event Action<Vector2> MoveEvent;
     public event Action<Vector2> LookEvent;
-    public event Action<bool> InteractEvent;
 
     //Inspect
     public event Action<bool> DragEvent;
     public event Action<Vector2> PositionEvent;
     public event Action<bool> ExitEvent;
+
+    //Interact
+    public event Action<bool> InteractEvent;
 
     #endregion
 
@@ -61,11 +67,6 @@ public class InputReader : ScriptableObject, IMovementActions, IInspectActions
     //Movement
     public void OnMove(InputAction.CallbackContext context) => MoveEvent?.Invoke(context.ReadValue<Vector2>());
     public void OnLook(InputAction.CallbackContext context) => LookEvent?.Invoke(context.ReadValue<Vector2>());
-    public void OnInteract(InputAction.CallbackContext context)
-    {
-        if (context.phase == InputActionPhase.Performed) InteractEvent?.Invoke(true);
-        if (context.phase == InputActionPhase.Canceled) InteractEvent?.Invoke(false);
-    }
 
     //Inspect
     public void OnDrag(InputAction.CallbackContext context)
@@ -78,6 +79,13 @@ public class InputReader : ScriptableObject, IMovementActions, IInspectActions
     {
         if (context.phase == InputActionPhase.Performed) ExitEvent?.Invoke(true);
         if (context.phase == InputActionPhase.Canceled) ExitEvent?.Invoke(false);
+    }
+
+    //Interact
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed) InteractEvent?.Invoke(true);
+        if (context.phase == InputActionPhase.Canceled) InteractEvent?.Invoke(false);
     }
 
     #endregion

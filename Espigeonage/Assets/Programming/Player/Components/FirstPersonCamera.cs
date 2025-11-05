@@ -36,7 +36,7 @@ public class FirstPersonCamera : MonoBehaviour
         orientation.rotation = Quaternion.Euler(pitch, yaw, 0);
     }
 
-    public void ProcessInput(Vector2 _direction)
+    public void SetLookDirection(Vector2 _direction)
     {
         lookDirection = _direction;
     }

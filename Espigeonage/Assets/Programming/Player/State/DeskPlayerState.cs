@@ -1,3 +1,5 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DeskPlayerState : PlayerStateBase
@@ -5,25 +7,37 @@ public class DeskPlayerState : PlayerStateBase
     private Desk currentDesk;
     private bool deskInUse;
 
-    public DeskPlayerState(PlayerStateManager _manager) : base(_manager) { }
+    public DeskPlayerState(PlayerStateMachine _player) : base(_player) { }
 
     public override GameState EnterState()
     {
-        manager.Input.SetInspect();
-        manager.CameraSwitcher.ChangeCamera(currentDesk.DeskCamera);
+        player.Input.SetInspect();
+        player.CameraSwitcher.ChangeCamera(currentDesk.DeskCamera);
+
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
+
         deskInUse = true;
 
-        manager.Input.ExitEvent += OnExitDesk;
+        player.Input.InteractEvent += HandleDragRelease;
+        player.Input.ExitEvent += OnExitDesk;
 
         return GameState.Desk;
     }
 
+
+    public override void UpdateState()
+    {
+        player.Dragger.AttemptDrag(player.MousePosition);
+        player.Interactor.UpdateRay(Camera.main.ScreenPointToRay(player.MousePosition));
+    }
+
     public override void ExitState()
     {
-        manager.Input.DisableAll();
-        manager.Input.ExitEvent -= OnExitDesk;
+        player.Input.DisableAll();
+
+        player.Input.InteractEvent -= HandleDragRelease;
+        player.Input.ExitEvent -= OnExitDesk;
     }
 
     public DeskPlayerState UpdateDesk(Desk _newDesk)
@@ -36,8 +50,13 @@ public class DeskPlayerState : PlayerStateBase
     {
         if (deskInUse && _state)
         {
-            manager.ChangeState(manager.MovementState);
+            player.ChangeState(player.MovementState);
             deskInUse = false;
         }
+    }
+
+    private void HandleDragRelease(bool _state)
+    {
+        if (!_state) player.Dragger.HandleRelease();
     }
 }
