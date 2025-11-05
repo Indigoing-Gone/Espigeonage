@@ -48,7 +48,7 @@ public class FirstPersonMovement : MonoBehaviour
         rb.AddForce(_velocityChange, ForceMode.VelocityChange);
     }
 
-    public void ProcessInput(Vector2 _direction)
+    public void SetMoveDirection(Vector2 _direction)
     {
         moveDirection = _direction;
         pressingKey = _direction != Vector2.zero;
