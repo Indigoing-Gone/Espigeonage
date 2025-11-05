@@ -331,10 +331,15 @@ public class SpyBoard
         // Add units to char matrix
         foreach (BoardUnit unit in units)
         {
-            _boardStr[unit.Position[0], unit.Position[1]] = unit switch
+            switch (unit)
             {
-                GuardUnit => 'G',
-                _ => 'U'
+                case GuardUnit:
+                    _boardStr[unit.Position[0], unit.Position[1]] = 'G';
+                    foreach (Vector2Int pos in ((GuardUnit)unit).GetCheckedPositions(board))
+                    {
+                        _boardStr[pos[0], pos[1]] = '+';
+                    }
+                    break;
             };
         }
 

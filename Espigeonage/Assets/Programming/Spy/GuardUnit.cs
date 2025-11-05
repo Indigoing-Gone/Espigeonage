@@ -28,6 +28,20 @@ public class GuardUnit : BoardUnit
         };
     }
 
+    // Returns a list of all postions currently checked by the guard
+    public List<Vector2Int> GetCheckedPositions(SpaceType[,] _board)
+    {
+        List<Vector2Int> positions = new();
+        for (int i = 1; i <= range; i++)
+        {
+            Vector2Int checkPos = position + direction * i;
+            if (!SpyBoard.InBounds(checkPos, _board.GetLength(1), _board.GetLength(0))) break;
+            if (_board[checkPos[0], checkPos[1]] == SpaceType.WALL) break;
+            positions.Add(checkPos);
+        }
+        return positions;
+    }
+
     // Searches for player at position in direction with range, returns if player was found
     private bool Search(Vector2Int _playerPos, SpaceType[,] _board)
     {
