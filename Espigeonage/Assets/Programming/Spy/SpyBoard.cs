@@ -13,13 +13,25 @@ public enum SpaceType
 public class SpyBoard
 {
     private string name;
-    private int width;
-    private int height;
-    private SpaceType[,] board;
-    private List<BoardUnit> units = new();
+    public string Name => name;
 
-    Vector2Int startPos;
-    Vector2Int endPos;
+    private int width;
+    public int Width => width;
+
+    private int height;
+    public int Height => height;
+
+    private SpaceType[,] board;
+    public SpaceType[,] Board => board;
+
+    private List<BoardUnit> units = new();
+    public List<BoardUnit> Units => units;
+
+    private Vector2Int startPos;
+    public Vector2Int StartPosition => startPos;
+
+    private Vector2Int endPos;
+    public Vector2Int EndPosition => endPos;
     
     public SpyBoard(TextAsset _boardFile)
     {
@@ -199,7 +211,7 @@ public class SpyBoard
             char direction = ConsumeChar();
             MatchToken(",");
             int range = ConsumeInt(')');
-            // TODO: Create guard
+            units.Add(new GuardUnit(patrolPath, direction, range));
             Debug.Log("Parsed Guard");
         }
 
@@ -287,5 +299,11 @@ public class SpyBoard
         }
 
         return true;
+    }
+
+    // Helper function for checking if a position is within the bounds of a board
+    public static bool InBounds(Vector2Int pos, int width, int height)
+    {
+        return pos[0] >= 0 && pos[1] >= 0 && pos[0] < height && pos[1] < width;
     }
 }
