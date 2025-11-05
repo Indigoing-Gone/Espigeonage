@@ -2,6 +2,7 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using UnityEngine;
 
 public enum SpaceType
@@ -13,13 +14,27 @@ public enum SpaceType
 public class SpyBoard
 {
     private string name;
-    private int width;
-    private int height;
-    private SpaceType[,] board;
-    private List<BoardUnit> units = new();
+    public string Name => name;
 
-    Vector2Int startPos;
-    Vector2Int endPos;
+    private int width;
+    public int Width => width;
+
+    private int height;
+    public int Height => height;
+
+    private SpaceType[,] board;
+    public SpaceType[,] Board => board;
+
+    private List<BoardUnit> units = new();
+    public List<BoardUnit> Units => units;
+
+    private Vector2Int startPos;
+    public Vector2Int StartPosition => startPos;
+
+    private Vector2Int endPos;
+    public Vector2Int EndPosition => endPos;
+
+
     
     public SpyBoard(TextAsset _boardFile)
     {
@@ -186,7 +201,7 @@ public class SpyBoard
         {
             MatchToken("(");
             List<T> list = new();
-            while (_text[0] != ')')  list.Append(_elementConsumer());
+            while (_text[0] != ')') list.Add(_elementConsumer());
             MatchToken(")");
             return list;
         }
@@ -195,11 +210,12 @@ public class SpyBoard
         void ConsumeGuard()
         {
             List<Vector2Int> patrolPath = ConsumeList(ConsumeCoordinate);
+            if (patrolPath.Count == 0) throw new FormatException("GUARD PATROL PATH CANNOT BE EMPTY");
             MatchToken(",");
             char direction = ConsumeChar();
             MatchToken(",");
             int range = ConsumeInt(')');
-            // TODO: Create guard
+            units.Add(new GuardUnit(patrolPath, direction, range));
             Debug.Log("Parsed Guard");
         }
 
@@ -282,10 +298,67 @@ public class SpyBoard
 
         for (int i = 0; i < path.Count; i++)
         {
-            Vector2Int playerPos = path[i];
-            if (!EvaluatePosition(playerPos) || !EvaluateUnits(playerPos)) return false;
+            Vector2Int _playerPos = path[i];
+            if (!EvaluatePosition(_playerPos) || !EvaluateUnits(_playerPos)) return false;
+            Debug.Log("Board state on iteration " + i + "\n" + ToString(_playerPos));
         }
 
         return true;
+    }
+
+    public override string ToString() { return ToString(startPos); }
+
+    public string ToString(Vector2Int _playerPos)
+    {
+        // Convert board state to char matrix
+        char[,] _boardStr = new char[height, width];
+        for (int i = 0; i < height; i++)
+        {
+            for (int j = 0; j < width; j++)
+            {
+                _boardStr[i, j] = board[i, j] switch
+                {
+                    SpaceType.EMPTY => '-',
+                    SpaceType.WALL => '#',
+                    _ => '-'
+                };
+            }
+        }
+
+        // Add player to char matrix
+        _boardStr[_playerPos[0], _playerPos[1]] = 'P';
+
+        // Add units to char matrix
+        foreach (BoardUnit unit in units)
+        {
+            switch (unit)
+            {
+                case GuardUnit:
+                    _boardStr[unit.Position[0], unit.Position[1]] = 'G';
+                    foreach (Vector2Int pos in ((GuardUnit)unit).GetCheckedPositions(board))
+                    {
+                        _boardStr[pos[0], pos[1]] = '+';
+                    }
+                    break;
+            };
+        }
+
+        // Construct string from char matrix
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < height; i++)
+        {
+            for (int j = 0; j < width; j++)
+            {
+                sb.Append(_boardStr[i, j]);
+            }
+            sb.Append('\n');
+        }
+        return sb.ToString();
+    }
+
+    // Helper function for checking if a position is within the bounds of a board
+    public static bool InBounds(Vector2Int pos, int width, int height)
+    {
+        return pos[0] >= 0 && pos[1] >= 0 && pos[0] < height && pos[1] < width;
     }
 }
