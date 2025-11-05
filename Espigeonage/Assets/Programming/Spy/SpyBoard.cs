@@ -2,6 +2,7 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using UnityEngine;
 
 public enum SpaceType
@@ -32,6 +33,8 @@ public class SpyBoard
 
     private Vector2Int endPos;
     public Vector2Int EndPosition => endPos;
+
+
     
     public SpyBoard(TextAsset _boardFile)
     {
@@ -295,11 +298,57 @@ public class SpyBoard
 
         for (int i = 0; i < path.Count; i++)
         {
-            Vector2Int playerPos = path[i];
-            if (!EvaluatePosition(playerPos) || !EvaluateUnits(playerPos)) return false;
+            Vector2Int _playerPos = path[i];
+            if (!EvaluatePosition(_playerPos) || !EvaluateUnits(_playerPos)) return false;
+            Debug.Log("Board state on iteration " + i + "\n" + ToString(_playerPos));
         }
 
         return true;
+    }
+
+    public override string ToString() { return ToString(startPos); }
+
+    public string ToString(Vector2Int _playerPos)
+    {
+        // Convert board state to char matrix
+        char[,] _boardStr = new char[height, width];
+        for (int i = 0; i < height; i++)
+        {
+            for (int j = 0; j < width; j++)
+            {
+                _boardStr[i, j] = board[i, j] switch
+                {
+                    SpaceType.EMPTY => '-',
+                    SpaceType.WALL => '#',
+                    _ => '-'
+                };
+            }
+        }
+
+        // Add player to char matrix
+        _boardStr[_playerPos[0], _playerPos[1]] = 'P';
+
+        // Add units to char matrix
+        foreach (BoardUnit unit in units)
+        {
+            _boardStr[unit.Position[0], unit.Position[1]] = unit switch
+            {
+                GuardUnit => 'G',
+                _ => 'U'
+            };
+        }
+
+        // Construct string from char matrix
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < height; i++)
+        {
+            for (int j = 0; j < width; j++)
+            {
+                sb.Append(_boardStr[i, j]);
+            }
+            sb.Append('\n');
+        }
+        return sb.ToString();
     }
 
     // Helper function for checking if a position is within the bounds of a board

@@ -53,7 +53,7 @@ public class GuardUnit : BoardUnit
 
         int prevIndex = patrolIndex;
         if (patrolIndex == patrolPath.Length - 1) patrolIndex = 0;
-        patrolIndex++;
+        else patrolIndex++;
 
         position = patrolPath[patrolIndex];
         direction = position - patrolPath[prevIndex];
