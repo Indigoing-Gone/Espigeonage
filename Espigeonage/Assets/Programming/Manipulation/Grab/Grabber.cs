@@ -4,30 +4,28 @@ public class Grabber : MonoBehaviour
 {
     [Header("Components")]
     [SerializeField] protected Transform grabLocation;
-    public Transform GrabLocation => grabLocation;
+    protected IGrabbable currentGrabbable;
 
-    [Header("Grab Logic")]
+    [Header("Grab Parameters")]
     [SerializeField] protected bool disableGrabbableCollider;
-    public bool DisableGrabbableCollider => disableGrabbableCollider;
-    [SerializeField] protected IGrabbable currentGrabbable;
-    public IGrabbable CurrentGrabbable => currentGrabbable;
+    public bool HasGrabbable => currentGrabbable != null;
 
-    public virtual void HandleGrab(IGrabbable _grabbable)
+    public void SetGrabbable(IGrabbable _grabbable)
     {
-        //We are already grabbing something, we regrabbed our current grabbable, or the new grabbable couldn't be grabbed
-        if (currentGrabbable != null || currentGrabbable == _grabbable || _grabbable.Grab(this) == false) return;
+        if (currentGrabbable != null) return;
         currentGrabbable = _grabbable;
-
-        currentGrabbable.BeingGrabbed += HandleRelease;
     }
 
-    public virtual void HandleRelease()
+    public virtual void Grab()
     {
-        if (currentGrabbable == null) return;
+        currentGrabbable?.Grab(this, grabLocation, disableGrabbableCollider);
+    }
 
-        currentGrabbable.BeingGrabbed -= HandleRelease;
-
-        currentGrabbable.Release();
+    public virtual IGrabbable Release()
+    {
+        IGrabbable _releasedGrabbable = currentGrabbable;
+        currentGrabbable?.Release();
         currentGrabbable = null;
+        return _releasedGrabbable;
     }
 }

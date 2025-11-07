@@ -53,9 +53,8 @@ public class InputReader : ScriptableObject, IMovementActions, IInspectActions, 
     public event Action<Vector2> LookEvent;
 
     //Inspect
-    public event Action<bool> DragEvent;
     public event Action<Vector2> PositionEvent;
-    public event Action<bool> ExitEvent;
+    public event Action ExitEvent;
 
     //Interact
     public event Action<bool> InteractEvent;
@@ -69,16 +68,11 @@ public class InputReader : ScriptableObject, IMovementActions, IInspectActions, 
     public void OnLook(InputAction.CallbackContext context) => LookEvent?.Invoke(context.ReadValue<Vector2>());
 
     //Inspect
-    public void OnDrag(InputAction.CallbackContext context)
-    {
-        if (context.phase == InputActionPhase.Performed) DragEvent?.Invoke(true);
-        if (context.phase == InputActionPhase.Canceled) DragEvent?.Invoke(false);
-    }
     public void OnPosition(InputAction.CallbackContext context) => PositionEvent?.Invoke(context.ReadValue<Vector2>());
     public void OnExit(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Performed) ExitEvent?.Invoke(true);
-        if (context.phase == InputActionPhase.Canceled) ExitEvent?.Invoke(false);
+        if (context.phase == InputActionPhase.Performed) ExitEvent?.Invoke();
+        //if (context.phase == InputActionPhase.Canceled) ExitEvent?.Invoke(false);
     }
 
     //Interact

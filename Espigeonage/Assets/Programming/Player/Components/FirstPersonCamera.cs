@@ -1,7 +1,4 @@
-using Unity.Cinemachine;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
 
 public class FirstPersonCamera : MonoBehaviour
 {
@@ -10,8 +7,8 @@ public class FirstPersonCamera : MonoBehaviour
     public Transform Orientation { get => orientation; set { if (!orientation) orientation = value; } }
 
     [Header("Camera Settings")]
-    [SerializeField] private Vector2 pitchMinMax;
-    [SerializeField] private Vector2 sensitivity;
+    [SerializeField] private Vector2 pitchMinMax = new(-90, 90);
+    [SerializeField] private Vector2 sensitivity = new(4, 4);
 
     [Header("Calculations")]
     private Vector2 lookDirection;

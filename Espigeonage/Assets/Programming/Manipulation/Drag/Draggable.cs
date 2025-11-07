@@ -1,26 +1,16 @@
 using UnityEngine;
 
-public class Draggable : MonoBehaviour, IDraggable
+public class Draggable : MonoBehaviour
 {
-    private void Awake()
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
     {
-
+        
     }
 
-    public bool Drag(Dragger _dragger, Vector3 _inputPosition)
+    // Update is called once per frame
+    void Update()
     {
-        if (_dragger == null) return false;
-
-        Vector3 _screenPosition = _inputPosition + 
-            (Vector3.forward * Camera.main.WorldToScreenPoint(transform.position).z);
-        Vector3 _worldPosition = Camera.main.ScreenToWorldPoint(_screenPosition);
-        transform.position = _worldPosition;
-
-        return true;
-    }
-
-    public void Release()
-    {
-
+        
     }
 }

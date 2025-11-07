@@ -7,23 +7,23 @@ public class Interactable : MonoBehaviour, IInteractable
     [Serializable]
     struct Interaction
     {
-        public GameState state;
+        public ActionState state;
         public InteractBehaviour behaviour;
     }
 
     [SerializeField] List<Interaction> interactions = new();
-    Dictionary<GameState, InteractBehaviour> interactionDict;
+    Dictionary<ActionState, InteractBehaviour> interactionDict;
 
     private void Awake()
     {
-        interactionDict = new Dictionary<GameState, InteractBehaviour>();
+        interactionDict = new Dictionary<ActionState, InteractBehaviour>();
         foreach (Interaction interaction in interactions)
             if (interaction.behaviour) interactionDict[interaction.state] = interaction.behaviour;
     }
 
-    public void Interact(Interactor _interactor)
+    public void Interact(Interactor _interactor, ActionState _currentActionState)
     {
-        if (!interactionDict.TryGetValue(_interactor.CurrentState, out InteractBehaviour _behaviour)) return;
+        if (!interactionDict.TryGetValue(_currentActionState, out InteractBehaviour _behaviour)) return;
         _behaviour.Execute(this, _interactor);
     }
 }

@@ -185,15 +185,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             ""id"": ""f7fe489f-4e79-4fb3-aca5-c97b4abc59af"",
             ""actions"": [
                 {
-                    ""name"": ""Drag"",
-                    ""type"": ""Button"",
-                    ""id"": ""d33670b6-82ff-4965-b4b0-50f48362e498"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Position"",
                     ""type"": ""PassThrough"",
                     ""id"": ""df0996df-db2c-4035-91f4-ade2dd664868"",
@@ -213,17 +204,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 }
             ],
             ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""cf4109f7-5b1f-4838-aebb-fd92cbe57464"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Drag"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
                 {
                     ""name"": """",
                     ""id"": ""70466bac-78b5-4009-a67c-4ed2ccfff20b"",
@@ -285,7 +265,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Movement_Look = m_Movement.FindAction("Look", throwIfNotFound: true);
         // Inspect
         m_Inspect = asset.FindActionMap("Inspect", throwIfNotFound: true);
-        m_Inspect_Drag = m_Inspect.FindAction("Drag", throwIfNotFound: true);
         m_Inspect_Position = m_Inspect.FindAction("Position", throwIfNotFound: true);
         m_Inspect_Exit = m_Inspect.FindAction("Exit", throwIfNotFound: true);
         // Interact
@@ -480,7 +459,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     // Inspect
     private readonly InputActionMap m_Inspect;
     private List<IInspectActions> m_InspectActionsCallbackInterfaces = new List<IInspectActions>();
-    private readonly InputAction m_Inspect_Drag;
     private readonly InputAction m_Inspect_Position;
     private readonly InputAction m_Inspect_Exit;
     /// <summary>
@@ -494,10 +472,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// Construct a new instance of the input action map wrapper class.
         /// </summary>
         public InspectActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
-        /// <summary>
-        /// Provides access to the underlying input action "Inspect/Drag".
-        /// </summary>
-        public InputAction @Drag => m_Wrapper.m_Inspect_Drag;
         /// <summary>
         /// Provides access to the underlying input action "Inspect/Position".
         /// </summary>
@@ -532,9 +506,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_InspectActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_InspectActionsCallbackInterfaces.Add(instance);
-            @Drag.started += instance.OnDrag;
-            @Drag.performed += instance.OnDrag;
-            @Drag.canceled += instance.OnDrag;
             @Position.started += instance.OnPosition;
             @Position.performed += instance.OnPosition;
             @Position.canceled += instance.OnPosition;
@@ -552,9 +523,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="InspectActions" />
         private void UnregisterCallbacks(IInspectActions instance)
         {
-            @Drag.started -= instance.OnDrag;
-            @Drag.performed -= instance.OnDrag;
-            @Drag.canceled -= instance.OnDrag;
             @Position.started -= instance.OnPosition;
             @Position.performed -= instance.OnPosition;
             @Position.canceled -= instance.OnPosition;
@@ -719,13 +687,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     /// <seealso cref="InspectActions.RemoveCallbacks(IInspectActions)" />
     public interface IInspectActions
     {
-        /// <summary>
-        /// Method invoked when associated input action "Drag" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnDrag(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "Position" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>

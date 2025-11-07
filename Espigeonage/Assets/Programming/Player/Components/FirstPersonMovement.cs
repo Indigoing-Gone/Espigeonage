@@ -9,9 +9,9 @@ public class FirstPersonMovement : MonoBehaviour
     public Transform Orientation { get => orientation; set { if (!orientation) orientation = value; } }
 
     [Header("Movement")]
-    [SerializeField] private float maxSpeed;
-    [SerializeField] private float acceleration;
-    [SerializeField] private float deceleration;
+    [SerializeField] private float maxSpeed = 300;
+    [SerializeField] private float acceleration = 80;
+    [SerializeField] private float deceleration = 80;
 
     private Vector2 moveDirection;
     private bool pressingKey;
@@ -43,9 +43,8 @@ public class FirstPersonMovement : MonoBehaviour
 
         //Apply force method
         Vector3 _velocityChange = (_targetXZVelocity - _currentXZVelocity);
-        _velocityChange.x = Mathf.Clamp(_velocityChange.x, -_maxSpeedChange, _maxSpeedChange);
-        _velocityChange.z = Mathf.Clamp(_velocityChange.z, -_maxSpeedChange, _maxSpeedChange);
-        rb.AddForce(_velocityChange, ForceMode.VelocityChange);
+        float _changeMagnitude = Mathf.Clamp(_velocityChange.magnitude, -_maxSpeedChange, _maxSpeedChange);
+        rb.AddForce(_changeMagnitude * _velocityChange.normalized, ForceMode.VelocityChange);
     }
 
     public void SetMoveDirection(Vector2 _direction)

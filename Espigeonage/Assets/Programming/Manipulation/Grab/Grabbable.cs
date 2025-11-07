@@ -3,30 +3,41 @@ using UnityEngine;
 
 public class Grabbable : MonoBehaviour, IGrabbable
 {
+    private Rigidbody rb;
     private Collider col;
-    public event Action BeingGrabbed;
+
+    [SerializeField] private bool isDynamic;
+
+    public event Action<bool> GrabbedStatus;
 
     private void Awake()
     {
+        rb = GetComponent<Rigidbody>();
         col = GetComponent<Collider>();
+
+        rb.isKinematic = !isDynamic;
     }
 
-    public bool Grab(Grabber _grabber)
+    public void Grab(Grabber _grabber, Transform _grabLocation, bool _disableCollider)
     {
-        if (_grabber == null) return false;
+        if (_grabber == null) return;
 
-        BeingGrabbed?.Invoke();
+        GrabbedStatus?.Invoke(true);
 
-        transform.parent = _grabber.GrabLocation;
+        rb.isKinematic = true;
+        transform.parent = _grabLocation;
         transform.localPosition = Vector3.zero;
-        col.enabled = !_grabber.DisableGrabbableCollider;
-
-        return true;
+        col.enabled = !_disableCollider;
     }
 
     public void Release()
     {
-        transform.parent = null;
         col.enabled = true;
+        transform.parent = null;
+        rb.isKinematic = !isDynamic;
+
+        GrabbedStatus?.Invoke(false);
     }
+
+    public void Move(Vector3 _position) => transform.position = _position;
 }
