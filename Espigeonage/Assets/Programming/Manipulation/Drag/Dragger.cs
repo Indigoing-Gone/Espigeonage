@@ -2,15 +2,44 @@ using UnityEngine;
 
 public class Dragger : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [Header("Components")]
+    protected Rigidbody dragPointRb;
+    protected IDraggable currentDraggable;
+
+    [Header("Drag Parameters")]
+    [SerializeField] protected float dragOffset;
+
+    protected float dragDistance;
+    public bool HasDraggable => currentDraggable != null;
+
+    private void Awake()
     {
-        
+        GameObject _dragPoint = new("DragPoint");
+        dragPointRb = _dragPoint.AddComponent<Rigidbody>();
+        dragPointRb.isKinematic = true;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetDraggable(IDraggable _draggable, float _draggableDistance)
     {
-        
+        if (currentDraggable != null) return;
+        currentDraggable = _draggable;
+        dragDistance = _draggableDistance - dragOffset;
+    }
+
+    public void UpdateDragPosition(Vector3 _newPosition)
+    {
+        Vector3 _screenPosition = _newPosition + (Vector3.forward * dragDistance);
+        Vector3 _worldPosition = Camera.main.ScreenToWorldPoint(_screenPosition);
+        dragPointRb.position = _worldPosition;
+    }
+    public virtual void Drag()
+    {
+        currentDraggable?.Drag(this, dragPointRb);
+    }
+
+    public virtual void Release()
+    {
+        currentDraggable?.Release();
+        currentDraggable = null;
     }
 }

@@ -46,6 +46,9 @@ public class Player : MonoBehaviour
         ActionStateMachine.AddTransition(notGrabbingState, grabbingState, new FuncCondition(() => data.Grabber.HasGrabbable));
         ActionStateMachine.AddTransition(grabbingState, notGrabbingState, new FuncCondition(() => !data.Grabber.HasGrabbable));
 
+        ActionStateMachine.AddTransition(notDraggingState, draggingState, new FuncCondition(() => data.Dragger.HasDraggable));
+        ActionStateMachine.AddTransition(draggingState, notDraggingState, new FuncCondition(() => !data.Dragger.HasDraggable));
+
         //Set Initial State
         MotionStateMachine.SetState(movementState);
         ActionStateMachine.SetState(notGrabbingState);

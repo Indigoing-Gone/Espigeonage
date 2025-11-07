@@ -81,16 +81,24 @@ class DraggingState : BaseState<PlayerData>
 
     public override void EnterState()
     {
+        ctx.Dragger.Drag();
+
+        ctx.Input.InteractEvent += ctx.ReleaseDrag;
+
         ctx.Interactor.SetActionState(ActionState.Dragging);
     }
 
     public override void ExitState()
     {
+        ctx.Input.InteractEvent -= ctx.ReleaseDrag;
+
         ctx.Interactor.SetActionState(ActionState.None);
     }
 
     public override void UpdateState()
     {
+        ctx.Dragger.UpdateDragPosition(ctx.MousePosition);
+
         ctx.Interactor.UpdateRay(Camera.main.ScreenPointToRay(ctx.MousePosition));
     }
 }

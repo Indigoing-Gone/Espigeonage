@@ -11,6 +11,6 @@ public class PlaceDeskBehaviour : InteractBehaviour
         if (!_grabber.HasGrabbable) return;
 
         IGrabbable _grabbable = _grabber.Release();
-        _grabbable.Move(_desk.DropLocation.position);
+        _grabbable.SetTransform(_desk.DropLocation.position, Quaternion.identity);
     }
 }

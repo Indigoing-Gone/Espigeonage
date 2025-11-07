@@ -42,7 +42,7 @@ public class PlayerData : MonoBehaviour
         input.MoveEvent += ProcessMove;
         input.LookEvent += ProcessLook;
         input.PositionEvent += ProcessPosition;
-        input.InteractEvent += ProcessInteract;
+        input.InteractEvent += Interact;
     }
 
     private void OnDisable()
@@ -50,7 +50,7 @@ public class PlayerData : MonoBehaviour
         input.MoveEvent -= ProcessMove;
         input.LookEvent -= ProcessLook;
         input.PositionEvent -= ProcessPosition;
-        input.InteractEvent -= ProcessInteract;
+        input.InteractEvent -= Interact;
     }
 
     private void Awake()
@@ -70,7 +70,9 @@ public class PlayerData : MonoBehaviour
     private void ProcessMove(Vector2 _direction) => MoveDirection = _direction;
     private void ProcessLook(Vector2 _direction) => LookDirection = _direction;
     private void ProcessPosition(Vector2 _position) => MousePosition = _position;
-    private void ProcessInteract(bool _state) { if (_state) Interactor.TriggerInteraction(); }
+
+    private void Interact(bool _state) { if (_state) Interactor.TriggerInteraction(); }
+    public void ReleaseDrag(bool _state) { if (!_state) Dragger.Release(); }
 
     public void SetCurrentDesk(Desk _newDesk) => CurrentDesk = _newDesk;
     public void ExitDesk() => SetCurrentDesk(null);

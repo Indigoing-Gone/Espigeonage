@@ -26,7 +26,7 @@ public class Grabbable : MonoBehaviour, IGrabbable
 
         rb.isKinematic = true;
         transform.parent = _grabLocation;
-        transform.localPosition = Vector3.zero;
+        transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
         col.enabled = !_disableCollider;
     }
 
@@ -39,5 +39,6 @@ public class Grabbable : MonoBehaviour, IGrabbable
         GrabbedStatus?.Invoke(false);
     }
 
-    public void Move(Vector3 _position) => transform.position = _position;
+    public void SetTransform(Vector3 _position, Quaternion _rotation) => 
+        transform.SetLocalPositionAndRotation(_position, _rotation);
 }
