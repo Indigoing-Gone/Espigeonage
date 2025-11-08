@@ -71,6 +71,9 @@ class NotDraggingState : BaseState<PlayerData>
 
     public override void UpdateState()
     {
+        ctx.Dragger.UpdateDragPosition(ctx.MousePosition);
+        ctx.Dragger.UpdateDragOverUI();
+
         ctx.Interactor.UpdateRay(Camera.main.ScreenPointToRay(ctx.MousePosition));
     }
 }

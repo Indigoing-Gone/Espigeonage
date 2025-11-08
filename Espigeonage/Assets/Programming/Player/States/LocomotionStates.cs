@@ -15,8 +15,10 @@ class MovementState : BaseState<PlayerData>
 
     public override void ExitState()
     {
-        ctx.Input.DisableAll();
         ctx.MovementComponent.SetMoveDirection(Vector2.zero);
+        ctx.CameraComponent.SetLookDirection(Vector2.zero);
+
+        ctx.Input.DisableAll();
     }
 
     public override void UpdateState()

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Dragger : MonoBehaviour
 {
@@ -8,8 +9,8 @@ public class Dragger : MonoBehaviour
 
     [Header("Drag Parameters")]
     [SerializeField] protected float dragOffset;
-
     protected float dragDistance;
+    public bool DragOverUI {  get; private set; }
     public bool HasDraggable => currentDraggable != null;
 
     private void Awake()
@@ -32,6 +33,9 @@ public class Dragger : MonoBehaviour
         Vector3 _worldPosition = Camera.main.ScreenToWorldPoint(_screenPosition);
         dragPointRb.position = _worldPosition;
     }
+
+    public void UpdateDragOverUI() => DragOverUI = EventSystem.current.IsPointerOverGameObject();
+
     public virtual void Drag()
     {
         currentDraggable?.Drag(this, dragPointRb);

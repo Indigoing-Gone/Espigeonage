@@ -27,12 +27,15 @@ public class Grabbable : MonoBehaviour, IGrabbable
         rb.isKinematic = true;
         transform.parent = _grabLocation;
         transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
-        col.enabled = !_disableCollider;
+        
+        if(col) col.enabled = !_disableCollider;
+        foreach(Collider c in GetComponentsInChildren<Collider>()) c.enabled = !_disableCollider;
     }
 
     public void Release()
     {
-        col.enabled = true;
+        foreach (Collider c in GetComponentsInChildren<Collider>()) c.enabled = true;
+        if (col) col.enabled = true;
         transform.parent = null;
         rb.isKinematic = !isDynamic;
 

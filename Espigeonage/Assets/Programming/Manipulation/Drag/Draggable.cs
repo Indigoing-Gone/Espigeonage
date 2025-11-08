@@ -17,15 +17,14 @@ public class Draggable : MonoBehaviour, IDraggable
         rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
         //rb.useGravity = false;
 
-
         //Generate Joint
         joint = rb.gameObject.AddComponent<ConfigurableJoint>();
         joint.connectedBody = _dragPointRb;
 
         //Set Anchors
         joint.autoConfigureConnectedAnchor = false;
-        joint.anchor = new(0, 0, 0);
-        joint.connectedAnchor = new(0, 0, 0);
+        joint.anchor = Vector3.Scale(_dragPointRb.transform.position - transform.position, new(1, 0, 1));
+        joint.connectedAnchor = Vector3.zero;
 
         //Set Motion
         joint.xMotion = joint.yMotion = joint.zMotion = ConfigurableJointMotion.Locked;
@@ -35,6 +34,7 @@ public class Draggable : MonoBehaviour, IDraggable
     public void Release()
     {
         if (joint) Destroy(joint);
+        rb.interpolation = RigidbodyInterpolation.None;
         //rb.useGravity = true;
     }
 }
