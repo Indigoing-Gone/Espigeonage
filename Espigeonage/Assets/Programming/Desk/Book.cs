@@ -13,7 +13,7 @@ public class Book : MonoBehaviour
     [Serializable]
     struct PageData
     {
-        public string content;
+        [TextArea(3, 10)] public string content;
     }
 
     [Header("Components")]
