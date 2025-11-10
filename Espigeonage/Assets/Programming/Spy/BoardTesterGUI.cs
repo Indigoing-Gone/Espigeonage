@@ -15,7 +15,11 @@ public class BoardTesterGUI : Editor
         }
         if (GUILayout.Button("Test Path"))
         {
-            tester.Test();
+            tester.TestFromPath();
+        }
+        if (GUILayout.Button("Test Blueprint Path"))
+        {
+            tester.TestFromBlueprint();
         }
     }
 }

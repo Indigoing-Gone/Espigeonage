@@ -35,7 +35,7 @@ public class GuardUnit : BoardUnit
         for (int i = 1; i <= range; i++)
         {
             Vector2Int checkPos = position + direction * i;
-            if (!SpyBoard.InBounds(checkPos, _board.GetLength(1), _board.GetLength(0))) break;
+            if (!BoardUtils.InBounds(checkPos, _board.GetLength(1), _board.GetLength(0))) break;
             if (_board[checkPos[0], checkPos[1]] == SpaceType.WALL) break;
             positions.Add(checkPos);
         }
@@ -51,7 +51,7 @@ public class GuardUnit : BoardUnit
         {
             Vector2Int checkPos = position + direction * i;
             if (checkPos == _playerPos) return true;
-            if (!SpyBoard.InBounds(checkPos, _board.GetLength(1), _board.GetLength(0))) return false;
+            if (!BoardUtils.InBounds(checkPos, _board.GetLength(1), _board.GetLength(0))) return false;
             if (_board[checkPos[0], checkPos[1]] == SpaceType.WALL) return false;       
         }
         return false;

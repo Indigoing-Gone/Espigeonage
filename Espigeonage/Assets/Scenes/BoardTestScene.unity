@@ -119,6 +119,55 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &793048200
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 793048202}
+  - component: {fileID: 793048203}
+  m_Layer: 0
+  m_Name: BPGrid
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &793048202
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 793048200}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &793048203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 793048200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 234a7596e0e793e48bd9857fafdf5390, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDebug: 1
+  input: {fileID: 11400000, guid: b6792bd55d03489408472d2e9f003147, type: 2}
+  width: 8
+  height: 5
+  startPos: {x: 0, y: 1}
 --- !u!1 &1363808664
 GameObject:
   m_ObjectHideFlags: 0
@@ -167,6 +216,7 @@ MonoBehaviour:
   path:
   - {x: 0, y: 1}
   - {x: 7, y: 4}
+  grid: {fileID: 793048203}
 --- !u!1 &1615841017
 GameObject:
   m_ObjectHideFlags: 0
@@ -387,3 +437,4 @@ SceneRoots:
   - {fileID: 1747180872}
   - {fileID: 1615841019}
   - {fileID: 1363808666}
+  - {fileID: 793048202}

@@ -7,17 +7,26 @@ public class BoardTester : MonoBehaviour
 {
     [SerializeField]
     private TextAsset testFile;
+
     [SerializeField]
     private List<Vector2Int> path;
-    private SpyBoard board;
 
+    [SerializeField]
+    private BPGrid grid;
+
+    private SpyBoard board;
     public void Parse()
     {
         board = new(testFile);
     }
 
-    public void Test()
+    public void TestFromPath()
     {
         Debug.Log("Path resulted in " + board.EvaluatePath(path));
+    }
+
+    public void TestFromBlueprint()
+    {
+        if (grid != null) Debug.Log("Path resulted in " + board.EvaluatePath(grid.SpyPath));
     }
 }
