@@ -70,12 +70,12 @@ public class InputReader : ScriptableObject, IMovementActions, IInspectActions, 
 
     //Inspect
     public void OnPosition(InputAction.CallbackContext context) => PositionEvent?.Invoke(context.ReadValue<Vector2>());
-    public void OnExit(InputAction.CallbackContext context)
+    public void OnExit(InputAction.CallbackContext context) { if (context.phase == InputActionPhase.Performed) ExitEvent?.Invoke(); }
+    public void OnPath(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Performed) ExitEvent?.Invoke();
-        //if (context.phase == InputActionPhase.Canceled) ExitEvent?.Invoke(false);
+        if (context.phase == InputActionPhase.Performed && context.ReadValue<Vector2>() != Vector2.zero)
+            PathEvent?.Invoke(context.ReadValue<Vector2>());
     }
-    public void OnPath(InputAction.CallbackContext context) => PathEvent?.Invoke(context.ReadValue<Vector2>());
 
 
     //Interact
