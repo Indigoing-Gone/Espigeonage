@@ -6,7 +6,8 @@ public enum ActionState
     NotGrabbing = 1,
     Grabbing = 2,
     NotDragging = 3,
-    Dragging = 4
+    Dragging = 4,
+    Drawing = 5,
 }
 
 class NotGrabbingState : BaseState<PlayerData>
@@ -89,6 +90,34 @@ class DraggingState : BaseState<PlayerData>
         ctx.Input.InteractEvent += ctx.ReleaseDrag;
 
         ctx.Interactor.SetActionState(ActionState.Dragging);
+    }
+
+    public override void ExitState()
+    {
+        ctx.Input.InteractEvent -= ctx.ReleaseDrag;
+
+        ctx.Interactor.SetActionState(ActionState.None);
+    }
+
+    public override void UpdateState()
+    {
+        ctx.Dragger.UpdateDragPosition(ctx.MousePosition);
+
+        ctx.Interactor.UpdateRay(Camera.main.ScreenPointToRay(ctx.MousePosition));
+    }
+}
+
+class DrawingState : BaseState<PlayerData>
+{
+    public DrawingState(PlayerData _ctx, StateMachine<PlayerData> _machine) : base(_ctx, _machine)
+    {
+
+    }
+
+    public override void EnterState()
+    {
+
+        ctx.Interactor.SetActionState(ActionState.Drawing);
     }
 
     public override void ExitState()

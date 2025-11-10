@@ -201,6 +201,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Path"",
+                    ""type"": ""Value"",
+                    ""id"": ""44ba5f63-e939-459d-aae0-90bd04640611"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -214,6 +223,61 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Position"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""303a92b8-49fc-4829-9dea-4c69951e1f15"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Path"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""d60bb55a-417e-4d32-8711-f24e7efbb68e"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Path"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""798843a8-1a98-41ef-882a-9d06cddcb907"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Path"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""482158fe-d244-41e2-b9ae-a697d98b00a8"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Path"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""0a5ebed5-fa0c-4a78-a9a7-766ebc8615ba"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Path"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 },
                 {
                     ""name"": """",
@@ -267,6 +331,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Inspect = asset.FindActionMap("Inspect", throwIfNotFound: true);
         m_Inspect_Position = m_Inspect.FindAction("Position", throwIfNotFound: true);
         m_Inspect_Exit = m_Inspect.FindAction("Exit", throwIfNotFound: true);
+        m_Inspect_Path = m_Inspect.FindAction("Path", throwIfNotFound: true);
         // Interact
         m_Interact = asset.FindActionMap("Interact", throwIfNotFound: true);
         m_Interact_Interact = m_Interact.FindAction("Interact", throwIfNotFound: true);
@@ -461,6 +526,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private List<IInspectActions> m_InspectActionsCallbackInterfaces = new List<IInspectActions>();
     private readonly InputAction m_Inspect_Position;
     private readonly InputAction m_Inspect_Exit;
+    private readonly InputAction m_Inspect_Path;
     /// <summary>
     /// Provides access to input actions defined in input action map "Inspect".
     /// </summary>
@@ -480,6 +546,10 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Inspect/Exit".
         /// </summary>
         public InputAction @Exit => m_Wrapper.m_Inspect_Exit;
+        /// <summary>
+        /// Provides access to the underlying input action "Inspect/Path".
+        /// </summary>
+        public InputAction @Path => m_Wrapper.m_Inspect_Path;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -512,6 +582,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Exit.started += instance.OnExit;
             @Exit.performed += instance.OnExit;
             @Exit.canceled += instance.OnExit;
+            @Path.started += instance.OnPath;
+            @Path.performed += instance.OnPath;
+            @Path.canceled += instance.OnPath;
         }
 
         /// <summary>
@@ -529,6 +602,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Exit.started -= instance.OnExit;
             @Exit.performed -= instance.OnExit;
             @Exit.canceled -= instance.OnExit;
+            @Path.started -= instance.OnPath;
+            @Path.performed -= instance.OnPath;
+            @Path.canceled -= instance.OnPath;
         }
 
         /// <summary>
@@ -701,6 +777,13 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnExit(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Path" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnPath(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Interact" which allows adding and removing callbacks.
