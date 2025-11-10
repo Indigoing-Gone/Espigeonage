@@ -6,25 +6,20 @@ using UnityEngine.Splines.ExtrusionShapes;
 
 public class BPGrid : MonoBehaviour
 {
-    [SerializeField]
-    private bool isDebug = false;
+    [SerializeField] private bool isDebug = false;
 
-    [SerializeField]
-    private InputReader input;
-
-    [SerializeField] private int width;
-    public int Width => width;
-
-    [SerializeField] private int height;
-    public int Height => height;
-
-    [SerializeField]
-    private Vector2Int startPos;
-
-    private List<Vector2Int> spyPath;
-    public List<Vector2Int> SpyPath => spyPath;
-
+    [Header("Components")]
+    [SerializeField] private InputReader input;
     private BPCommandInvoker invoker = new();
+
+    [Header("Data")]
+    private int width;
+    private int height;
+    private Vector2Int startPos;
+    [SerializeField] private List<Vector2Int> spyPath;
+
+    public List<Vector2Int> SpyPath => spyPath;
+    public Vector2Int SpyPosition => spyPath[^1];
 
     #region Input
 
@@ -61,6 +56,13 @@ public class BPGrid : MonoBehaviour
         spyPath = new List<Vector2Int>() { startPos };
     }
 
+    public void Init(Vector2Int _gridSize, Vector2Int _startPos)
+    {
+        startPos = _startPos;
+        width = _gridSize.x;
+        height = _gridSize.y;
+    }
+
     #region Path
 
     public Vector2Int GetSpyDirection()
@@ -68,7 +70,22 @@ public class BPGrid : MonoBehaviour
         if (spyPath.Count < 2) return Vector2Int.right;
         return spyPath[^1] - spyPath[^2]; 
     }
-    
+
+    public float GetSpyRotation()
+    {
+        if (spyPath.Count < 2) return 90;
+        Vector2Int _direction = spyPath[^1] - spyPath[^2];
+
+        return (_direction.x, _direction.y) switch
+        {
+            (1, 0) => 90,
+            (-1, 0) => 270,
+            (0, 1) => 0,
+            (0, -1) => 180,
+            _ => 0
+        };
+    }
+
     public void AddToPath(Vector2Int coordinate)
     {
         if (spyPath.Count > 0 && !BoardUtils.IsAdjacent(coordinate, spyPath[^1]))

@@ -67,7 +67,7 @@ public class PlayerData : MonoBehaviour
         CameraComponent.Orientation = cameraOrientation;
     }
 
-    private void ProcessMove(Vector2 _direction) { MoveDirection = _direction; Debug.Log("a"); }
+    private void ProcessMove(Vector2 _direction) => MoveDirection = _direction; 
     private void ProcessLook(Vector2 _direction) => LookDirection = _direction;
     private void ProcessPosition(Vector2 _position) => MousePosition = _position;
 

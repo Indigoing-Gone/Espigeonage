@@ -5,9 +5,35 @@ using UnityEngine;
 [RequireComponent(typeof(Draggable))]
 public class Blueprint : MonoBehaviour
 {
+    [Header("Components")]
+    private BPGrid bpGrid;
+    [SerializeField] private GameObject spy;
+    private LineRenderer line;
+
+    [Header("Grid")]
     [SerializeField] private Vector2Int gridSize;
     [SerializeField] private Vector2 cellSize;
     [SerializeField] private Vector3 origin;
+
+    [Header("Spy")]
+    [SerializeField] private Vector2Int startPos;
+    [SerializeField] private float spyScale = 0.6f;
+
+
+    private void Awake()
+    {
+        bpGrid = GetComponent<BPGrid>();
+        line = GetComponent<LineRenderer>();
+
+        bpGrid.Init(gridSize, startPos);
+        spy.transform.localScale = cellSize * spyScale;
+    }
+
+    private void Update()
+    {
+        spy.transform.position = GetWorldPosition(bpGrid.SpyPosition.x, bpGrid.SpyPosition.y) + new Vector3(cellSize.x / 2.0f, 0, cellSize.y / 2.0f);
+        spy.transform.eulerAngles = new(90, bpGrid.GetSpyRotation(), 0);
+    }
 
     private void OnDrawGizmos()
     {
