@@ -3,9 +3,9 @@ using UnityEngine;
 public class MoveCommand : IBPCommand
 {
     private Vector2Int position;
-    private BPGrid grid;
+    private BlueprintData grid;
 
-    public MoveCommand(BPGrid _grid, Vector2Int _position)
+    public MoveCommand(BlueprintData _grid, Vector2Int _position)
     {
         grid = _grid;
         position = _position;

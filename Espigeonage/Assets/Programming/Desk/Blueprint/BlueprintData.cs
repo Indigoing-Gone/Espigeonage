@@ -4,7 +4,7 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.Splines.ExtrusionShapes;
 
-public class BPGrid : MonoBehaviour
+public class BlueprintData : MonoBehaviour
 {
     [SerializeField] private bool isDebug = false;
 
@@ -20,6 +20,10 @@ public class BPGrid : MonoBehaviour
 
     public List<Vector2Int> SpyPath => spyPath;
     public Vector2Int SpyPosition => spyPath[^1];
+
+    //Events
+    public event Action<Vector2Int> PathContinued;
+    public event Action PathRemoved;
 
     #region Input
 
@@ -44,16 +48,18 @@ public class BPGrid : MonoBehaviour
         {
             invoker.UndoCommand();
         }
-        print(this);
+        //print(this);
     }
 
     #endregion
 
-    private void Start()
+    private void Awake()
     {
-        if (isDebug) input.SetInspect();
-
-        spyPath = new List<Vector2Int>() { startPos };
+        if (isDebug)
+        {
+            input.SetInspect();
+            //Init();
+        }
     }
 
     public void Init(Vector2Int _gridSize, Vector2Int _startPos)
@@ -61,6 +67,7 @@ public class BPGrid : MonoBehaviour
         startPos = _startPos;
         width = _gridSize.x;
         height = _gridSize.y;
+        spyPath = new List<Vector2Int>() { startPos };
     }
 
     #region Path
@@ -93,11 +100,15 @@ public class BPGrid : MonoBehaviour
             throw new ArgumentException("Coordinate must be a valid addition to path");
         }
         spyPath.Add(coordinate);
+
+        PathContinued?.Invoke(coordinate);
     }
 
     public void RemoveLastFromPath()
     {
         spyPath.RemoveAt(spyPath.Count - 1);
+
+        PathRemoved?.Invoke();
     }
 
     // Returns if next position would undo previous move
