@@ -165,9 +165,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDebug: 1
   input: {fileID: 11400000, guid: b6792bd55d03489408472d2e9f003147, type: 2}
-  width: 8
-  height: 5
-  startPos: {x: 0, y: 1}
+  spyPath: []
 --- !u!1 &1363808664
 GameObject:
   m_ObjectHideFlags: 0
@@ -212,10 +210,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 522ed33c3f46ac247a35604498aa9f6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testFile: {fileID: 4900000, guid: 95ab39e9ec63c4d4d92e505d4092fddc, type: 3}
+  testFile: {fileID: 4900000, guid: 130c67cc347283c48904f6fbc148fba2, type: 3}
   path:
+  - {x: 0, y: 0}
   - {x: 0, y: 1}
-  - {x: 7, y: 4}
+  - {x: 1, y: 1}
+  - {x: 1, y: 0}
+  - {x: 2, y: 0}
+  - {x: 2, y: 1}
+  - {x: 2, y: 2}
+  - {x: 2, y: 3}
+  - {x: 2, y: 4}
+  - {x: 3, y: 4}
+  - {x: 4, y: 4}
   grid: {fileID: 793048203}
 --- !u!1 &1615841017
 GameObject:

@@ -8,6 +8,7 @@ public class GuardUnit : BoardUnit
     private int range;
     private Vector2Int[] patrolPath;
     private int patrolIndex;
+    private Vector2Int startDirection;
     private Vector2Int direction;
 
     private bool firstTurn = true;
@@ -18,7 +19,7 @@ public class GuardUnit : BoardUnit
         position = patrolPath[0];
         range = _range;
 
-        direction = _direction switch
+        startDirection = _direction switch
         {
             'U' => new Vector2Int(-1, 0),
             'D' => new Vector2Int(1, 0),
@@ -26,6 +27,8 @@ public class GuardUnit : BoardUnit
             'R' => new Vector2Int(0, 1),
             _ => throw new ArgumentException(_direction + " NOT A VALID DIRECTION"),
         };
+
+        direction = startDirection;
     }
 
     // Returns a list of all postions currently checked by the guard
@@ -55,6 +58,14 @@ public class GuardUnit : BoardUnit
             if (_board[checkPos[0], checkPos[1]] == SpaceType.WALL) return false;       
         }
         return false;
+    }
+
+    public override void Reset()
+    {
+        direction = startDirection;
+        position = patrolPath[0];
+        patrolIndex = 0;
+        firstTurn = true;
     }
 
     public override bool Update(Vector2Int _playerPos, SpaceType[,] _board)
