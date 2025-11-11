@@ -205,8 +205,14 @@ public class SpyBoard
         List<T> ConsumeList<T>(Func<T> _elementConsumer)
         {
             MatchToken("(");
+            ConsumeEmpty();
+
             List<T> list = new();
-            while (_text[0] != ')') list.Add(_elementConsumer());
+            while (_text[0] != ')')
+            {
+                list.Add(_elementConsumer());
+                ConsumeEmpty();
+            }
             MatchToken(")");
             return list;
         }
@@ -216,9 +222,17 @@ public class SpyBoard
         {
             List<Vector2Int> patrolPath = ConsumeList(ConsumeCoordinate);
             if (patrolPath.Count == 0) throw new FormatException("GUARD PATROL PATH CANNOT BE EMPTY");
+         
+            ConsumeEmpty();
             MatchToken(",");
+           
+            ConsumeEmpty();
+           
             char direction = ConsumeChar();
+            ConsumeEmpty();
             MatchToken(",");
+
+            ConsumeEmpty();
             int range = ConsumeInt(')');
             units.Add(new GuardUnit(patrolPath, direction, range));
             Debug.Log("Parsed Guard");
@@ -273,6 +287,11 @@ public class SpyBoard
         }
     }
 
+    private void ResetBoard()
+    {
+        for (int i = 0; i < units.Count; i++) units[i].Reset(); 
+    }
+
     // Determines if playerPos is a valid move based on the board space
     public bool EvaluatePosition(Vector2Int playerPos)
     {
@@ -303,6 +322,8 @@ public class SpyBoard
         path = path.Select(x => BoardUtils.ToRowMajor(x, height)).ToList();
 
         if (path[0] != startPos || path[^1] != endPos) return false;
+
+        ResetBoard();
 
         for (int i = 0; i < path.Count; i++)
         {
