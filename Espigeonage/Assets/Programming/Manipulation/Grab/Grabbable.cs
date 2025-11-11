@@ -7,6 +7,8 @@ public class Grabbable : MonoBehaviour, IGrabbable
     private Collider col;
 
     [SerializeField] private bool isDynamic = true;
+    [SerializeField] private GrabbableType type;
+    public GrabbableType Type => type;
 
     public event Action<bool> GrabbedStatus;
 

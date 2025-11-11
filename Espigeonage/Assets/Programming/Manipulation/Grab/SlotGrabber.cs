@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SlotGrabber : Grabber
 {
-    private Collider col;
+    protected Collider col;
 
     private void Awake()
     {

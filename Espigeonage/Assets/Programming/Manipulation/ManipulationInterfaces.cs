@@ -8,6 +8,7 @@ public interface IInteractable
 
 public interface IGrabbable
 {
+    public GrabbableType Type { get; }
     public event Action<bool> GrabbedStatus;
     public void Grab(Grabber _grabber, Transform _grabLocation, bool _disableCollder);
     public void Release();

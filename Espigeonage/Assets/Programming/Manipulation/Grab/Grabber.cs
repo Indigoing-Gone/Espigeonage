@@ -1,4 +1,14 @@
+using System;
 using UnityEngine;
+
+[Flags]
+public enum GrabbableType
+{
+    None,
+    Default,
+    Book,
+    Blueprint 
+}
 
 public class Grabber : MonoBehaviour
 {
@@ -9,6 +19,7 @@ public class Grabber : MonoBehaviour
 
     [Header("Grab Parameters")]
     [SerializeField] protected bool disableGrabbableCollider;
+    [SerializeField] protected GrabbableType vaildGrabbables;
     public bool HasGrabbable => currentGrabbable != null;
 
     public void SetGrabbable(IGrabbable _grabbable)
