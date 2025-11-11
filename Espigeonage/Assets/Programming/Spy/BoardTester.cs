@@ -12,7 +12,7 @@ public class BoardTester : MonoBehaviour
     private List<Vector2Int> path;
 
     [SerializeField]
-    private BlueprintData grid;
+    private BlueprintGrid grid;
 
     private SpyBoard board;
     public void Parse()

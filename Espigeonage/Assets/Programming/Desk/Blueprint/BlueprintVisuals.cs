@@ -4,7 +4,7 @@ using UnityEngine;
 public class BlueprintVisuals : MonoBehaviour
 {
     [Header("Components")]
-    private BlueprintData data;
+    private BlueprintGrid data;
     [SerializeField] private Transform spy;
     private LineRenderer line;
 
@@ -26,13 +26,13 @@ public class BlueprintVisuals : MonoBehaviour
 
     private void OnDisable()
     {
-        data.PathContinued += AddLinePosition;
-        data.PathRemoved += RemoveLinePosition;
+        data.PathContinued -= AddLinePosition;
+        data.PathRemoved -= RemoveLinePosition;
     }
 
     private void Awake()
     {
-        data = GetComponent<BlueprintData>();
+        data = GetComponent<BlueprintGrid>();
         line = GetComponentInChildren<LineRenderer>();
 
         data.Init(gridSize, startPos);
@@ -47,8 +47,9 @@ public class BlueprintVisuals : MonoBehaviour
     private void AddLinePosition(Vector2Int _coord)
     {
         Vector3 _worldPosition = GetWorldPosition(_coord.x, _coord.y) +
-            new Vector3(cellSize.x / 2.0f, 0, cellSize.y / 2.0f);
-        linePositions.Add(transform.InverseTransformDirection(_worldPosition) - transform.position);
+            new Vector3(cellSize.x / 2.0f, -spy.localPosition.y, cellSize.y / 2.0f);
+        Vector3 _rotatedPosition = new(_worldPosition.x, _worldPosition.z, _worldPosition.y);
+        linePositions.Add(transform.InverseTransformDirection(_rotatedPosition) - new Vector3(transform.position.x, transform.position.z, transform.position.y));
         line.positionCount++;
         UpdateVisuals();
     }
@@ -63,7 +64,7 @@ public class BlueprintVisuals : MonoBehaviour
     private void UpdateVisuals()
     {
         spy.position = GetWorldPosition(data.SpyPosition.x, data.SpyPosition.y) + 
-            new Vector3(cellSize.x / 2.0f, 0, cellSize.y / 2.0f);
+            new Vector3(cellSize.x / 2.0f, spy.localPosition.y, cellSize.y / 2.0f);
         spy.eulerAngles = new(90, data.GetSpyRotation(), 0);
 
         line.SetPositions(linePositions.ToArray());
@@ -87,7 +88,7 @@ public class BlueprintVisuals : MonoBehaviour
     private Vector3 GetWorldPosition(int _x, int _y)
     {
         Vector2 _coords = Vector3.Scale(new(_x, _y), cellSize);
-        Vector3 _rotatedCoords = new(_coords.x, 0.01f, _coords.y);
+        Vector3 _rotatedCoords = new(_coords.x, 0, _coords.y);
         Vector3 _origin = transform.position - new Vector3(gridSize.x * cellSize.x / 2.0f, 0, gridSize.y * cellSize.y / 2.0f);
         return _origin + _rotatedCoords;
     }

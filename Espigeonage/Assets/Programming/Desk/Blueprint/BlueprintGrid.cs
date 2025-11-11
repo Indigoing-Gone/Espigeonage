@@ -4,13 +4,19 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.Splines.ExtrusionShapes;
 
-public class BlueprintData : MonoBehaviour
+[RequireComponent(typeof(Interactable))]
+[RequireComponent(typeof(Grabbable))]
+[RequireComponent(typeof(Draggable))]
+public class BlueprintGrid : MonoBehaviour
 {
     [SerializeField] private bool isDebug = false;
 
     [Header("Components")]
     [SerializeField] private InputReader input;
+    private Grabbable grabbable;
     private BPCommandInvoker invoker = new();
+
+    [SerializeField] private bool canBeModified;
 
     [Header("Data")]
     private int width;
@@ -30,15 +36,30 @@ public class BlueprintData : MonoBehaviour
     private void OnEnable()
     {
         input.PathEvent += HandlePathInput;
+        grabbable.GrabbedStatus += LockModification;
     }
 
     private void OnDisable()
     {
         input.PathEvent -= HandlePathInput;
+        grabbable.GrabbedStatus -= LockModification;
     }
 
-    private void HandlePathInput(Vector2 input)
+
+    private void LockModification(bool _state)
     {
+        canBeModified = false;
+    }
+
+    public void UnlockModification()
+    {
+        canBeModified = true;
+    }
+
+    public void HandlePathInput(Vector2 input)
+    {
+        if (!canBeModified) return;
+
         Vector2Int nextPos = spyPath[^1] + BoardUtils.TruncateVector2(input);
         if (IsValidMove(nextPos))
         {
@@ -55,6 +76,8 @@ public class BlueprintData : MonoBehaviour
 
     private void Awake()
     {
+        grabbable = GetComponent<Grabbable>();
+
         if (isDebug)
         {
             input.SetInspect();

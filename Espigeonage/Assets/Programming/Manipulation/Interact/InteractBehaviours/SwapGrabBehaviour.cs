@@ -8,7 +8,7 @@ public class SwapGrabBehaviour : InteractBehaviour
     {
         _interactable.gameObject.TryGetComponent<IGrabbable>(out IGrabbable _newGrabbable);
         _interactor.gameObject.TryGetComponent<Grabber>(out Grabber _grabber);
-        if (_newGrabbable == null || _grabber == null) return;
+        if (_newGrabbable == null || _grabber == null || !_grabber.HasGrabbable) return;
 
         IGrabbable _oldGrabbable = _grabber.Release();
         AttemptPositionSwap(_newGrabbable, _oldGrabbable);

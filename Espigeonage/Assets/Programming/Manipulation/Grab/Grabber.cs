@@ -5,6 +5,7 @@ public class Grabber : MonoBehaviour
     [Header("Components")]
     [SerializeField] protected Transform grabLocation;
     protected IGrabbable currentGrabbable;
+    public IGrabbable CurrentGrabbable => currentGrabbable;
 
     [Header("Grab Parameters")]
     [SerializeField] protected bool disableGrabbableCollider;
