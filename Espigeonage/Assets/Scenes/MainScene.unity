@@ -975,7 +975,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.6, z: 0}
+  m_LocalPosition: {x: -4.55, y: 2.6, z: -3.69}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1771,7 +1771,7 @@ Transform:
   m_GameObject: {fileID: 607395298}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalPosition: {x: -4.55, y: 2, z: -3.69}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2309,6 +2309,7 @@ GameObject:
   - component: {fileID: 899486487}
   - component: {fileID: 899486486}
   - component: {fileID: 899486489}
+  - component: {fileID: 899486490}
   m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
@@ -2420,6 +2421,22 @@ MonoBehaviour:
   interactions:
   - state: 1
     behaviour: {fileID: 11400000, guid: c3eee7d189ed7bc4b86636c7a5407103, type: 2}
+--- !u!114 &899486490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 899486484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5e2faa9877c8b742af752eeea774122, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  missionText: {fileID: 97578287}
+  puzzlesToWin: 1
+  puzzleFiles:
+  - {fileID: 4900000, guid: 130c67cc347283c48904f6fbc148fba2, type: 3}
 --- !u!4 &960095070 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3302856292197148860, guid: d9fa18cf2a59b0a40b10bde42ed07562, type: 3}
@@ -2527,7 +2544,7 @@ Transform:
   m_GameObject: {fileID: 993230516}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.6, z: 0}
+  m_LocalPosition: {x: -4.55, y: 2.6, z: -3.69}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3910,7 +3927,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grabLocation: {fileID: 2092728452}
-  disableGrabbableCollider: 1
+  disableGrabbableCollider: 0
   vaildGrabbables: -1
 --- !u!1 &153661440926708045
 GameObject:
@@ -4082,6 +4099,10 @@ PrefabInstance:
     - target: {fileID: 7876758900075711905, guid: d9fa18cf2a59b0a40b10bde42ed07562, type: 3}
       propertyPath: startPos.y
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8908976102513450890, guid: d9fa18cf2a59b0a40b10bde42ed07562, type: 3}
+      propertyPath: locationName
+      value: Puzzle1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
