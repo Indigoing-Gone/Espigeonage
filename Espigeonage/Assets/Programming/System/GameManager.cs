@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -7,6 +8,8 @@ public class GameManager : MonoBehaviour
 
     public static event Action<bool> MissionResult;
     public static event Action<bool> GameEnded;
+
+    [SerializeField] private TextMeshProUGUI missionText;
 
     [SerializeField] private int puzzlesToWin;
     [SerializeField] private List<TextAsset> puzzleFiles;
@@ -58,6 +61,7 @@ public class GameManager : MonoBehaviour
         MissionResult?.Invoke(result);
 
         Debug.Log("Mission was a " + (result ? "success." : "failure."));
+        missionText.text = result ? "Success!" : "Failure :(";
 
         currentPuzzle++;
 
