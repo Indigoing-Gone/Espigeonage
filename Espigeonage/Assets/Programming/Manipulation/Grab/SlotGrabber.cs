@@ -4,7 +4,7 @@ public class SlotGrabber : Grabber
 {
     protected Collider col;
 
-    private void Awake()
+    private void Start()
     {
         col = GetComponent<Collider>();
 
