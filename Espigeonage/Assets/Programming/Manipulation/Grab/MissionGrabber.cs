@@ -2,9 +2,21 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+public struct MissionData
+{
+    public string Name;
+    public List<Vector2Int> Path;
+
+    public MissionData(string _name, List<Vector2Int> _path)
+    {
+        Name = _name;
+        Path = _path;
+    }
+}
+
 public class MissionGrabber : SlotGrabber
 {
-    static public event Action<List<Vector2Int>> MissionCompleted;
+    static public event Action<MissionData> MissionCompleted;
 
     public void CompleteMission()
     {
@@ -15,6 +27,6 @@ public class MissionGrabber : SlotGrabber
 
         _grabbableObject.TryGetComponent<BlueprintGrid>(out BlueprintGrid _blueprint);
         if (_blueprint == null) return;
-        MissionCompleted?.Invoke(_blueprint.SpyPath);
+        MissionCompleted?.Invoke(new(_blueprint.LocationName, _blueprint.SpyPath));
     }
 }

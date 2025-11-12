@@ -19,6 +19,8 @@ public class BlueprintGrid : MonoBehaviour
     [SerializeField] private bool canBeModified;
 
     [Header("Data")]
+    [SerializeField] private string locationName;
+    public string LocationName => locationName;
     private int width;
     private int height;
     private Vector2Int startPos;
