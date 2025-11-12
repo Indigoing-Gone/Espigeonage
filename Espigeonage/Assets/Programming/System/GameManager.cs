@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI missionText;
 
+    [SerializeField] private bool retryUntilSuccess;
     [SerializeField] private int puzzlesToWin;
     [SerializeField] private List<TextAsset> puzzleFiles;
 
@@ -63,7 +64,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("Mission was a " + (result ? "success." : "failure."));
         missionText.text = result ? "Success!" : "Failure :(";
 
-        currentPuzzle++;
+        if (!retryUntilSuccess || result) currentPuzzle++;
 
         if (currentPuzzle == puzzleFiles.Count)
         {
