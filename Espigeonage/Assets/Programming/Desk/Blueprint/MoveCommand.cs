@@ -3,22 +3,14 @@ using UnityEngine;
 public class MoveCommand : IBPCommand
 {
     private Vector2Int position;
-    private BlueprintGrid grid;
+    private Blueprint blueprint;
 
-    public MoveCommand(BlueprintGrid _grid, Vector2Int _position)
+    public MoveCommand(Blueprint _blueprint, Vector2Int _position)
     {
-        grid = _grid;
+        blueprint = _blueprint;
         position = _position;
     }
 
-    public void Execute()
-    {
-        grid.AddToPath(position);
-    }
-
-    public void Undo()
-    {
-        grid.RemoveLastFromPath();
-    }
-
+    public void Execute() => blueprint.AddToPath(position);
+    public void Undo() => blueprint.RemoveLastFromPath();
 }

@@ -4,70 +4,60 @@ using UnityEngine;
 public class BlueprintVisuals : MonoBehaviour
 {
     [Header("Components")]
-    private BlueprintGrid data;
-    [SerializeField] private Transform spy;
-    private LineRenderer line;
+    [SerializeField] private Transform spyHead;
+    private LineRenderer spyTrail;
 
     [Header("Grid")]
-    [SerializeField] private Vector2Int gridSize;
+    private Vector2Int gridSize = Vector2Int.zero;
     [SerializeField] private Vector2 cellSize;
-    [SerializeField] private Vector3 origin;
+    private Vector3 HalfCellSize => cellSize * 0.5f;
 
     [Header("Spy")]
-    [SerializeField] private Vector2Int startPos;
     [SerializeField] private float spyScale = 0.6f;
-    [SerializeField] private List<Vector3> linePositions;
-
-    private void OnEnable()
-    {
-        data.PathContinued += AddLinePosition;
-        data.PathRemoved += RemoveLinePosition;
-    }
-
-    private void OnDisable()
-    {
-        data.PathContinued -= AddLinePosition;
-        data.PathRemoved -= RemoveLinePosition;
-    }
+    [SerializeField] private float trailScale = 0.6f;
+    [SerializeField] private float visualOffset = 0.01f;
+    [SerializeField] private List<Vector3> spyTrailPositions;
 
     private void Awake()
     {
-        data = GetComponent<BlueprintGrid>();
-        line = GetComponentInChildren<LineRenderer>();
+        spyTrail = GetComponentInChildren<LineRenderer>();
+        spyTrail.positionCount = 0;
+        spyTrail.transform.position += new Vector3(0, visualOffset, 0);
 
-        data.Init(gridSize, startPos);
-        spy.localScale = cellSize * spyScale;
+        spyTrailPositions = new();
+        spyHead.localScale = cellSize * spyScale;
+        spyTrail.widthMultiplier = Mathf.Min(cellSize.x, cellSize.y) * trailScale;
     }
 
-    private void Start()
+    public void SetGridSize(Vector2Int _gridSize) => gridSize = _gridSize;
+
+    public void AddTrailPosition(Vector2Int _coord)
     {
-        AddLinePosition(startPos);
+        Vector3 _worldPosition = GetLocalPosition(_coord.x, _coord.y) + HalfCellSize;
+        spyTrailPositions.Add(_worldPosition);
+        spyTrail.positionCount++;
     }
 
-    private void AddLinePosition(Vector2Int _coord)
+    public void RemoveTrailPosition()
     {
-        Vector3 _worldPosition = GetWorldPosition(_coord.x, _coord.y) +
-            new Vector3(cellSize.x / 2.0f, -spy.localPosition.y, cellSize.y / 2.0f);
-        Vector3 _rotatedPosition = new(_worldPosition.x, _worldPosition.z, _worldPosition.y);
-        linePositions.Add(transform.InverseTransformDirection(_rotatedPosition) - new Vector3(transform.position.x, transform.position.z, transform.position.y));
-        line.positionCount++;
-        UpdateVisuals();
+        spyTrailPositions.RemoveAt(spyTrailPositions.Count - 1);
+        spyTrail.positionCount--;
     }
 
-    private void RemoveLinePosition()
+    public void UpdateVisuals(Vector2Int _spyCoords, float _spyDirection)
     {
-        linePositions.RemoveAt(linePositions.Count - 1);
-        line.positionCount--;
-        UpdateVisuals();
+        Vector3 _spyWorldPosition = GetLocalPosition(_spyCoords.x, _spyCoords.y) + HalfCellSize;
+        spyHead.localPosition = new(_spyWorldPosition.x, visualOffset, _spyWorldPosition.y);
+        spyHead.eulerAngles = new(90, _spyDirection, 0);
+
+        spyTrail.SetPositions(spyTrailPositions.ToArray());
     }
 
-    private void UpdateVisuals()
+    private Vector3 GetLocalPosition(int _x, int _y)
     {
-        spy.position = GetWorldPosition(data.SpyPosition.x, data.SpyPosition.y) + 
-            new Vector3(cellSize.x / 2.0f, spy.localPosition.y, cellSize.y / 2.0f);
-        spy.eulerAngles = new(90, data.GetSpyRotation(), 0);
-
-        line.SetPositions(linePositions.ToArray());
+        Vector3 _coords = Vector3.Scale(new(_x, _y, 0), cellSize);
+        Vector3 _origin = Vector3.Scale((Vector2)gridSize, HalfCellSize);
+        return _coords - _origin;
     }
 
     private void OnDrawGizmos()
@@ -77,19 +67,19 @@ public class BlueprintVisuals : MonoBehaviour
             for (int y = 0; y < gridSize.y; y++)
             {
                 Gizmos.color = Color.blue;
-                Gizmos.DrawLine(GetWorldPosition(x, y), GetWorldPosition(x, y + 1));
-                Gizmos.DrawLine(GetWorldPosition(x, y), GetWorldPosition(x + 1, y));
+                Vector3 _start = GetLocalPosition(x, y);
+                _start = new Vector3(_start.x, _start.z + visualOffset, _start.y) + transform.position;
+
+                Vector3 _end = GetLocalPosition(x, y + 1);
+                _end = new Vector3(_end.x, _end.z + visualOffset, _end.y) + transform.position;
+                Gizmos.DrawLine(_start, _end);
+
+                _end = GetLocalPosition(x + 1, y);
+                _end = new Vector3(_end.x, _end.z + visualOffset, _end.y) + transform.position;
+                Gizmos.DrawLine(_start, _end);
             }
         }
-        Gizmos.DrawLine(GetWorldPosition(0, gridSize.y), GetWorldPosition(gridSize.x, gridSize.y));
-        Gizmos.DrawLine(GetWorldPosition(gridSize.x, 0), GetWorldPosition(gridSize.x, gridSize.y));
-    }
-
-    private Vector3 GetWorldPosition(int _x, int _y)
-    {
-        Vector2 _coords = Vector3.Scale(new(_x, _y), cellSize);
-        Vector3 _rotatedCoords = new(_coords.x, 0, _coords.y);
-        Vector3 _origin = transform.position - new Vector3(gridSize.x * cellSize.x / 2.0f, 0, gridSize.y * cellSize.y / 2.0f);
-        return _origin + _rotatedCoords;
+        //Gizmos.DrawLine(GetWorldPosition(0, gridSize.y), GetWorldPosition(gridSize.x, gridSize.y));
+        //Gizmos.DrawLine(GetWorldPosition(gridSize.x, 0), GetWorldPosition(gridSize.x, gridSize.y));
     }
 }

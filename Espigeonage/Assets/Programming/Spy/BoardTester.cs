@@ -5,14 +5,9 @@ using UnityEngine;
 
 public class BoardTester : MonoBehaviour
 {
-    [SerializeField]
-    private TextAsset testFile;
-
-    [SerializeField]
-    private List<Vector2Int> path;
-
-    [SerializeField]
-    private BlueprintGrid grid;
+    [SerializeField] private TextAsset testFile;
+    [SerializeField] private List<Vector2Int> path;
+    [SerializeField] private Blueprint blueprint;
 
     private SpyBoard board;
     public void Parse()
@@ -27,6 +22,6 @@ public class BoardTester : MonoBehaviour
 
     public void TestFromBlueprint()
     {
-        if (grid != null) Debug.Log("Path resulted in " + board.EvaluatePath(grid.SpyPath));
+        if (blueprint != null) Debug.Log("Path resulted in " + board.EvaluatePath(blueprint.SpyPath));
     }
 }

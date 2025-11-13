@@ -18,7 +18,7 @@ public class PlaceDeskBehaviour : InteractBehaviour
         IGrabbable _grabbable = _grabber.Release();
         _grabbable.SetTransform(_desk.DropLocation.position, Quaternion.identity);
 
-        _grabbableObject.TryGetComponent<BlueprintGrid>(out BlueprintGrid _blueprint);
+        _grabbableObject.TryGetComponent<Blueprint>(out Blueprint _blueprint);
         if (_blueprint == null) return;
         _blueprint.UnlockModification();
     }
