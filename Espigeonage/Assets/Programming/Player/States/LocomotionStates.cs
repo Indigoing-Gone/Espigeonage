@@ -10,7 +10,7 @@ class MovementState : BaseState<PlayerData>
         ctx.CameraSwitcher.ChangeCamera(ctx.PlayerCamera);
 
         Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        ctx.CursorHandler.SetCursorPosition(new(Screen.width / 2.0f, Screen.height / 2.0f));
     }
 
     public override void ExitState()
@@ -38,11 +38,15 @@ class DeskState : BaseState<PlayerData>
         ctx.CameraSwitcher.ChangeCamera(ctx.CurrentDesk != null ? ctx.CurrentDesk.DeskCamera : null);
 
         Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = true;
     }
 
     public override void ExitState()
     {
         ctx.Input.DisableAll();
+    }
+
+    public override void UpdateState()
+    {
+        ctx.CursorHandler.SetCursorPosition(ctx.MousePosition);
     }
 }

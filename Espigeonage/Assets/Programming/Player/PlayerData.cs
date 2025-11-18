@@ -7,6 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(RaycastInteractor))]
 [RequireComponent(typeof(Grabber))]
 [RequireComponent(typeof(Dragger))]
+[RequireComponent(typeof(CursorHandler))]
 public class PlayerData : MonoBehaviour
 {
     [Header("Input")]
@@ -32,6 +33,8 @@ public class PlayerData : MonoBehaviour
     public RaycastInteractor Interactor { get; private set; }
     public Grabber Grabber { get; private set; }
     public Dragger Dragger { get; private set; }
+
+    public CursorHandler CursorHandler { get; private set; }
 
     [Header("Desk")]
     public Desk CurrentDesk { get; private set; }
@@ -62,6 +65,8 @@ public class PlayerData : MonoBehaviour
         Interactor = GetComponent<RaycastInteractor>();
         Grabber = GetComponent<Grabber>();
         Dragger = GetComponent<Dragger>();
+
+        CursorHandler = GetComponent<CursorHandler>();
 
         MovementComponent.Orientation = cameraOrientation;
         CameraComponent.Orientation = cameraOrientation;

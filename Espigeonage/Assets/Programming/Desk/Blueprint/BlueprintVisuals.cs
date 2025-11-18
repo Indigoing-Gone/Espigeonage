@@ -15,14 +15,13 @@ public class BlueprintVisuals : MonoBehaviour
     [Header("Spy")]
     [SerializeField] private float spyScale = 0.6f;
     [SerializeField] private float trailScale = 0.6f;
-    [SerializeField] private float visualOffset = 0.01f;
+    [SerializeField] private float visualOffset;
     [SerializeField] private List<Vector3> spyTrailPositions;
 
     private void Awake()
     {
         spyTrail = GetComponentInChildren<LineRenderer>();
         spyTrail.positionCount = 0;
-        spyTrail.transform.position += new Vector3(0, visualOffset, 0);
 
         spyTrailPositions = new();
         spyHead.localScale = cellSize * spyScale;
