@@ -73,7 +73,6 @@ class NotDraggingState : BaseState<PlayerData>
     public override void UpdateState()
     {
         ctx.Dragger.UpdateDragPosition(ctx.MousePosition);
-        ctx.Dragger.UpdateDragOverUI();
 
         ctx.Interactor.UpdateRay(Camera.main.ScreenPointToRay(ctx.MousePosition));
     }
@@ -85,6 +84,7 @@ class DraggingState : BaseState<PlayerData>
 
     public override void EnterState()
     {
+        ctx.Dragger.UpdateDragPosition(ctx.MousePosition);
         ctx.Dragger.Drag();
 
         ctx.Input.InteractEvent += ctx.ReleaseDrag;
@@ -102,21 +102,16 @@ class DraggingState : BaseState<PlayerData>
     public override void UpdateState()
     {
         ctx.Dragger.UpdateDragPosition(ctx.MousePosition);
-
         ctx.Interactor.UpdateRay(Camera.main.ScreenPointToRay(ctx.MousePosition));
     }
 }
 
 class DrawingState : BaseState<PlayerData>
 {
-    public DrawingState(PlayerData _ctx, StateMachine<PlayerData> _machine) : base(_ctx, _machine)
-    {
-
-    }
+    public DrawingState(PlayerData _ctx, StateMachine<PlayerData> _machine) : base(_ctx, _machine) { }
 
     public override void EnterState()
     {
-
         ctx.Interactor.SetActionState(ActionState.Drawing);
     }
 

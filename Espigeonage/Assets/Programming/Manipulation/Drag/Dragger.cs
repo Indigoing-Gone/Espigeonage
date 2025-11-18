@@ -23,18 +23,16 @@ public class Dragger : MonoBehaviour
     public void SetDraggable(IDraggable _draggable, float _draggableDistance)
     {
         if (currentDraggable != null) return;
-        currentDraggable = _draggable;
         dragDistance = _draggableDistance - dragOffset;
+        currentDraggable = _draggable;
     }
 
     public void UpdateDragPosition(Vector3 _newPosition)
     {
         Vector3 _screenPosition = _newPosition + (Vector3.forward * dragDistance);
         Vector3 _worldPosition = Camera.main.ScreenToWorldPoint(_screenPosition);
-        dragPointRb.position = _worldPosition;
+        dragPointRb.gameObject.transform.position = _worldPosition;
     }
-
-    public void UpdateDragOverUI() => DragOverUI = EventSystem.current.IsPointerOverGameObject();
 
     public virtual void Drag()
     {
