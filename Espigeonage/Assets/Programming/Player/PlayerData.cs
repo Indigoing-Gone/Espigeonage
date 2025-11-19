@@ -7,7 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(RaycastInteractor))]
 [RequireComponent(typeof(Grabber))]
 [RequireComponent(typeof(Dragger))]
-[RequireComponent(typeof(CursorHandler))]
+[RequireComponent(typeof(PlayerUI))]
 public class PlayerData : MonoBehaviour
 {
     [Header("Input")]
@@ -34,7 +34,7 @@ public class PlayerData : MonoBehaviour
     public Grabber Grabber { get; private set; }
     public Dragger Dragger { get; private set; }
 
-    public CursorHandler CursorHandler { get; private set; }
+    public PlayerUI PlayerUI { get; private set; }
 
     [Header("Desk")]
     public Desk CurrentDesk { get; private set; }
@@ -46,6 +46,8 @@ public class PlayerData : MonoBehaviour
         input.LookEvent += ProcessLook;
         input.PositionEvent += ProcessPosition;
         input.InteractEvent += Interact;
+
+        Interactor.TargetInteractableUpdated += UpdateTooltip;
     }
 
     private void OnDisable()
@@ -54,6 +56,8 @@ public class PlayerData : MonoBehaviour
         input.LookEvent -= ProcessLook;
         input.PositionEvent -= ProcessPosition;
         input.InteractEvent -= Interact;
+
+        Interactor.TargetInteractableUpdated -= UpdateTooltip;
     }
 
     private void Awake()
@@ -66,10 +70,12 @@ public class PlayerData : MonoBehaviour
         Grabber = GetComponent<Grabber>();
         Dragger = GetComponent<Dragger>();
 
-        CursorHandler = GetComponent<CursorHandler>();
+        PlayerUI = GetComponent<PlayerUI>();
 
         MovementComponent.Orientation = cameraOrientation;
         CameraComponent.Orientation = cameraOrientation;
+
+        PlayerUI.SetDefaultUI();
     }
 
     private void ProcessMove(Vector2 _direction) => MoveDirection = _direction; 
@@ -78,6 +84,17 @@ public class PlayerData : MonoBehaviour
 
     private void Interact(bool _state) { if (_state) Interactor.TriggerInteraction(); }
     public void ReleaseDrag(bool _state) { if (!_state) Dragger.Release(); }
+
+    private void UpdateTooltip(IInteractable _interactable)
+    {
+        if (_interactable == null)
+        {
+            PlayerUI.SetDefaultUI();
+            return;
+        }
+
+        PlayerUI.ApplyDisplayData();
+    }
 
     public void SetCurrentDesk(Desk _newDesk) => CurrentDesk = _newDesk;
     public void ExitDesk() => SetCurrentDesk(null);
