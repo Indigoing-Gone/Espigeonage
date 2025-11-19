@@ -3,15 +3,12 @@ using UnityEngine;
 using System;
 
 [RequireComponent (typeof(AudioSource))]
-[RequireComponent (typeof(AudioSource))]
 public class SoundManager : MonoBehaviour
 {
 
     public static SoundManager Instance;
 
     #region SFX
-
-    [SerializeField] private AudioSource sfxSource;
 
     [SerializeField] private AudioClip objPickUp;
     [SerializeField] private AudioClip objPlaceShelf;
@@ -64,7 +61,7 @@ public class SoundManager : MonoBehaviour
 
     #region BGM
 
-    [SerializeField] private AudioSource bgmSource;
+    private AudioSource bgmSource;
 
     [SerializeField ] private AudioClip officeBGM;
 
@@ -85,18 +82,21 @@ public class SoundManager : MonoBehaviour
             return;
         }
         Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        sfxSource.loop = false;
+        bgmSource = GetComponent<AudioSource>();
         bgmSource.loop = true;
     }
 
     #endregion
 
-    public void PlaySFX(SFXType _type)
+    public void PlaySFX(SFXType _type) { PlaySFX(_type, transform.position); }
+
+    public void PlaySFX(SFXType _type, Vector3 position)
     {
         AudioClip _clip = _type switch
         {
@@ -125,8 +125,12 @@ public class SoundManager : MonoBehaviour
             _ => throw new ArgumentException(_type + " NOT A VALID SFX TYPE")
         };
 
-        sfxSource.PlayOneShot(_clip);
+        if (_clip == null) return;
+
+        AudioSource.PlayClipAtPoint(_clip, position);
     }
+
+
 
     public void PlayBGM(BGMType _type)
     {
