@@ -124,6 +124,8 @@ public class SoundManager : MonoBehaviour
             _ => throw new ArgumentException(_type + " NOT A VALID SFX TYPE")
         };
 
+        if (_clip == null) return;
+
         AudioSource.PlayClipAtPoint(_clip, position);
     }
 
