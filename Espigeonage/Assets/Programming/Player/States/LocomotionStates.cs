@@ -10,7 +10,7 @@ class MovementState : BaseState<PlayerData>
         ctx.CameraSwitcher.ChangeCamera(ctx.PlayerCamera);
 
         Cursor.lockState = CursorLockMode.Locked;
-        ctx.CursorHandler.SetCursorPosition(new(Screen.width / 2.0f, Screen.height / 2.0f));
+        ctx.PlayerUI.SetCursorPosition(new Vector2(Screen.width / 2, Screen.height / 2));
     }
 
     public override void ExitState()
@@ -47,6 +47,6 @@ class DeskState : BaseState<PlayerData>
 
     public override void UpdateState()
     {
-        ctx.CursorHandler.SetCursorPosition(ctx.MousePosition);
+        ctx.PlayerUI.SetCursorPosition(ctx.MousePosition);
     }
 }

@@ -2,17 +2,17 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
+public struct Interaction
+{
+    public ActionState state;
+    public InteractBehaviour behaviour;
+}
+
 public class Interactable : MonoBehaviour, IInteractable
 {
-    [Serializable]
-    struct Interaction
-    {
-        public ActionState state;
-        public InteractBehaviour behaviour;
-    }
-
-    [SerializeField] List<Interaction> interactions = new();
-    Dictionary<ActionState, InteractBehaviour> interactionDict;
+    [SerializeField] private List<Interaction> interactions = new();
+    private Dictionary<ActionState, InteractBehaviour> interactionDict;
 
     private void Awake()
     {

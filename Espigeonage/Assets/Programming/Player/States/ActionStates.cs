@@ -27,6 +27,7 @@ class NotGrabbingState : BaseState<PlayerData>
     public override void UpdateState()
     {
         ctx.Interactor.UpdateRay(ctx.CameraOrientation.position, ctx.CameraOrientation.forward);
+        ctx.Interactor.FindInteractables();
     }
 }
 
@@ -49,6 +50,7 @@ class GrabbingState : BaseState<PlayerData>
     public override void UpdateState()
     {
         ctx.Interactor.UpdateRay(ctx.CameraOrientation.position, ctx.CameraOrientation.forward);
+        ctx.Interactor.FindInteractables();
     }
 }
 
@@ -74,7 +76,8 @@ class NotDraggingState : BaseState<PlayerData>
     {
         ctx.Dragger.UpdateDragPosition(ctx.MousePosition);
 
-        ctx.Interactor.UpdateRay(Camera.main.ScreenPointToRay(ctx.MousePosition));
+        ctx.Interactor.UpdateRay(ctx.MousePosition);
+        ctx.Interactor.FindInteractables();
     }
 }
 
@@ -102,7 +105,9 @@ class DraggingState : BaseState<PlayerData>
     public override void UpdateState()
     {
         ctx.Dragger.UpdateDragPosition(ctx.MousePosition);
-        ctx.Interactor.UpdateRay(Camera.main.ScreenPointToRay(ctx.MousePosition));
+
+        ctx.Interactor.UpdateRay(ctx.MousePosition);
+        ctx.Interactor.FindInteractables();
     }
 }
 
@@ -126,6 +131,7 @@ class DrawingState : BaseState<PlayerData>
     {
         ctx.Dragger.UpdateDragPosition(ctx.MousePosition);
 
-        ctx.Interactor.UpdateRay(Camera.main.ScreenPointToRay(ctx.MousePosition));
+        ctx.Interactor.UpdateRay(ctx.MousePosition);
+        ctx.Interactor.FindInteractables();
     }
 }
