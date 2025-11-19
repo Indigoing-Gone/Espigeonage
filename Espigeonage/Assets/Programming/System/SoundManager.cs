@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-[RequireComponent (typeof(AudioSource))]
 public class SoundManager : MonoBehaviour
 {
 
@@ -61,9 +60,9 @@ public class SoundManager : MonoBehaviour
 
     #region BGM
 
-    private AudioSource bgmSource;
+    [SerializeField] private AudioSource bgmSource;
 
-    [SerializeField ] private AudioClip officeBGM;
+    [SerializeField] private AudioClip officeBGM;
 
     public enum BGMType
     {
