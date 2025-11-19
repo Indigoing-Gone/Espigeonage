@@ -106,6 +106,8 @@ public class Blueprint : MonoBehaviour
 
         visuals.AddTrailPosition(_coord);
         visuals.UpdateVisuals(spyPath[^1], (float)GetSpyDirection());
+
+        SoundManager.Instance.PlaySFX(SoundManager.SFXType.MOVE_SPY, transform.position);
     }
 
     public void RemoveLastFromPath()
@@ -114,6 +116,8 @@ public class Blueprint : MonoBehaviour
 
         visuals.RemoveTrailPosition();
         visuals.UpdateVisuals(spyPath[^1], (float)GetSpyDirection());
+
+        SoundManager.Instance.PlaySFX(SoundManager.SFXType.UNDO, transform.position);
     }
 
     public Direction GetSpyDirection()

@@ -93,6 +93,8 @@ public class SoundManager : MonoBehaviour
 
     #endregion
 
+    public void PlaySFX(SFXType _type) { PlaySFX(_type, transform.position); }
+
     public void PlaySFX(SFXType _type, Vector3 position)
     {
         AudioClip _clip = _type switch
@@ -124,6 +126,8 @@ public class SoundManager : MonoBehaviour
 
         AudioSource.PlayClipAtPoint(_clip, position);
     }
+
+
 
     public void PlayBGM(BGMType _type)
     {

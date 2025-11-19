@@ -64,6 +64,9 @@ public class GameManager : MonoBehaviour
         Debug.Log("Mission was a " + (result ? "success." : "failure."));
         missionText.text = result ? "Success!" : "Failure :(";
 
+        SoundManager.Instance.PlaySFX(result ? SoundManager.SFXType.MISSION_SUCCESS
+                                             : SoundManager.SFXType.MISSION_FAILURE);
+
         if (!retryUntilSuccess || result) currentPuzzle++;
 
         if (currentPuzzle == puzzleFiles.Count)
