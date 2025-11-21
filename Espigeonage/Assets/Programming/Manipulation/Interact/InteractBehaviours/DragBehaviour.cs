@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 [CreateAssetMenu(menuName = "Interactions/Drag")]
-public class DragBehaviour : InteractBehaviour
+public class DragBehaviour : InteractionBehaviour
 {
     public override void Execute(MonoBehaviour _interactable, Interactor _interactor)
     {

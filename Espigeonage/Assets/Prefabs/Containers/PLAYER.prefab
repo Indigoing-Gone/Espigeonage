@@ -278,14 +278,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursorImage: {fileID: 5870532187088233296}
   tooltipText: {fileID: 7159761930174750004}
-  defaultTooltips:
-  - Error
-  - '[LMB] to Interact'
-  - '[LMB] to Grab'
   cursorTextures:
-  - {fileID: 2800000, guid: 2a897a042e9638a4a9b2e6d85af1fd1c, type: 3}
   - {fileID: 2800000, guid: 0b3ab0e8ab2d3a34fb57b654c6908f28, type: 3}
   - {fileID: 2800000, guid: 248b6d417526a94438d228e391931622, type: 3}
+  - {fileID: 2800000, guid: 2a897a042e9638a4a9b2e6d85af1fd1c, type: 3}
 --- !u!1 &786067691039890216
 GameObject:
   m_ObjectHideFlags: 0
@@ -448,7 +444,7 @@ Transform:
   m_GameObject: {fileID: 3953072631616702830}
   serializedVersion: 2
   m_LocalRotation: {x: -0.5735764, y: 0, z: 0, w: 0.8191521}
-  m_LocalPosition: {x: 0.4, y: -0.35, z: 0.6}
+  m_LocalPosition: {x: 0.5, y: -0.6, z: 0.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

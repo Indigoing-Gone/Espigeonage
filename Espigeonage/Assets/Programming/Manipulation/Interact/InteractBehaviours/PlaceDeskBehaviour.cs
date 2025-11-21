@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Interactions/PlaceDesk")]
-public class PlaceDeskBehaviour : InteractBehaviour
+public class PlaceDeskBehaviour : InteractionBehaviour
 {
     public override void Execute(MonoBehaviour _interactable, Interactor _interactor)
     {

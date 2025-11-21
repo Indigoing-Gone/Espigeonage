@@ -4,6 +4,7 @@ using UnityEngine;
 public interface IInteractable
 {
     public void Interact(Interactor _interactor, ActionState _currentActionState);
+    public bool TryFindInteraction(ActionState _requiredState, out InteractionData _inputInteraction);
 }
 
 public interface IGrabbable

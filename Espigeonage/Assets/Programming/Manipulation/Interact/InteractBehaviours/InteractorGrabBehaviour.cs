@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Interactions/InteractorGrab")]
-public class InteractorGrabBehaviour : InteractBehaviour
+public class InteractorGrabBehaviour : InteractionBehaviour
 {
     public override void Execute(MonoBehaviour _interactable, Interactor _interactor)
     {

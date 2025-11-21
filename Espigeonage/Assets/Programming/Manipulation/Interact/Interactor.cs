@@ -3,7 +3,7 @@ using UnityEngine;
 
 public abstract class Interactor : MonoBehaviour
 {
-    public event Action<IInteractable> TargetInteractableUpdated;
+    public event Action<IInteractable, ActionState> TargetInteractableUpdated;
 
     [Header("Components")]
     protected IInteractable targetInteractable;
@@ -12,7 +12,6 @@ public abstract class Interactor : MonoBehaviour
     [Header("Parameters")]
     [SerializeField] protected LayerMask interactLayer;
     [SerializeField] protected ActionState currentActionState;
-
 
     protected bool canInteract;
 
@@ -26,10 +25,14 @@ public abstract class Interactor : MonoBehaviour
     {
         if (targetInteractable == _newTarget) return;
         targetInteractable = _newTarget;
-        TargetInteractableUpdated?.Invoke(targetInteractable);
+        TargetInteractableUpdated?.Invoke(targetInteractable, currentActionState);
     }
     public abstract void FindInteractables();
 
     public void TriggerInteraction() { if (canInteract) AttemptInteract(); }
-    public void SetActionState(ActionState _newActionState) => currentActionState = _newActionState;
+    public void SetActionState(ActionState _newActionState)
+    {
+        currentActionState = _newActionState;
+        TargetInteractableUpdated?.Invoke(targetInteractable, currentActionState);
+    }
 }

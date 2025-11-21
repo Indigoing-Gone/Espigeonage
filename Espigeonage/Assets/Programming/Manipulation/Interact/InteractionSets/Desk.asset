@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 652d70805dc0f9d43be337ee33f6de01, type: 3}
+  m_Name: Desk
+  m_EditorClassIdentifier: 
+  interactions:
+  - requiredState: 1
+    cursorType: 0
+    tooltip: Enter Desk
+    behaviour: {fileID: 11400000, guid: 9c267afc9a133ad4595358666ced039a, type: 2}
+  - requiredState: 2
+    cursorType: 2
+    tooltip: Place on Desk
+    behaviour: {fileID: 11400000, guid: 27fbf1c212869514881fd6d4f1893844, type: 2}

@@ -1,14 +1,8 @@
 using System;
 using TMPro;
+using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
 using UnityEngine.UI;
-
-public enum CursorType
-{
-    Default = 0,
-    Point = 1,
-    Grab = 2
-}
 
 public class PlayerUI : MonoBehaviour
 {
@@ -19,7 +13,6 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI tooltipText;
 
     [Header("Display Data")]
-    [SerializeField] private string[] defaultTooltips;
     [SerializeField] private Texture2D[] cursorTextures;
 
     private void Awake()
@@ -37,14 +30,24 @@ public class PlayerUI : MonoBehaviour
         cursorTransform.anchoredPosition = _cursorPosition;
     }
 
+    private void SetCursorVisual(CursorType _cursorType) => cursorImage.texture = cursorTextures[(int)_cursorType];
+
+    private void SetTooltip(string _tooltip)
+    {
+        tooltipText.text = _tooltip;
+    }
+
     public void SetDefaultUI()
     {
-        ApplyDisplayData();
+        SetCursorVisual(CursorType.Point);
+        SetTooltip("DEFAULT");
         tooltipText.enabled = false;
     }
 
-    public void ApplyDisplayData()
+    public void ApplyDisplayData(InteractionData _interaction)
     {
-
+        SetCursorVisual(_interaction.cursorType);
+        SetTooltip(_interaction.tooltip);
+        tooltipText.enabled = true;
     }
 }

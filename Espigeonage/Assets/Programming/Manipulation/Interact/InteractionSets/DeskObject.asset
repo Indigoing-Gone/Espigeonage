@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 652d70805dc0f9d43be337ee33f6de01, type: 3}
+  m_Name: DeskObject
+  m_EditorClassIdentifier: 
+  interactions:
+  - requiredState: 1
+    cursorType: 1
+    tooltip: Grab
+    behaviour: {fileID: 11400000, guid: a6307cc55af894f4b906ded700d1dd90, type: 2}
+  - requiredState: 2
+    cursorType: 1
+    tooltip: Swap
+    behaviour: {fileID: 11400000, guid: d45f67d0abdfb684aac9576c8f4ef630, type: 2}
+  - requiredState: 3
+    cursorType: 1
+    tooltip: Drag
+    behaviour: {fileID: 11400000, guid: e5d4e156e48c20846b314e01eed35177, type: 2}
