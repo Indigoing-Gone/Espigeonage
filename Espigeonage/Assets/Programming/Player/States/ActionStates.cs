@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public enum ActionState
@@ -7,7 +8,8 @@ public enum ActionState
     Grabbing = 2,
     NotDragging = 3,
     Dragging = 4,
-    Drawing = 5,
+    Inspecting = 5,
+    Drawing = 6,
 }
 
 class NotGrabbingState : BaseState<PlayerData>
@@ -38,12 +40,15 @@ class GrabbingState : BaseState<PlayerData>
     public override void EnterState()
     {
         ctx.Grabber.Grab();
+        ctx.Input.ExitEvent += ctx.Grabber.ToggleInspecting;
 
         ctx.Interactor.SetActionState(ActionState.Grabbing);
     }
 
     public override void ExitState()
     {
+        ctx.Input.ExitEvent -= ctx.Grabber.ToggleInspecting;
+
         ctx.Interactor.SetActionState(ActionState.None);
     }
 
@@ -111,27 +116,53 @@ class DraggingState : BaseState<PlayerData>
     }
 }
 
-class DrawingState : BaseState<PlayerData>
+class InspectingState : BaseState<PlayerData>
 {
-    public DrawingState(PlayerData _ctx, StateMachine<PlayerData> _machine) : base(_ctx, _machine) { }
+    public InspectingState(PlayerData _ctx, StateMachine<PlayerData> _machine) : base(_ctx, _machine) { }
 
     public override void EnterState()
     {
-        ctx.Interactor.SetActionState(ActionState.Drawing);
+        ctx.Input.ExitEvent += ctx.Grabber.ToggleInspecting;
+
+        ctx.Interactor.SetActionState(ActionState.Inspecting);
     }
 
     public override void ExitState()
     {
-        ctx.Input.InteractEvent -= ctx.ReleaseDrag;
+        ctx.Input.ExitEvent -= ctx.Grabber.ToggleInspecting;
 
         ctx.Interactor.SetActionState(ActionState.None);
     }
 
     public override void UpdateState()
     {
-        ctx.Dragger.UpdateDragPosition(ctx.MousePosition);
 
-        ctx.Interactor.UpdateRay(ctx.MousePosition);
-        ctx.Interactor.FindInteractables();
+    }
+}
+
+class DrawingState : BaseState<PlayerData>
+{
+    public DrawingState(PlayerData _ctx, StateMachine<PlayerData> _machine) : base(_ctx, _machine) { }
+
+    public override void EnterState()
+    {
+        ctx.Drawer.UpdateDrawPosition(ctx.MousePosition);
+        ctx.Drawer.StartDrawing();
+
+        ctx.Input.InteractEvent += ctx.StopDrawing;
+
+        ctx.Interactor.SetActionState(ActionState.Drawing);
+    }
+
+    public override void ExitState()
+    {
+        ctx.Input.InteractEvent -= ctx.StopDrawing;
+
+        ctx.Interactor.SetActionState(ActionState.None);
+    }
+
+    public override void UpdateState()
+    {
+        ctx.Drawer.UpdateDrawPosition(ctx.MousePosition);
     }
 }

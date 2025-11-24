@@ -4,9 +4,12 @@ using UnityEngine;
 [RequireComponent(typeof(FirstPersonMovement))]
 [RequireComponent(typeof(FirstPersonCamera))]
 [RequireComponent(typeof(CameraSwitcher))]
+
 [RequireComponent(typeof(RaycastInteractor))]
-[RequireComponent(typeof(Grabber))]
+[RequireComponent(typeof(InspectGrabber))]
 [RequireComponent(typeof(Dragger))]
+[RequireComponent(typeof(Drawer))]
+
 [RequireComponent(typeof(PlayerUI))]
 public class PlayerData : MonoBehaviour
 {
@@ -31,8 +34,9 @@ public class PlayerData : MonoBehaviour
     public CameraSwitcher CameraSwitcher { get; private set; }
 
     public RaycastInteractor Interactor { get; private set; }
-    public Grabber Grabber { get; private set; }
+    public InspectGrabber Grabber { get; private set; }
     public Dragger Dragger { get; private set; }
+    public Drawer Drawer { get; private set; }
 
     public PlayerUI PlayerUI { get; private set; }
 
@@ -67,8 +71,9 @@ public class PlayerData : MonoBehaviour
         CameraSwitcher = GetComponent<CameraSwitcher>();
 
         Interactor = GetComponent<RaycastInteractor>();
-        Grabber = GetComponent<Grabber>();
+        Grabber = GetComponent<InspectGrabber>();
         Dragger = GetComponent<Dragger>();
+        Drawer = GetComponent<Drawer>();
 
         PlayerUI = GetComponent<PlayerUI>();
 
@@ -84,6 +89,7 @@ public class PlayerData : MonoBehaviour
 
     private void Interact(bool _state) { if (_state) Interactor.TriggerInteraction(); }
     public void ReleaseDrag(bool _state) { if (!_state) Dragger.Release(); }
+    public void StopDrawing(bool _state) { if (!_state) Drawer.StopDrawing(); }
 
     private void UpdateTooltip(IInteractable _interactable, ActionState _currentState)
     {

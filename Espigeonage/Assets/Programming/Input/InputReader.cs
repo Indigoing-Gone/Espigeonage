@@ -54,11 +54,11 @@ public class InputReader : ScriptableObject, IMovementActions, IInspectActions, 
 
     //Inspect
     public event Action<Vector2> PositionEvent;
-    public event Action ExitEvent;
     public event Action<Vector2> PathEvent;
 
     //Interact
     public event Action<bool> InteractEvent;
+    public event Action ExitEvent;
 
     #endregion
 
@@ -70,19 +70,21 @@ public class InputReader : ScriptableObject, IMovementActions, IInspectActions, 
 
     //Inspect
     public void OnPosition(InputAction.CallbackContext context) => PositionEvent?.Invoke(context.ReadValue<Vector2>());
-    public void OnExit(InputAction.CallbackContext context) { if (context.phase == InputActionPhase.Performed) ExitEvent?.Invoke(); }
     public void OnPath(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed && context.ReadValue<Vector2>() != Vector2.zero)
             PathEvent?.Invoke(context.ReadValue<Vector2>());
     }
 
-
     //Interact
     public void OnInteract(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed) InteractEvent?.Invoke(true);
         if (context.phase == InputActionPhase.Canceled) InteractEvent?.Invoke(false);
+    }
+    public void OnExit(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed) ExitEvent?.Invoke();
     }
     #endregion
 }

@@ -12,8 +12,14 @@ public class RaycastInteractor : Interactor
             interactDistance, interactLayer, QueryTriggerInteraction.Collide);
 
         IInteractable _targetInteractable = null;
-        if (_hit && !_hitInfo.collider.TryGetComponent<RectTransformBoxCollider>(out _) && _hitInfo.transform.TryGetComponent<IInteractable>(out IInteractable _interactable))
-            _targetInteractable = _interactable;
+
+        if (_hit && !_hitInfo.collider.TryGetComponent<RectTransformBoxCollider>(out _))
+        {
+            _hitInfo.collider.TryGetComponent<IInteractable>(out IInteractable _direct);
+            _hitInfo.transform.TryGetComponent<IInteractable>(out IInteractable _parent);
+
+            _targetInteractable = _direct ?? _parent;
+        }
 
         UpdateTargetInteractable(_targetInteractable);
     }

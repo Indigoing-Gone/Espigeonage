@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Interactions/SwapGrab")]
+[CreateAssetMenu(menuName = "Interactions/Behaviours/SwapGrab")]
 public class SwapGrabBehaviour : InteractionBehaviour
 {
     public override void Execute(MonoBehaviour _interactable, Interactor _interactor)

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Interactions/EnterDesk")]
+[CreateAssetMenu(menuName = "Interactions/Behaviours/EnterDesk")]
 public class EnterDeskBehaviour : InteractionBehaviour
 {
     public override void Execute(MonoBehaviour _interactable, Interactor _interactor)

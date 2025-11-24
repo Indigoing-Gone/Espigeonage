@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Interactions/CompleteMission")]
+[CreateAssetMenu(menuName = "Interactions/Behaviours/CompleteMission")]
 public class CompleteMissionBehaviour : InteractionBehaviour
 {
     public override void Execute(MonoBehaviour _interactable, Interactor _interactor)

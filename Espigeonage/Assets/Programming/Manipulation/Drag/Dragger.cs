@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class Dragger : MonoBehaviour
 {
@@ -10,7 +9,6 @@ public class Dragger : MonoBehaviour
     [Header("Drag Parameters")]
     [SerializeField] protected float dragOffset;
     protected float dragDistance;
-    public bool DragOverUI {  get; private set; }
     public bool HasDraggable => currentDraggable != null;
 
     private void Awake()

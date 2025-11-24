@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 4693408812329735006}
   - component: {fileID: 4392542154752259463}
   - component: {fileID: 8731819343920843766}
-  - component: {fileID: 767241927739528553}
+  - component: {fileID: 5385872939996026069}
   - component: {fileID: 5454298019726916445}
   - component: {fileID: 4081084549612695206}
   m_Layer: 0
@@ -236,7 +236,7 @@ MonoBehaviour:
     m_Bits: 64
   currentActionState: 0
   interactDistance: 3
---- !u!114 &767241927739528553
+--- !u!114 &5385872939996026069
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -245,7 +245,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 633830685158427344}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7026bbe1c2a14a41a7e53ac4e17ae31, type: 3}
+  m_Script: {fileID: 11500000, guid: 718fd8e1b40638544b390cb5549197a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   grabLocation: {fileID: 4730364155229674000}

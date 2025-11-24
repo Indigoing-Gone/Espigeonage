@@ -108,15 +108,6 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Exit",
-                    "type": "Button",
-                    "id": "93163e61-d3e3-4fee-9bd4-a2f1fd7c58a2",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Path",
                     "type": "Value",
                     "id": "44ba5f63-e939-459d-aae0-90bd04640611",
@@ -192,17 +183,6 @@
                     "action": "Path",
                     "isComposite": false,
                     "isPartOfComposite": true
-                },
-                {
-                    "name": "",
-                    "id": "224939f7-d260-4476-a74d-80151aa80ea5",
-                    "path": "<Mouse>/rightButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Exit",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 }
             ]
         },
@@ -218,6 +198,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Exit",
+                    "type": "Button",
+                    "id": "05ea3982-5b0f-4907-bf1e-a4c162381854",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -229,6 +218,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0ea259e5-22c9-4fcd-9c49-6ff9e909d151",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Exit",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
