@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class InspectGrabber : Grabber
 {
+    [Header("Inspect Parameters")]
+    [SerializeField] protected Transform inspectLocation;
     public bool IsInspecting { get; private set; }
 
     public override void Grab()
@@ -16,5 +18,17 @@ public class InspectGrabber : Grabber
         return base.Release();
     }
 
-    public void ToggleInspecting() { IsInspecting = !IsInspecting; Debug.Log(IsInspecting); }
+    public virtual void Inspect()
+    {
+        currentGrabbable?.Grab(this, inspectLocation, disableGrabbableCollider);
+
+        MonoBehaviour _grabbableObject = currentGrabbable as MonoBehaviour;
+        if (_grabbableObject == null) return;
+
+        _grabbableObject.TryGetComponent<Blueprint>(out Blueprint _blueprint);
+        if (_blueprint == null) return;
+        _blueprint.UnlockModification();
+    }
+
+    public void ToggleInspecting() { IsInspecting = !IsInspecting; }
 }

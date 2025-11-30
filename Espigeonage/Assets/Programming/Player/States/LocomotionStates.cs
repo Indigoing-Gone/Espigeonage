@@ -50,3 +50,25 @@ class DeskState : BaseState<PlayerData>
         ctx.PlayerUI.SetCursorPosition(ctx.MousePosition);
     }
 }
+
+class FrozenState : BaseState<PlayerData>
+{
+    public FrozenState(PlayerData _ctx, StateMachine<PlayerData> _machine) : base(_ctx, _machine) { }
+
+    public override void EnterState()
+    {
+        ctx.Input.SetInspect();
+
+        Cursor.lockState = CursorLockMode.Confined;
+    }
+
+    public override void ExitState()
+    {
+        ctx.Input.DisableAll();
+    }
+
+    public override void UpdateState()
+    {
+        ctx.PlayerUI.SetCursorPosition(ctx.MousePosition);
+    }
+}

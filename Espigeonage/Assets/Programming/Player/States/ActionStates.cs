@@ -122,6 +122,8 @@ class InspectingState : BaseState<PlayerData>
 
     public override void EnterState()
     {
+        ctx.Grabber.Inspect();
+
         ctx.Input.ExitEvent += ctx.Grabber.ToggleInspecting;
 
         ctx.Interactor.SetActionState(ActionState.Inspecting);

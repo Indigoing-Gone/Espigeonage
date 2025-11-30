@@ -5268,6 +5268,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1878398450660261131, guid: 49700dd06e2b0a2439aa149f2b0b69d7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
     - target: {fileID: 3402926034830883563, guid: 49700dd06e2b0a2439aa149f2b0b69d7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -5307,10 +5311,6 @@ PrefabInstance:
     - target: {fileID: 3402926034830883563, guid: 49700dd06e2b0a2439aa149f2b0b69d7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7321090777541796707, guid: 49700dd06e2b0a2439aa149f2b0b69d7, type: 3}
-      propertyPath: drawDelay
-      value: 0.06
       objectReference: {fileID: 0}
     - target: {fileID: 8044996041635092917, guid: 49700dd06e2b0a2439aa149f2b0b69d7, type: 3}
       propertyPath: m_Camera

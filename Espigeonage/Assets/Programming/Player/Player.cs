@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
         //States
         BaseState<PlayerData> movementState = new MovementState(data, MotionStateMachine);
         BaseState<PlayerData> deskState = new DeskState(data, MotionStateMachine);
+        BaseState<PlayerData> frozenState = new FrozenState(data, MotionStateMachine);
 
         BaseState<PlayerData> notGrabbingState = new NotGrabbingState(data, ActionStateMachine);
         BaseState<PlayerData> grabbingState = new GrabbingState(data, ActionStateMachine);
@@ -38,8 +39,14 @@ public class Player : MonoBehaviour
         BaseState<PlayerData> drawingState = new DrawingState(data, ActionStateMachine);
 
         //Locomotion Transitions
+
+        //Movement <-> Desk
         MotionStateMachine.AddTransition(movementState, deskState, new FuncCondition(() => data.AtDesk));
         MotionStateMachine.AddTransition(deskState, movementState, new FuncCondition(() => !data.AtDesk));
+
+        //Movement <-> Inspect
+        MotionStateMachine.AddTransition(movementState, frozenState, new FuncCondition(() => data.Grabber.IsInspecting));
+        MotionStateMachine.AddTransition(frozenState, movementState, new FuncCondition(() => !data.Grabber.IsInspecting));
 
 
         //Action Transitions
@@ -63,6 +70,7 @@ public class Player : MonoBehaviour
         //NotDragging <-> Drawing
         ActionStateMachine.AddTransition(notDraggingState, drawingState, new FuncCondition(() => data.Drawer.HasDrawable));
         ActionStateMachine.AddTransition(drawingState, notDraggingState, new FuncCondition(() => !data.Drawer.HasDrawable));
+
 
         //Set Initial State
         MotionStateMachine.SetState(movementState);
