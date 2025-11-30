@@ -17,3 +17,7 @@ MonoBehaviour:
     cursorType: 0
     tooltip: Draw
     behaviour: {fileID: 11400000, guid: 54c9b0b17107a874a9c1ecab80812342, type: 2}
+  - requiredState: 5
+    cursorType: 0
+    tooltip: Draw
+    behaviour: {fileID: 11400000, guid: 54c9b0b17107a874a9c1ecab80812342, type: 2}

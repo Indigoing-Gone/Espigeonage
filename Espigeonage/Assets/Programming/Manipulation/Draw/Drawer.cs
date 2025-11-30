@@ -4,6 +4,8 @@ using UnityEngine;
 public class Drawer : MonoBehaviour
 {
     [Header("Components")]
+    [SerializeField] private BrushSettings[] brushes;
+    [SerializeField] private int currentBrush;
     protected Drawable currentDrawable = null;
 
     [Header("Draw Parameters")]
@@ -35,13 +37,16 @@ public class Drawer : MonoBehaviour
 
     private IEnumerator UpdateDrawing()
     {
-        currentDrawable.Draw(drawPosition + (Vector3.forward * drawDistance));
+        currentDrawable.Draw(drawPosition + (Vector3.forward * drawDistance), brushes[currentBrush]);
         yield return new WaitForSeconds(drawDelay);
         StartCoroutine(UpdateDrawing());
     }
 
-    public void UpdateDrawPosition(Vector3 _drawPosition)
+    public void UpdateDrawPosition(Vector3 _drawPosition) => drawPosition = _drawPosition;
+
+    public void CycleBrush()
     {
-        drawPosition = _drawPosition;
+        currentBrush++;
+        if (currentBrush >= brushes.Length) currentBrush = 0;
     }
 }

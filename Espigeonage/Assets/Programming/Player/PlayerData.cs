@@ -50,6 +50,7 @@ public class PlayerData : MonoBehaviour
         input.LookEvent += ProcessLook;
         input.PositionEvent += ProcessPosition;
         input.InteractEvent += Interact;
+        input.CycleEvent += Drawer.CycleBrush;
 
         Interactor.TargetInteractableUpdated += UpdateTooltip;
     }
@@ -60,6 +61,7 @@ public class PlayerData : MonoBehaviour
         input.LookEvent -= ProcessLook;
         input.PositionEvent -= ProcessPosition;
         input.InteractEvent -= Interact;
+        input.CycleEvent -= Drawer.CycleBrush;
 
         Interactor.TargetInteractableUpdated -= UpdateTooltip;
     }

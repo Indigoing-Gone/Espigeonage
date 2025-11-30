@@ -201,6 +201,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Cycle"",
+                    ""type"": ""Button"",
+                    ""id"": ""244beada-125e-46f1-aedc-c7c54aa9b40c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -269,6 +278,17 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Path"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""03e737f4-7dd7-412e-92e0-c3d6b9de5b19"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cycle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -331,6 +351,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Inspect = asset.FindActionMap("Inspect", throwIfNotFound: true);
         m_Inspect_Position = m_Inspect.FindAction("Position", throwIfNotFound: true);
         m_Inspect_Path = m_Inspect.FindAction("Path", throwIfNotFound: true);
+        m_Inspect_Cycle = m_Inspect.FindAction("Cycle", throwIfNotFound: true);
         // Interact
         m_Interact = asset.FindActionMap("Interact", throwIfNotFound: true);
         m_Interact_Interact = m_Interact.FindAction("Interact", throwIfNotFound: true);
@@ -526,6 +547,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private List<IInspectActions> m_InspectActionsCallbackInterfaces = new List<IInspectActions>();
     private readonly InputAction m_Inspect_Position;
     private readonly InputAction m_Inspect_Path;
+    private readonly InputAction m_Inspect_Cycle;
     /// <summary>
     /// Provides access to input actions defined in input action map "Inspect".
     /// </summary>
@@ -545,6 +567,10 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Inspect/Path".
         /// </summary>
         public InputAction @Path => m_Wrapper.m_Inspect_Path;
+        /// <summary>
+        /// Provides access to the underlying input action "Inspect/Cycle".
+        /// </summary>
+        public InputAction @Cycle => m_Wrapper.m_Inspect_Cycle;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -577,6 +603,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Path.started += instance.OnPath;
             @Path.performed += instance.OnPath;
             @Path.canceled += instance.OnPath;
+            @Cycle.started += instance.OnCycle;
+            @Cycle.performed += instance.OnCycle;
+            @Cycle.canceled += instance.OnCycle;
         }
 
         /// <summary>
@@ -594,6 +623,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Path.started -= instance.OnPath;
             @Path.performed -= instance.OnPath;
             @Path.canceled -= instance.OnPath;
+            @Cycle.started -= instance.OnCycle;
+            @Cycle.performed -= instance.OnCycle;
+            @Cycle.canceled -= instance.OnCycle;
         }
 
         /// <summary>
@@ -777,6 +809,13 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnPath(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Cycle" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnCycle(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Interact" which allows adding and removing callbacks.

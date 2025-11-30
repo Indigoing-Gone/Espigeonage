@@ -69,8 +69,11 @@ public class Player : MonoBehaviour
 
         //NotDragging <-> Drawing
         ActionStateMachine.AddTransition(notDraggingState, drawingState, new FuncCondition(() => data.Drawer.HasDrawable));
-        ActionStateMachine.AddTransition(drawingState, notDraggingState, new FuncCondition(() => !data.Drawer.HasDrawable));
+        ActionStateMachine.AddTransition(drawingState, notDraggingState, new FuncCondition(() => !data.Drawer.HasDrawable && !data.Grabber.IsInspecting));
 
+        //Inspecting <-> Drawing
+        ActionStateMachine.AddTransition(inspectingState, drawingState, new FuncCondition(() => data.Drawer.HasDrawable));
+        ActionStateMachine.AddTransition(drawingState, inspectingState, new FuncCondition(() => !data.Drawer.HasDrawable && data.Grabber.IsInspecting));
 
         //Set Initial State
         MotionStateMachine.SetState(movementState);

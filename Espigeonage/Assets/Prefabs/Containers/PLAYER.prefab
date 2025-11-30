@@ -296,7 +296,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 333f26e5af221d34497cd5c8bb589482, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drawDelay: 0.06
+  brushes:
+  - {fileID: 11400000, guid: f7632cee4f53f5d4ba764a9b99a2e636, type: 2}
+  - {fileID: 11400000, guid: bbd71e737755c704490b2af60277c2ad, type: 2}
+  currentBrush: 0
+  drawDelay: 0.03
 --- !u!1 &786067691039890216
 GameObject:
   m_ObjectHideFlags: 0

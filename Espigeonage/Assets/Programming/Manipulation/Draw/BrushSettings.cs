@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Interactions/DrawSettings")]
-public class DrawSettings : ScriptableObject
+[CreateAssetMenu(menuName = "Interactions/BrushSettings")]
+public class BrushSettings : ScriptableObject
 {
     [Header("Brush")]
     public int brushSize = 5;

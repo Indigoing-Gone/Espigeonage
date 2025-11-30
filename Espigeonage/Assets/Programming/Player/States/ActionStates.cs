@@ -138,7 +138,10 @@ class InspectingState : BaseState<PlayerData>
 
     public override void UpdateState()
     {
+        ctx.Dragger.UpdateDragPosition(ctx.MousePosition);
 
+        ctx.Interactor.UpdateRay(ctx.MousePosition);
+        ctx.Interactor.FindInteractables();
     }
 }
 

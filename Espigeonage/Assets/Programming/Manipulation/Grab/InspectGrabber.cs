@@ -20,7 +20,7 @@ public class InspectGrabber : Grabber
 
     public virtual void Inspect()
     {
-        currentGrabbable?.Grab(this, inspectLocation, disableGrabbableCollider);
+        currentGrabbable?.Grab(this, inspectLocation, false);
 
         MonoBehaviour _grabbableObject = currentGrabbable as MonoBehaviour;
         if (_grabbableObject == null) return;

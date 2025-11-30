@@ -6,7 +6,7 @@ using UnityEngine;
 public class Drawable : MonoBehaviour
 {
     [Header("Components")]
-    [SerializeField] private DrawSettings settings;
+    private BrushSettings settings;
     private SpriteRenderer spriteRenderer;
     private Texture2D drawingTexture;
     private Sprite drawingSprite;
@@ -95,8 +95,10 @@ public class Drawable : MonoBehaviour
         drawingTexture.Apply();
     }
 
-    public void Draw(Vector3 _drawPosition)
+    public void Draw(Vector3 _drawPosition, BrushSettings _brushSettings)
     {
+        settings = _brushSettings;
+
         Vector3 _worldPos = Camera.main.ScreenToWorldPoint(_drawPosition);
         Vector3 _localPos = transform.InverseTransformPoint(_worldPos);
 

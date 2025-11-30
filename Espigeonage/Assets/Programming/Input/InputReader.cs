@@ -55,6 +55,7 @@ public class InputReader : ScriptableObject, IMovementActions, IInspectActions, 
     //Inspect
     public event Action<Vector2> PositionEvent;
     public event Action<Vector2> PathEvent;
+    public event Action CycleEvent;
 
     //Interact
     public event Action<bool> InteractEvent;
@@ -75,6 +76,10 @@ public class InputReader : ScriptableObject, IMovementActions, IInspectActions, 
         if (context.phase == InputActionPhase.Performed && context.ReadValue<Vector2>() != Vector2.zero)
             PathEvent?.Invoke(context.ReadValue<Vector2>());
     }
+    public void OnCycle(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed) CycleEvent?.Invoke();
+    }
 
     //Interact
     public void OnInteract(InputAction.CallbackContext context)
@@ -86,5 +91,6 @@ public class InputReader : ScriptableObject, IMovementActions, IInspectActions, 
     {
         if (context.phase == InputActionPhase.Performed) ExitEvent?.Invoke();
     }
+
     #endregion
 }
