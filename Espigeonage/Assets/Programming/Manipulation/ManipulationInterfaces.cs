@@ -1,6 +1,13 @@
 using System;
 using UnityEngine;
 
+public enum GrabbableAlignmentType
+{
+    Center,
+    StandingCenter,
+    LayingCenter
+}
+
 public interface IInteractable
 {
     public void Interact(Interactor _interactor, ActionState _currentActionState);
@@ -16,6 +23,7 @@ public interface IGrabbable
     public void Grab(Grabber _grabber, Transform _grabLocation, bool _disableCollder);
     public void Release();
     public void SetTransform(Vector3 _position, Quaternion _rotation);
+    public void AlignInParent(GrabbableAlignmentType _alignment);
 }
 
 public interface IDraggable

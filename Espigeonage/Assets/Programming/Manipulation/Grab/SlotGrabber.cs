@@ -3,6 +3,7 @@ using UnityEngine;
 public class SlotGrabber : Grabber
 {
     protected Collider col;
+    [SerializeField] protected GrabbableAlignmentType grabbableAlignment;
 
     private void Start()
     {
@@ -20,6 +21,7 @@ public class SlotGrabber : Grabber
     {
         base.Grab();
         currentGrabbable.GrabbedStatus += OnGrabbableGrabbed;
+        currentGrabbable.AlignInParent(grabbableAlignment);
         col.enabled = false;
     }
 
