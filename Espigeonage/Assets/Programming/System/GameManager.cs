@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -6,6 +7,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 
+    public static event Action<string> SendPigeon;
     public static event Action<bool> MissionResult;
     public static event Action<bool> GameEnded;
 
@@ -14,6 +16,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private bool retryUntilSuccess;
     [SerializeField] private int puzzlesToWin;
     [SerializeField] private List<TextAsset> puzzleFiles;
+    [SerializeField] private List<string> puzzleText;
+
+    [SerializeField] private float timeToMissionResult;
+    [SerializeField] private float timeToNextPigeon;
 
     private int currentPuzzle;
     private int puzzlesSucceded;
@@ -59,22 +65,38 @@ public class GameManager : MonoBehaviour
         else result = puzzle.EvaluatePath(data.Path);
 
         if (result) puzzlesSucceded++;
-        MissionResult?.Invoke(result);
 
-        Debug.Log("Mission was a " + (result ? "success." : "failure."));
-        missionText.text = result ? "Success!" : "Failure :(";
+        //Debug.Log("Mission was a " + (result ? "success." : "failure."));
+        //missionText.text = result ? "Success!" : "Failure :(";
 
-        SoundManager.Instance.PlaySFX(result ? SoundManager.SFXType.MISSION_SUCCESS
-                                             : SoundManager.SFXType.MISSION_FAILURE);
+        //SoundManager.Instance.PlaySFX(result ? SoundManager.SFXType.MISSION_SUCCESS
+        //                                     : SoundManager.SFXType.MISSION_FAILURE);
 
         if (!retryUntilSuccess || result) currentPuzzle++;
 
-        if (currentPuzzle == puzzleFiles.Count)
+        //if (currentPuzzle == puzzleFiles.Count)
+        //{
+        //    bool gameWon = puzzlesSucceded >= puzzlesToWin;
+        //    OnGameEnd(gameWon);
+        //    GameEnded?.Invoke(gameWon);
+        //}
+
+        StartCoroutine(MissionTransitionRoutine(result));
+    }
+
+    private IEnumerator MissionTransitionRoutine(bool _success)
+    {
+        yield return new WaitForSeconds(timeToMissionResult);
+
+        MissionResult?.Invoke(_success);
+
+        if (currentPuzzle < puzzleFiles.Count)
         {
-            bool gameWon = puzzlesSucceded >= puzzlesToWin;
-            OnGameEnd(gameWon);
-            GameEnded?.Invoke(gameWon);
+            yield return new WaitForSeconds(timeToNextPigeon);
+            SendPigeon.Invoke(puzzleText[currentPuzzle]);
         }
+        
+        yield break;
     }
 
     private void OnGameEnd(bool result)
