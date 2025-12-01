@@ -18,11 +18,14 @@ public class Book : MonoBehaviour
     [Header("Components")]
     private Grabbable grabbable;
 
+    [Header("Book Models")]
     [SerializeField] private GameObject bookClose;
     [SerializeField] private GameObject bookOpen;
 
+    [Header("Pages")]
     [SerializeField] private GameObject leftPage;
     [SerializeField] private GameObject rightPage;
+    [SerializeField] private GameObject cover;
 
     private TextMeshProUGUI leftText;
     private TextMeshProUGUI rightText;
@@ -76,10 +79,16 @@ public class Book : MonoBehaviour
         bookClose.SetActive(pagePairIndex == 0);
         bookOpen.SetActive(pagePairIndex > 0);
 
-        //Update UI
+        //Activate Pages
         leftPage.SetActive(pagePairIndex != 0);
-        rightPage.SetActive(pagePairIndex * 2 < pageData.Count);
+        rightPage.SetActive(pagePairIndex != 0 && pagePairIndex * 2 < pageData.Count);
+        cover.SetActive(pagePairIndex == 0);
+
+        //Update text
         leftText.text = pageData.ElementAtOrDefault((pagePairIndex * 2) - 1).content;
         rightText.text = pageData.ElementAtOrDefault(pagePairIndex * 2).content;
+        if (pagePairIndex == 0) 
+            cover.GetComponentInChildren<TextMeshProUGUI>().text = 
+                pageData.ElementAtOrDefault(pagePairIndex * 2).content;
     }
 }
