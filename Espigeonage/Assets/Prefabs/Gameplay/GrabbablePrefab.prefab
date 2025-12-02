@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 7747758564272282720}
   - component: {fileID: 176483314682084107}
   m_Layer: 6
-  m_Name: Grabbable_Base
+  m_Name: GrabbablePrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

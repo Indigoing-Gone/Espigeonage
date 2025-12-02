@@ -48,32 +48,35 @@ public class Grabbable : MonoBehaviour, IGrabbable
 
     public void AlignInParent(GrabbableAlignmentType _alignment)
     {
-        if (transform.parent == null || 
-            !BoundsUtils.TryGetLocalBoundsSelf(transform.parent, out Bounds _parentBounds) || 
+        if (transform.parent == null) return;
+        Transform _boundsTransform = transform.parent.GetComponentInChildren<AlignmentBounds>().transform;
+        if(_boundsTransform == null) return;
+
+        if (!BoundsUtils.TryGetLocalBoundsChildren(_boundsTransform, out Bounds _alignBounds) || 
             !BoundsUtils.TryGetLocalBoundsChildren(transform, out Bounds _selfBounds)) return;
 
-        Vector3 _parentAlignPoint = Vector3.zero, _selfAlignPoint = Vector3.zero;
+        Vector3 _boundingAlignPoint = Vector3.zero, _selfAlignPoint = Vector3.zero;
 
         switch (_alignment)
         {
             case GrabbableAlignmentType.Center:
-                _parentAlignPoint = BoundsUtils.BoundsCenter(_parentBounds);
+                _boundingAlignPoint = BoundsUtils.BoundsCenter(_alignBounds);
                 _selfAlignPoint = BoundsUtils.BoundsCenter(_selfBounds);
                 break;
 
             case GrabbableAlignmentType.StandingCenter:
-                _parentAlignPoint = BoundsUtils.BoundsBottomCenterZ(_parentBounds);
+                _boundingAlignPoint = BoundsUtils.BoundsBottomCenterZ(_alignBounds);
                 _selfAlignPoint = BoundsUtils.BoundsBottomCenterZ(_selfBounds);
                 break;
 
             case GrabbableAlignmentType.LayingCenter:
-                _parentAlignPoint = BoundsUtils.BoundsBottomCenterY(_parentBounds);
+                _boundingAlignPoint = BoundsUtils.BoundsBottomCenterY(_alignBounds);
                 _selfAlignPoint = BoundsUtils.BoundsBottomCenterY(_selfBounds);
                 break;
         }
 
         transform.position +=
-            transform.parent.TransformPoint(_parentAlignPoint) - 
+            _boundsTransform.TransformPoint(_boundingAlignPoint) - 
             transform.TransformPoint(_selfAlignPoint);
     }
 }

@@ -90,8 +90,8 @@ public static class BoundsUtils
     public static Vector3 BoundsBottomCenterZ(Bounds _bounds)
     {
         return new Vector3(
-            _bounds.center.x,
-            _bounds.center.y,
+            _bounds.min.x,
+            _bounds.min.y,
             _bounds.min.z
         );
     }

@@ -8,6 +8,7 @@ public class SlotGrabber : Grabber
     private void Start()
     {
         col = GetComponent<Collider>();
+        if (col == null) col = GetComponentInChildren<Collider>();
 
         IGrabbable _grabbableChild = GetComponentInChildren<IGrabbable>(false);
         if (_grabbableChild != null)
@@ -20,8 +21,8 @@ public class SlotGrabber : Grabber
     public override void Grab()
     {
         base.Grab();
-        currentGrabbable.GrabbedStatus += OnGrabbableGrabbed;
         currentGrabbable.AlignInParent(grabbableAlignment);
+        currentGrabbable.GrabbedStatus += OnGrabbableGrabbed;
         col.enabled = false;
     }
 

@@ -19,6 +19,7 @@ public class PlayerUI : MonoBehaviour
     {
         cursorTransform = cursorImage.rectTransform;
         cursorCanvasTransform = cursorTransform.parent.GetComponent<RectTransform>();
+        cursorTransform.parent.GetComponent<Canvas>().worldCamera = Camera.main;
         Cursor.visible = false;
     }
 
