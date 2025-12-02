@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: DefaultBrush
   m_EditorClassIdentifier: 
   brushSize: 7
-  brushColor: {r: 0, g: 0, b: 0, a: 1}
+  brushColor: {r: 0.78867924, g: 0, b: 0, a: 1}
