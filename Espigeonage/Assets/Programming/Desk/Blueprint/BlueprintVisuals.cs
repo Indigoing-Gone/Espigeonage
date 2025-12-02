@@ -48,7 +48,7 @@ public class BlueprintVisuals : MonoBehaviour
         Vector3 _spyWorldPosition = GetLocalPosition(_spyCoords.x, _spyCoords.y) + HalfCellSize;
         spyHead.localPosition = new(_spyWorldPosition.x, visualOffset, _spyWorldPosition.y);
         spyHead.rotation = Quaternion.FromToRotation(spyHead.transform.up, transform.up) * transform.rotation;
-        spyHead.localEulerAngles = new(90, _spyDirection, 0);
+        spyHead.localEulerAngles = new(90, 0, 0); //new(90, _spyDirection, 0);
 
         spyTrail.SetPositions(spyTrailPositions.ToArray());
     }
