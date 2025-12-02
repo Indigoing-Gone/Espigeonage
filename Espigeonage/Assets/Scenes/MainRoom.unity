@@ -3641,6 +3641,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 11100000, guid: 3eac9019b1b6d9b45babfad0a433e676, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 13700000, guid: 3eac9019b1b6d9b45babfad0a433e676, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -16626,7 +16630,7 @@ GameObject:
   m_Component:
   - component: {fileID: 543450653142803312}
   - component: {fileID: 1811981720}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: DeskModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16704,7 +16708,7 @@ GameObject:
   - component: {fileID: 2002531610785822816}
   - component: {fileID: 3399922635735427499}
   - component: {fileID: 5888892787784342709}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: DeskObj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16876,7 +16880,7 @@ GameObject:
   - component: {fileID: 3757017979096904337}
   - component: {fileID: 7006635618354987819}
   - component: {fileID: 5052370675302429990}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: DeskObj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16947,7 +16951,7 @@ GameObject:
   - component: {fileID: 9080186959819703514}
   - component: {fileID: 628783266036706556}
   - component: {fileID: 64735217293483574}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: DeskObj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
