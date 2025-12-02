@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Unity.Cinemachine;
 using UnityEngine;
 
+[RequireComponent(typeof(Interactable))]
 public class Desk : MonoBehaviour
 {
     [Header("Desk Components")]
@@ -9,8 +10,6 @@ public class Desk : MonoBehaviour
     public CinemachineCamera DeskCamera => deskCamera;
     [SerializeField] private Transform dropLocation;
     public Transform DropLocation => dropLocation;
-
-    [SerializeField] private List<GameObject> objectsOnDesk;
 
     private void OnValidate()
     {
