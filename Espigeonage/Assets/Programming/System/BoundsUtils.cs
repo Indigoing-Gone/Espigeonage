@@ -95,4 +95,13 @@ public static class BoundsUtils
             _bounds.min.z
         );
     }
+
+    public static Vector3 BoundsTopCorner(Bounds _bounds)
+    {
+        return new Vector3(
+            _bounds.min.x,
+            _bounds.max.y,
+            _bounds.max.z
+        );
+    }
 }

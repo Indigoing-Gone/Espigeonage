@@ -74,8 +74,9 @@ public class Grabbable : MonoBehaviour, IGrabbable
     public void AlignInParent(GrabbableAlignmentType _alignment)
     {
         if (transform.parent == null) return;
-        Transform _boundsTransform = transform.parent.GetComponentInChildren<AlignmentBounds>().transform;
-        if(_boundsTransform == null) return;
+        AlignmentBounds _bounds = transform.parent.GetComponentInChildren<AlignmentBounds>();
+        if (_bounds == null) return;
+        Transform _boundsTransform = _bounds.transform;
 
         if (!BoundsUtils.TryGetLocalBoundsChildren(_boundsTransform, out Bounds _alignBounds) || 
             !BoundsUtils.TryGetLocalBoundsChildren(transform, out Bounds _selfBounds)) return;
@@ -97,6 +98,11 @@ public class Grabbable : MonoBehaviour, IGrabbable
             case GrabbableAlignmentType.LayingCenter:
                 _boundingAlignPoint = BoundsUtils.BoundsBottomCenterY(_alignBounds);
                 _selfAlignPoint = BoundsUtils.BoundsBottomCenterY(_selfBounds);
+                break;
+
+            case GrabbableAlignmentType.TopCorner:
+                _boundingAlignPoint = BoundsUtils.BoundsTopCorner(_alignBounds);
+                _selfAlignPoint = BoundsUtils.BoundsTopCorner(_selfBounds);
                 break;
         }
 

@@ -5,7 +5,8 @@ public enum GrabbableAlignmentType
 {
     Center,
     StandingCenter,
-    LayingCenter
+    LayingCenter,
+    TopCorner
 }
 
 public interface IInteractable

@@ -8,7 +8,7 @@ public enum GrabbableType
     None = 0,
     Default = 1,
     Book = 2,
-    Blueprint = 4, 
+    Blueprint = 4,
 }
 
 [Serializable]
@@ -28,6 +28,7 @@ public class Grabber : MonoBehaviour
     [Header("Grab Parameters")]
     [SerializeField] protected GrabData grabData;
     [SerializeField] protected GrabbableType vaildGrabbables;
+    [SerializeField] protected GrabbableAlignmentType grabbableAlignment;
     public bool HasGrabbable => currentGrabbable != null;
 
     public void SetGrabbable(IGrabbable _grabbable)
@@ -41,6 +42,7 @@ public class Grabber : MonoBehaviour
     public virtual void Grab()
     {
         currentGrabbable?.Grab(this, grabData);
+        currentGrabbable.AlignInParent(grabbableAlignment);
     }
 
     public virtual IGrabbable Release()
