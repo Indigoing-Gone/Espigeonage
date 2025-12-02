@@ -20,8 +20,9 @@ public interface IGrabbable
 
     public event Action<bool> GrabbedStatus;
 
-    public void Grab(Grabber _grabber, Transform _grabLocation, bool _disableCollder);
+    public void Grab(Grabber _grabber, GrabData _grabData);
     public void Release();
+
     public void SetTransform(Vector3 _position, Quaternion _rotation);
     public void AlignInParent(GrabbableAlignmentType _alignment);
 }

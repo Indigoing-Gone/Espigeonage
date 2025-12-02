@@ -11,4 +11,6 @@ public class CompleteMissionBehaviour : InteractionBehaviour
         if (_missionGrabber == null) return;
         _missionGrabber.CompleteMission();
     }
+
+    public override bool Verify(MonoBehaviour _interactable, Interactor _interactor) => true;
 }

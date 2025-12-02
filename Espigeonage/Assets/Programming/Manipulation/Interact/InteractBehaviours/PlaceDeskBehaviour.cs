@@ -22,4 +22,6 @@ public class PlaceDeskBehaviour : InteractionBehaviour
         if (_blueprint == null) return;
         _blueprint.UnlockModification();
     }
+
+    public override bool Verify(MonoBehaviour _interactable, Interactor _interactor) => true;
 }

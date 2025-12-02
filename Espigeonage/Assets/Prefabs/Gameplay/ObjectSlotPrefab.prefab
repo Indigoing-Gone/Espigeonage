@@ -74,8 +74,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a444ee04ded7a24f878494a3cbe1c56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grabLocation: {fileID: 3848616603731127168}
-  disableGrabbableCollider: 0
+  grabData:
+    location: {fileID: 3848616603731127168}
+    disableCollider: 0
+    swapModel: 0
   vaildGrabbables: -1
   grabbableAlignment: 0
 --- !u!114 &618470048592692499

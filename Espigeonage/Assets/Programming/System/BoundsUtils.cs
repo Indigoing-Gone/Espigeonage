@@ -4,7 +4,7 @@ public static class BoundsUtils
 {
     public static bool TryGetLocalBoundsSelf(Transform _root, out Bounds _bounds)
     {
-        var _renderers = _root.GetComponents<MeshRenderer>(); // only on this object
+        var _renderers = _root.GetComponents<MeshRenderer>();
         return TryGetLocalBounds(_renderers, _root, out _bounds);
     }
 
@@ -90,8 +90,8 @@ public static class BoundsUtils
     public static Vector3 BoundsBottomCenterZ(Bounds _bounds)
     {
         return new Vector3(
-            _bounds.min.x,
-            _bounds.min.y,
+            _bounds.center.x,
+            _bounds.center.y,
             _bounds.min.z
         );
     }

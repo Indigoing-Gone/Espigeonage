@@ -12,4 +12,6 @@ public class DragBehaviour : InteractionBehaviour
 
         _dragger.SetDraggable(_draggable, Camera.main.WorldToScreenPoint(_interactable.transform.position).z);
     }
+
+    public override bool Verify(MonoBehaviour _interactable, Interactor _interactor) => true;
 }

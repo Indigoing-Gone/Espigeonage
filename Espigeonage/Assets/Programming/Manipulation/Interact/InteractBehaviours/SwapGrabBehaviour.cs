@@ -17,6 +17,28 @@ public class SwapGrabBehaviour : InteractionBehaviour
         _grabber.Grab();
     }
 
+    public override bool Verify(MonoBehaviour _interactable, Interactor _interactor)
+    {
+        _interactable.gameObject.TryGetComponent<IGrabbable>(out IGrabbable _newGrabbable);
+        _interactor.gameObject.TryGetComponent<Grabber>(out Grabber _grabber);
+        if (_newGrabbable == null || _grabber == null || !_grabber.HasGrabbable) return false;
+
+        //Check if grabbable is object
+        MonoBehaviour _newGrabbableObject = _newGrabbable as MonoBehaviour;
+        if (_newGrabbableObject == null) return false;
+
+        //Check if grabbable has parent
+        Transform _newGrabbableParent = _newGrabbableObject.transform.parent;
+        if (_newGrabbableParent != null)
+        {
+            //Check if parent is a Grabber
+            _newGrabbableObject.transform.parent.TryGetComponent<Grabber>(out Grabber _newGrabbableGrabber);
+            if (_newGrabbableGrabber != null) return _newGrabbableGrabber.CanGrab(_grabber.CurrentGrabbable);
+        }
+
+        return true;
+    }
+
     private void AttemptPositionSwap(IGrabbable _newGrabbable, IGrabbable _oldGrabbable)
     {
         //Check if grabbable is object

@@ -3,7 +3,7 @@ using UnityEngine;
 public class InspectGrabber : Grabber
 {
     [Header("Inspect Parameters")]
-    [SerializeField] protected Transform inspectLocation;
+    [SerializeField] protected GrabData inspectData;
     public bool IsInspecting { get; private set; }
 
     public override void Grab()
@@ -20,7 +20,7 @@ public class InspectGrabber : Grabber
 
     public virtual void Inspect()
     {
-        currentGrabbable?.Grab(this, inspectLocation, false);
+        currentGrabbable?.Grab(this, inspectData);
 
         MonoBehaviour _grabbableObject = currentGrabbable as MonoBehaviour;
         if (_grabbableObject == null) return;

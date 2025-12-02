@@ -3,7 +3,7 @@ using UnityEngine;
 
 public abstract class Interactor : MonoBehaviour
 {
-    public event Action<IInteractable, ActionState> TargetInteractableUpdated;
+    public event Action<IInteractable, InteractionData> TargetInteractableUpdated;
 
     [Header("Components")]
     protected IInteractable targetInteractable;
@@ -24,8 +24,20 @@ public abstract class Interactor : MonoBehaviour
     protected virtual void UpdateTargetInteractable(IInteractable _newTarget)
     {
         if (targetInteractable == _newTarget) return;
+
+        InteractionData _targetInteraction = default;
+        MonoBehaviour _targetInteractableObject = _newTarget as MonoBehaviour;
+
+        if (_targetInteractableObject != null &&
+            _newTarget.TryFindInteraction(currentActionState, out _targetInteraction) &&
+            !_targetInteraction.behaviour.Verify(_targetInteractableObject, this))
+                _targetInteraction = default;
+
+        if (_targetInteraction.behaviour == null) _newTarget = null;
+        if (targetInteractable == _newTarget) return;
+
         targetInteractable = _newTarget;
-        TargetInteractableUpdated?.Invoke(targetInteractable, currentActionState);
+        TargetInteractableUpdated?.Invoke(targetInteractable, _targetInteraction);
     }
     public abstract void FindInteractables();
 
@@ -33,6 +45,14 @@ public abstract class Interactor : MonoBehaviour
     public void SetActionState(ActionState _newActionState)
     {
         currentActionState = _newActionState;
-        TargetInteractableUpdated?.Invoke(targetInteractable, currentActionState);
+
+        if (targetInteractable == null)
+        {
+            FindInteractables();
+            return;
+        }
+
+        targetInteractable.TryFindInteraction(currentActionState, out InteractionData _targetInteraction);
+        TargetInteractableUpdated?.Invoke(targetInteractable, _targetInteraction);
     }
 }

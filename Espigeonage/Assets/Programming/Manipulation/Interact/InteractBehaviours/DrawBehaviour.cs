@@ -11,4 +11,6 @@ public class DrawBehaviour : InteractionBehaviour
 
         _drawer.SetDrawable(_drawable, Camera.main.WorldToScreenPoint(_drawable.transform.position).z);
     }
+
+    public override bool Verify(MonoBehaviour _interactable, Interactor _interactor) => true;
 }

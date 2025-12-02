@@ -3,9 +3,14 @@ using UnityEngine;
 
 public class Grabbable : MonoBehaviour, IGrabbable
 {
+    [Header("Components")]
     private Rigidbody rb;
     private Collider col;
 
+    [SerializeField] private GameObject defaultModel;
+    [SerializeField] private GameObject grabbedModel;
+
+    [Header("Grabable Parameters")]
     [SerializeField] private bool isDynamic = true;
     [SerializeField] private GrabbableType type;
     public GrabbableType Type => type;
@@ -18,26 +23,46 @@ public class Grabbable : MonoBehaviour, IGrabbable
         col = GetComponent<Collider>();
 
         rb.isKinematic = !isDynamic;
+        if(grabbedModel != null) grabbedModel.SetActive(false);
     }
 
-    public void Grab(Grabber _grabber, Transform _grabLocation, bool _disableCollider)
+    public void Grab(Grabber _grabber, GrabData _grabData)
     {
         if (_grabber == null) return;
 
         GrabbedStatus?.Invoke(true);
 
+        //Handle parent and position
         rb.isKinematic = true;
-        transform.parent = _grabLocation;
+        transform.parent = _grabData.location;
         SetTransform(Vector3.zero, Quaternion.identity);
         
-        if(col) col.enabled = !_disableCollider;
-        foreach(Collider c in GetComponentsInChildren<Collider>()) c.enabled = !_disableCollider;
+        //Handle collider modification
+        if(col) col.enabled = !_grabData.disableCollider;
+        foreach(Collider c in GetComponentsInChildren<Collider>()) c.enabled = !_grabData.disableCollider;
+
+        //Handle model modification
+        if(_grabData.swapModel && defaultModel != null && grabbedModel != null)
+        {
+            defaultModel.SetActive(false);
+            grabbedModel.SetActive(true);
+        }
     }
 
     public void Release()
     {
+        //Handle model modification
+        if (defaultModel != null && grabbedModel != null)
+        {
+            defaultModel.SetActive(true);
+            grabbedModel.SetActive(false);
+        }
+
+        //Handle collider Modification
         foreach (Collider c in GetComponentsInChildren<Collider>()) c.enabled = true;
         if (col) col.enabled = true;
+
+        //Handle parent and position
         transform.parent = null;
         rb.isKinematic = !isDynamic;
 

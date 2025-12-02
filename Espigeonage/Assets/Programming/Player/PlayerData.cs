@@ -93,16 +93,15 @@ public class PlayerData : MonoBehaviour
     public void ReleaseDrag(bool _state) { if (!_state) Dragger.Release(); }
     public void StopDrawing(bool _state) { if (!_state) Drawer.StopDrawing(); }
 
-    private void UpdateTooltip(IInteractable _interactable, ActionState _currentState)
+    private void UpdateTooltip(IInteractable _interactable, InteractionData _interaction)
     {
-        if (_interactable == null || 
-            !_interactable.TryFindInteraction(_currentState, out InteractionData _foundInteraction))
+        if (_interactable == null || _interaction.behaviour == null)
         {
             PlayerUI.SetDefaultUI();
             return;
         }
 
-        PlayerUI.ApplyDisplayData(_foundInteraction);
+        PlayerUI.ApplyDisplayData(_interaction);
     }
 
     public void SetCurrentDesk(Desk _newDesk) => CurrentDesk = _newDesk;

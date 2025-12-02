@@ -281,10 +281,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 718fd8e1b40638544b390cb5549197a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grabLocation: {fileID: 4730364155229674000}
-  disableGrabbableCollider: 1
+  grabData:
+    location: {fileID: 4730364155229674000}
+    disableCollider: 1
+    swapModel: 0
   vaildGrabbables: -1
-  inspectLocation: {fileID: 1878398450660261131}
+  inspectData:
+    location: {fileID: 1878398450660261131}
+    disableCollider: 0
+    swapModel: 0
 --- !u!114 &5454298019726916445
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -14,4 +14,14 @@ public class InteractableGrabBehaviour : InteractionBehaviour
         _interactableGrabber.SetGrabbable(_grabbable);
         _interactableGrabber.Grab();
     }
+
+    public override bool Verify(MonoBehaviour _interactable, Interactor _interactor)
+    {
+        _interactable.gameObject.TryGetComponent<Grabber>(out Grabber _interactableGrabber);
+        _interactor.gameObject.TryGetComponent<Grabber>(out Grabber _interactorGrabber);
+        if (_interactableGrabber == null || _interactorGrabber == null) return false;
+
+        if (!_interactorGrabber.HasGrabbable) return false;
+        return _interactableGrabber.CanGrab(_interactorGrabber.CurrentGrabbable);
+    }
 }

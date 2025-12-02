@@ -11,4 +11,6 @@ public class EnterDeskBehaviour : InteractionBehaviour
 
         _ctx.SetCurrentDesk(_desk);
     }
+
+    public override bool Verify(MonoBehaviour _interactable, Interactor _interactor) => true;
 }
