@@ -20,15 +20,26 @@ public class MissionGrabber : SlotGrabber
 
     public void CompleteMission()
     {
-        if (currentGrabbable == null) return;
+        if (currentGrabbable == null)
+        {
+            MissionCompleted?.Invoke(new("", new List<Vector2Int>()));
+            return;
+        }
 
         MonoBehaviour _grabbableObject = currentGrabbable as MonoBehaviour;
-        if (_grabbableObject == null) return;
+        if (_grabbableObject == null)
+        {
+            MissionCompleted?.Invoke(new("", new List<Vector2Int>()));
+            return;
+        }
 
         _grabbableObject.TryGetComponent(out Blueprint _blueprint);
-        MissionData data;
-        if (_blueprint == null) data = new("", new List<Vector2Int>());
-        else data = new(_blueprint.LocationName, _blueprint.SpyPath);
-        MissionCompleted?.Invoke(data);
+        if (_blueprint == null)
+        {
+            MissionCompleted?.Invoke(new("", new List<Vector2Int>()));
+            return;
+        }
+        
+        MissionCompleted?.Invoke(new(_blueprint.LocationName, _blueprint.SpyPath));
     }
 }

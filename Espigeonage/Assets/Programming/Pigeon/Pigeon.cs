@@ -57,7 +57,8 @@ public class Pigeon : MonoBehaviour
 
     private void DestroyHeldNote()
     {
-        Destroy((missionGrabber.Release() as MonoBehaviour).gameObject);
+        MonoBehaviour _grabbable = missionGrabber.Release() as MonoBehaviour;
+        if (_grabbable != null) Destroy(_grabbable.gameObject);
     }
 
     #endregion
@@ -94,7 +95,8 @@ public class Pigeon : MonoBehaviour
 
     public void OnSendPigeon()
     {
-        if (transform.position != perchTransform.position) return;
+        if (transform.position != perchTransform.position || 
+           (hasMission && !missionGrabber.HasGrabbable)) return;
         FlyAway();
     }
 
