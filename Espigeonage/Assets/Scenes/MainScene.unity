@@ -3638,12 +3638,26 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'This is a playtest :). You are a spy handler who needs to send your spy
-    a blueprint with a plan to avoid guards and traps. Walk around with WASD, grab/drop
-    with mouse, and place stuff on the desk to inspect and come up with the right
-    path.
-
-    The spy''s mission is on Wednesday'
+  m_text: "Hello there, Mr.  D'Amboise!\r\n\r\n\tI dare say it\u2019s been some time
+    since I\u2019ve heard from you last, so I figured I\u2019d more likely be the
+    one to extend the courtesy of a letter, and here we are. Been awful quiet as
+    of late, but I\u2019ve only just recently come into some knowledge that may be
+    of interest to us. I seem to recall our services being employed by that old [mob
+    name idk] to keep our peepers pricked for anything that may be providing unneeded
+    competition for them. I seem to recall them offering to pay awful well if we
+    found anything, too.\r\n\tAs it happens, I was making my rounds down [street
+    name] when I saw a man whom I have not had the displeasure of acquainting myself
+    with in some time. Old trouble boy of mine. Don\u2019t remember who he might
+    have been affiliated with, but seeing him around acting all shady is a sure sign
+    of something amiss. All I can give you for now is his name, [name], but I\u2019ll
+    be waiting if anything breaks bad. I\u2019m none too sure anything will make
+    its way to the street, so it might be in our best interest to get some of our
+    more hands-on associates into the building. Looks like some sort of clothing
+    shop. I can get you the address too; look it up in one of them books of yours
+    and maybe you\u2019ll find something worthwhile. Well, I\u2019m afraid the night
+    beckons to me once again. I\u2019ll look forward to our next correspondence,
+    which better be from you to me. I am a lady, after all.\r\n\r\nCiao,\r\nLena
+    \r\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3670,8 +3684,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 12
-  m_fontSizeBase: 12
+  m_fontSize: 5.2
+  m_fontSizeBase: 5.2
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
