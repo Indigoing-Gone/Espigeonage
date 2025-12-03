@@ -32,6 +32,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: bc0c22bfd3df1fd44ab423d9927358ea, type: 3}
+    - target: {fileID: 2622769205518951529, guid: f56f9ed6e2fbc624b888382d9e5665db, type: 3}
+      propertyPath: locationName
+      value: Bookstore
+      objectReference: {fileID: 0}
     - target: {fileID: 4422454966885995590, guid: f56f9ed6e2fbc624b888382d9e5665db, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.72

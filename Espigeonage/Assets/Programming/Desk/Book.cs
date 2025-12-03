@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Interactable))]
 [RequireComponent(typeof(Grabbable))]
@@ -12,7 +13,8 @@ public class Book : MonoBehaviour
     [Serializable]
     struct PageData
     {
-        [TextArea(3, 10)] public string content;
+        public Texture2D image;
+        [TextArea(3, 10)] public string text;
     }
 
     [Header("Components")]
@@ -26,6 +28,9 @@ public class Book : MonoBehaviour
     [SerializeField] private GameObject leftPage;
     [SerializeField] private GameObject rightPage;
     [SerializeField] private GameObject cover;
+
+    private RawImage leftImage;
+    private RawImage rightImage;
 
     private TextMeshProUGUI leftText;
     private TextMeshProUGUI rightText;
@@ -49,6 +54,10 @@ public class Book : MonoBehaviour
         grabbable = GetComponent<Grabbable>();
         leftText = leftPage.GetComponentInChildren<TextMeshProUGUI>();
         rightText = rightPage.GetComponentInChildren<TextMeshProUGUI>();
+
+        leftImage = leftPage.GetComponent<RawImage>();
+        rightImage = rightPage.GetComponent<RawImage>();
+
         UpdateBookVisuals();
     }
 
@@ -84,11 +93,19 @@ public class Book : MonoBehaviour
         rightPage.SetActive(pagePairIndex != 0 && pagePairIndex * 2 < pageData.Count);
         cover.SetActive(pagePairIndex == 0);
 
-        //Update text
-        leftText.text = pageData.ElementAtOrDefault((pagePairIndex * 2) - 1).content;
-        rightText.text = pageData.ElementAtOrDefault(pagePairIndex * 2).content;
-        if (pagePairIndex == 0) 
-            cover.GetComponentInChildren<TextMeshProUGUI>().text = 
-                pageData.ElementAtOrDefault(pagePairIndex * 2).content;
+        //Update Pages
+        leftText.text = pageData.ElementAtOrDefault((pagePairIndex * 2) - 1).text;
+        rightText.text = pageData.ElementAtOrDefault(pagePairIndex * 2).text;
+
+        leftImage.texture = pageData.ElementAtOrDefault((pagePairIndex * 2) - 1).image;
+        rightImage.texture = pageData.ElementAtOrDefault(pagePairIndex * 2).image;
+
+        if (pagePairIndex == 0)
+        {
+            cover.GetComponentInChildren<TextMeshProUGUI>().text =
+                pageData.ElementAtOrDefault(pagePairIndex * 2).text;
+            cover.GetComponent<RawImage>().texture = 
+                pageData.ElementAtOrDefault(pagePairIndex * 2).image;
+        }
     }
 }
