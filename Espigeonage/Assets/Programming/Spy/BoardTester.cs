@@ -15,6 +15,11 @@ public class BoardTester : MonoBehaviour
         board = new(testFile);
     }
 
+    public void PrintBoard()
+    {
+        Debug.Log(board);
+    }
+
     public void TestFromPath()
     {
         Debug.Log("Path resulted in " + board.EvaluatePath(path));

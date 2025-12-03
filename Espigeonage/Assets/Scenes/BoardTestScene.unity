@@ -163,11 +163,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 522ed33c3f46ac247a35604498aa9f6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testFile: {fileID: 4900000, guid: afb92d93ef6ed21429bd7de6f46a8b74, type: 3}
-  path:
-  - {x: 0, y: 4}
-  - {x: 4, y: 0}
-  grid: {fileID: 0}
+  testFile: {fileID: 4900000, guid: 835a3733cb5e7574f8562e69bab05532, type: 3}
+  path: []
+  blueprint: {fileID: 0}
 --- !u!1 &1615841017
 GameObject:
   m_ObjectHideFlags: 0
