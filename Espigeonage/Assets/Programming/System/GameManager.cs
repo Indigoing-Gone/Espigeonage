@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
 
-    public static event Action<Grabbable, bool> SendNote;
+    public static event Action<IGrabbable, bool> SendNote;
     public static event Action<bool> MissionResult;
     public static event Action<bool> GameEnded;
 
@@ -74,11 +74,11 @@ public class GameManager : MonoBehaviour
 
     #region Game
 
-    private Grabbable CreateNote(string _text)
+    private IGrabbable CreateNote(string _text)
     {
         GameObject _note = Instantiate(notePrefab);
         _note.GetComponentInChildren<TextMeshProUGUI>().text = _text;
-        return _note.GetComponent<Grabbable>();
+        return _note.GetComponent<IGrabbable>();
     }
 
     private void OnPigeonReady()

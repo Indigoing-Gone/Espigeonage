@@ -79,7 +79,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   input: {fileID: 11400000, guid: b6792bd55d03489408472d2e9f003147, type: 2}
-  locationName: Bookstore
+  locationName: Blueprint
   gridSize: {x: 5, y: 5}
   spyStartPos: {x: 0, y: 4}
   spyPath: []

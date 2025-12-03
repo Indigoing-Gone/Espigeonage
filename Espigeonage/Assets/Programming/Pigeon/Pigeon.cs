@@ -34,7 +34,7 @@ public class Pigeon : MonoBehaviour
 
     #region Init
 
-    public void Init(Grabbable _note, Transform _start, Transform _end)
+    public void Init(IGrabbable _note, Transform _start, Transform _end)
     {
         startTransform = _start;
         perchTransform = _end;
@@ -42,7 +42,7 @@ public class Pigeon : MonoBehaviour
         GiveNote(_note, true);
     }
 
-    public void GiveNote(Grabbable _note, bool isMission)
+    public void GiveNote(IGrabbable _note, bool isMission)
     {
         if (missionGrabber == null) return;
 
