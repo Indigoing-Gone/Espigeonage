@@ -27,7 +27,7 @@ public class SlotGrabber : Grabber
     public override IGrabbable Release()
     {
         col.enabled = true;
-        currentGrabbable.GrabbedStatus -= OnGrabbableGrabbed;
+        if (currentGrabbable != null) currentGrabbable.GrabbedStatus -= OnGrabbableGrabbed;
         return base.Release();
     }
 

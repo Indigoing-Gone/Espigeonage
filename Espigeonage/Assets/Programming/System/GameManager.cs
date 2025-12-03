@@ -3,22 +3,28 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-
+using UnityEngine.UI;
+    
 public class GameManager : MonoBehaviour
 {
 
-    public static event Action<string> SendPigeon;
+    public static event Action<Grabbable, bool> SendNote;
     public static event Action<bool> MissionResult;
     public static event Action<bool> GameEnded;
-
-    [SerializeField] private TextMeshProUGUI missionText;
 
     [SerializeField] private bool retryUntilSuccess;
     [SerializeField] private int puzzlesToWin;
     [SerializeField] private List<TextAsset> puzzleFiles;
-    [SerializeField] private List<string> puzzleText;
+    [SerializeField] private List<string> puzzleNotes;
 
-    [SerializeField] private float timeToMissionResult;
+    [SerializeField] private GameObject notePrefab;
+    [SerializeField] private GameObject pigeonPrefab;
+    [SerializeField] private Transform pigeonStart;
+    [SerializeField] private Transform pigeonEnd;
+
+    [SerializeField] private string successText;
+    [SerializeField] private string failureText;
+
     [SerializeField] private float timeToNextPigeon;
 
     private int currentPuzzle;
@@ -28,11 +34,13 @@ public class GameManager : MonoBehaviour
 
     private void OnEnable()
     {
+        Pigeon.PigeonReady += OnPigeonReady;
         MissionGrabber.MissionCompleted += OnMissionCompleted;
     }
 
     private void OnDisable()
     {
+        Pigeon.PigeonReady -= OnPigeonReady;
         MissionGrabber.MissionCompleted -= OnMissionCompleted;
     }
 
@@ -44,6 +52,16 @@ public class GameManager : MonoBehaviour
     {
         currentPuzzle = 0;
         puzzlesSucceded = 0;
+
+        StartCoroutine(CreatePigeon());
+    }
+
+    private IEnumerator CreatePigeon()
+    {
+        Pigeon pigeon = Instantiate(pigeonPrefab).GetComponent<Pigeon>();
+        yield return null;
+        pigeon.Init(CreateNote(puzzleNotes[0]), pigeonStart, pigeonEnd);
+        yield break;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -56,6 +74,24 @@ public class GameManager : MonoBehaviour
 
     #region Game
 
+    private Grabbable CreateNote(string _text)
+    {
+        GameObject _note = Instantiate(notePrefab);
+        _note.GetComponentInChildren<TextMeshProUGUI>().text = _text;
+        return _note.GetComponent<Grabbable>();
+    }
+
+    private void OnPigeonReady()
+    {
+        if (currentPuzzle == puzzleFiles.Count)
+        {
+            bool gameWon = puzzlesSucceded >= puzzlesToWin;
+            OnGameEnd(gameWon);
+            GameEnded?.Invoke(gameWon);
+        }
+        else StartCoroutine(PigeonTransitionRoutine(puzzleNotes[currentPuzzle], true));
+    }
+
     private void OnMissionCompleted(MissionData data)
     {
         SpyBoard puzzle = new(puzzleFiles[currentPuzzle]);
@@ -66,37 +102,17 @@ public class GameManager : MonoBehaviour
 
         if (result) puzzlesSucceded++;
 
-        //Debug.Log("Mission was a " + (result ? "success." : "failure."));
-        //missionText.text = result ? "Success!" : "Failure :(";
-
-        //SoundManager.Instance.PlaySFX(result ? SoundManager.SFXType.MISSION_SUCCESS
-        //                                     : SoundManager.SFXType.MISSION_FAILURE);
-
         if (!retryUntilSuccess || result) currentPuzzle++;
 
-        //if (currentPuzzle == puzzleFiles.Count)
-        //{
-        //    bool gameWon = puzzlesSucceded >= puzzlesToWin;
-        //    OnGameEnd(gameWon);
-        //    GameEnded?.Invoke(gameWon);
-        //}
+        MissionResult?.Invoke(result);
 
-        StartCoroutine(MissionTransitionRoutine(result));
+        StartCoroutine(PigeonTransitionRoutine(result ? successText : failureText, false));
     }
 
-    private IEnumerator MissionTransitionRoutine(bool _success)
+    private IEnumerator PigeonTransitionRoutine(string _noteText, bool _isMission)
     {
-        yield return new WaitForSeconds(timeToMissionResult);
-
-        MissionResult?.Invoke(_success);
-
-        if (currentPuzzle < puzzleFiles.Count)
-        {
-            yield return new WaitForSeconds(timeToNextPigeon);
-            SendPigeon.Invoke(puzzleText[currentPuzzle]);
-        }
-        
-        yield break;
+        yield return new WaitForSeconds(timeToNextPigeon);
+        SendNote.Invoke(CreateNote(_noteText), _isMission);
     }
 
     private void OnGameEnd(bool result)

@@ -390,13 +390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 219fab770d40c9a43b17c79151528863, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactions:
-  - state: 1
-    behaviour: {fileID: 11400000, guid: a6307cc55af894f4b906ded700d1dd90, type: 2}
-  - state: 2
-    behaviour: {fileID: 11400000, guid: d45f67d0abdfb684aac9576c8f4ef630, type: 2}
-  - state: 3
-    behaviour: {fileID: 11400000, guid: e5d4e156e48c20846b314e01eed35177, type: 2}
+  interactions: {fileID: 11400000, guid: 950c2404a5c62bc4e8bbf90b5a16d971, type: 2}
 --- !u!114 &3789857792601892147
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -409,8 +403,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e694ca0111ae845458f1332c5ff5c300, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultModel: {fileID: 0}
+  grabbedModel: {fileID: 0}
   isDynamic: 1
-  type: 0
+  type: 1
 --- !u!114 &226723787668602357
 MonoBehaviour:
   m_ObjectHideFlags: 0
