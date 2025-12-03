@@ -5,10 +5,13 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
+using GoalArea = System.Collections.Generic.HashSet<UnityEngine.Vector2Int>;
+
 public enum SpaceType
 {
     EMPTY,
-    WALL 
+    GLASS,
+    WALL,
 }
 
 public class SpyBoard
@@ -27,6 +30,9 @@ public class SpyBoard
 
     private List<BoardUnit> units = new();
     public List<BoardUnit> Units => units;
+
+    private Dictionary<char, GoalArea> goalAreas = new();
+    public Dictionary<char, GoalArea> GoalAreas => goalAreas;
 
     private Vector2Int startPos;
     public Vector2Int StartPosition => startPos;
@@ -164,13 +170,33 @@ public class SpyBoard
                     endPos = new Vector2Int(i, j);
                     return SpaceType.EMPTY;
 
+                case 'B':
+                    startPos = new Vector2Int(i, j);
+                    endPos = new Vector2Int(i, j);
+                    return SpaceType.EMPTY;
+
                 case '-':
                     return SpaceType.EMPTY;
+
+                case '/':
+                    return SpaceType.GLASS;
 
                 case '#':
                     return SpaceType.WALL;
 
                 default:
+                    if (char.IsLetter(_token))
+                    {
+                        Vector2Int _pos = new(i, j);
+                        if (goalAreas.ContainsKey(_token))
+                        {
+                            goalAreas[_token].Add(_pos);
+                        }
+                        else goalAreas.Add(_token, new() { _pos });
+
+                        return SpaceType.EMPTY;
+                    }
+
                     throw new FormatException("CANNOT PARSE SPACE TYPE FROM TOKEN [" + _token + "]");
             };
         }
@@ -293,41 +319,63 @@ public class SpyBoard
     }
 
     // Determines if playerPos is a valid move based on the board space
-    public bool EvaluatePosition(Vector2Int playerPos)
+    private bool EvaluatePosition(Vector2Int playerPos)
     {
         return board[playerPos[0], playerPos[1]] switch
         {
             SpaceType.EMPTY => true,
+            SpaceType.GLASS => false,
             SpaceType.WALL => false,
             _ => true
         };
     }
 
     // Determines if playerPos is a valid move based on board units
-    public bool EvaluateUnits(Vector2Int playerPos)
+    private bool EvaluateUnits(Vector2Int _playerPos)
     {
         for (int i = 0; i < units.Count; i++)
         {
-            if (!units[i].Update(playerPos, board)) return false;
-            
+            if (!units[i].Update(_playerPos, board)) return false;
         }
         return true;
     }
-
-    // Determines if path through board is valid (assumes path is connected)
-    public bool EvaluatePath(List<Vector2Int> path)
+    
+    // Determines if the path enters a given goal area
+    private bool EvaluateGoalArea(GoalArea _goal, List<Vector2Int> _path)
     {
-        if (path.Count < 2) return false;
+        foreach (Vector2Int _pos in _path)
+        {
+            if (_goal.Contains(_pos)) return true;
+        }
 
-        path = path.Select(x => BoardUtils.ToRowMajor(x, height)).ToList();
+        return false;
+    }
 
-        if (path[0] != startPos || path[^1] != endPos) return false;
+    // Determines if all goals are reached on the path
+    private bool EvaluateGoals(List<Vector2Int> _path)
+    {
+        foreach (GoalArea _area in goalAreas.Values)
+        {
+            if (!EvaluateGoalArea(_area, _path)) return false;
+        }
+
+        return true;
+    }
+    
+    // Determines if path through board is valid (assumes path is connected)
+    public bool EvaluatePath(List<Vector2Int> _path)
+    {
+        if (_path.Count < 2) return false;
+
+        _path = _path.Select(x => BoardUtils.ToRowMajor(x, height)).ToList();
+
+        if (_path[0] != startPos || _path[^1] != endPos || !EvaluateGoals(_path)) return false;
 
         ResetBoard();
 
-        for (int i = 0; i < path.Count; i++)
+        for (int i = 0; i < _path.Count; i++)
         {
-            Vector2Int _playerPos = path[i];
+            Vector2Int _playerPos = _path[i];
             if (!EvaluatePosition(_playerPos) || !EvaluateUnits(_playerPos)) return false;
             Debug.Log("Board state on iteration " + i + "\n" + ToString(_playerPos));
         }
@@ -348,9 +396,19 @@ public class SpyBoard
                 _boardStr[i, j] = board[i, j] switch
                 {
                     SpaceType.EMPTY => '-',
+                    SpaceType.GLASS => '/',
                     SpaceType.WALL => '#',
                     _ => '-'
                 };
+            }
+        }
+
+        // Add goals to char matrix
+        foreach (char _goal in goalAreas.Keys)
+        {
+            foreach (Vector2Int _pos in goalAreas[_goal])
+            {
+                _boardStr[_pos[0], _pos[1]] = _goal;
             }
         }
 

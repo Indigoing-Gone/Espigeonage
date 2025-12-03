@@ -13,6 +13,10 @@ public class BoardTesterGUI : Editor
         {
             tester.Parse();
         }
+        if (GUILayout.Button("Print Board"))
+        {
+            tester.PrintBoard();
+        }
         if (GUILayout.Button("Test Path"))
         {
             tester.TestFromPath();
