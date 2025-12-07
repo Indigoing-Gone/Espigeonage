@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-[RequireComponent(typeof(AudioSource))]
 public class SoundManager : MonoBehaviour
 {
 
@@ -72,8 +71,6 @@ public class SoundManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        sfxSource = GetComponent<AudioSource>();
-
         bgmSource.loop = true;
         PlayBGM(BGMType.OFFICE);
     }
