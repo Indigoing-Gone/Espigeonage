@@ -321,6 +321,8 @@ public class SpyBoard
     // Determines if playerPos is a valid move based on the board space
     private bool EvaluatePosition(Vector2Int playerPos)
     {
+        if (!BoardUtils.InBounds(playerPos, width, height)) return false;
+
         return board[playerPos[0], playerPos[1]] switch
         {
             SpaceType.EMPTY => true,
