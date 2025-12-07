@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Splines;
 using UnityEngine.UI;
     
 public class GameManager : MonoBehaviour
@@ -19,8 +20,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject notePrefab;
     [SerializeField] private GameObject pigeonPrefab;
-    [SerializeField] private Transform pigeonStart;
-    [SerializeField] private Transform pigeonEnd;
+    [SerializeField] private SplineContainer toPerchSpline;
+    [SerializeField] private SplineContainer toAgentSpline;
 
     [SerializeField] private GameObject successNote;
     [SerializeField] private GameObject failureNote;
@@ -60,7 +61,7 @@ public class GameManager : MonoBehaviour
     {
         Pigeon pigeon = Instantiate(pigeonPrefab).GetComponent<Pigeon>();
         yield return null;
-        pigeon.Init(CreateNote(puzzleNotes[0]), pigeonStart, pigeonEnd);
+        pigeon.Init(CreateNote(puzzleNotes[0]), toPerchSpline, toAgentSpline);
         yield break;
     }
 
