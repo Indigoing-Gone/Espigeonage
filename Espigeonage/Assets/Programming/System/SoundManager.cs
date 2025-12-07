@@ -18,7 +18,6 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private List<AudioClip> moveSounds;
     [SerializeField] private AudioClip undo;
 
-    [SerializeField] private AudioClip openBook;
     [SerializeField] private AudioClip flipPage;
     [SerializeField] private AudioClip closeBook;
 
@@ -33,7 +32,6 @@ public class SoundManager : MonoBehaviour
         MOVE_SPY,
         UNDO,
 
-        OPEN_BOOK,
         FLIP_PAGE,
         CLOSE_BOOK,
 
@@ -90,7 +88,6 @@ public class SoundManager : MonoBehaviour
             SFXType.MOVE_SPY => PickRandom(moveSounds),
             SFXType.UNDO => undo,
 
-            SFXType.OPEN_BOOK => openBook,
             SFXType.FLIP_PAGE => flipPage,
             SFXType.CLOSE_BOOK => closeBook,
 
