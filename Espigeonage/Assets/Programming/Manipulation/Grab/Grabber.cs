@@ -9,6 +9,8 @@ public enum GrabbableType
     Default = 1,
     Book = 2,
     Blueprint = 4,
+    SmallTrinket = 8,
+    BigTrinket = 16,
 }
 
 [Serializable]

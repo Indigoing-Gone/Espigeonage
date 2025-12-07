@@ -160,6 +160,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrabbableCrystal
       objectReference: {fileID: 0}
+    - target: {fileID: 7747758564272282720, guid: f3f23b7abab88f94d875b67bdf002539, type: 3}
+      propertyPath: type
+      value: 16
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
