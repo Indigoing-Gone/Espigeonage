@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+[RequireComponent(typeof(AudioSource))]
 public class SoundManager : MonoBehaviour
 {
 
@@ -9,16 +10,13 @@ public class SoundManager : MonoBehaviour
 
     #region SFX
 
+    [SerializeField] private AudioSource sfxSource;
+
     [SerializeField] private AudioClip objPickUp;
     [SerializeField] private AudioClip objPlaceShelf;
     [SerializeField] private AudioClip objPlaceDesk;
-    [SerializeField] private AudioClip objDrag;
 
-    [SerializeField] private AudioClip deskEnter;
-    [SerializeField] private AudioClip deskExit;
-
-    [SerializeField] private AudioClip moveSpy;
-    [SerializeField] private AudioClip draw;
+    [SerializeField] private List<AudioClip> moveSounds;
     [SerializeField] private AudioClip undo;
 
     [SerializeField] private AudioClip openBook;
@@ -26,23 +24,14 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip closeBook;
 
     [SerializeField] private List<AudioClip> pigeonSounds;
-    [SerializeField] private AudioClip giveBlueprint;
-    [SerializeField] private AudioClip recieveMessage;
-    [SerializeField] private AudioClip missionSuccess;
-    [SerializeField] private AudioClip missionFailure;
 
     public enum SFXType
     {
         OBJ_PICKUP,
         OBJ_PLACE_SHELF,
         OBJ_PLACE_DESK,
-        OBJ_DRAG,
-
-        DESK_ENTER,
-        DESK_EXIT,
 
         MOVE_SPY,
-        DRAW,
         UNDO,
 
         OPEN_BOOK,
@@ -50,10 +39,6 @@ public class SoundManager : MonoBehaviour
         CLOSE_BOOK,
 
         PIGEON,
-        GIVE_BLUEPRINT,
-        RECIEVE_MESSAGE,
-        MISSION_SUCCESS,
-        MISSION_FAILURE
     }
 
     #endregion
@@ -87,46 +72,39 @@ public class SoundManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        sfxSource = GetComponent<AudioSource>();
+
         bgmSource.loop = true;
         PlayBGM(BGMType.OFFICE);
     }
 
     #endregion
 
-    public void PlaySFX(SFXType _type) { PlaySFX(_type, transform.position); }
+    public T PickRandom<T>(List<T> _list) { return _list[UnityEngine.Random.Range(0, _list.Count)]; }
 
-    public void PlaySFX(SFXType _type, Vector3 position)
+    public void PlaySFX(SFXType _type)
     {
         AudioClip _clip = _type switch
         {
             SFXType.OBJ_PICKUP => objPickUp,
             SFXType.OBJ_PLACE_SHELF => objPlaceShelf,
             SFXType.OBJ_PLACE_DESK => objPlaceDesk,
-            SFXType.OBJ_DRAG => objDrag,
 
-            SFXType.DESK_ENTER => deskEnter,
-            SFXType.DESK_EXIT => deskExit,
-
-            SFXType.MOVE_SPY => moveSpy,
-            SFXType.DRAW => draw,
+            SFXType.MOVE_SPY => PickRandom(moveSounds),
             SFXType.UNDO => undo,
 
             SFXType.OPEN_BOOK => openBook,
             SFXType.FLIP_PAGE => flipPage,
             SFXType.CLOSE_BOOK => closeBook,
 
-            SFXType.PIGEON => pigeonSounds[UnityEngine.Random.Range(0, pigeonSounds.Count)],
-            SFXType.GIVE_BLUEPRINT => giveBlueprint,
-            SFXType.RECIEVE_MESSAGE => recieveMessage,
-            SFXType.MISSION_SUCCESS => missionSuccess,
-            SFXType.MISSION_FAILURE => missionFailure,
+            SFXType.PIGEON => PickRandom(pigeonSounds),
 
             _ => throw new ArgumentException(_type + " NOT A VALID SFX TYPE")
         };
 
         if (_clip == null) return;
 
-        AudioSource.PlayClipAtPoint(_clip, position);
+        sfxSource.PlayOneShot(_clip);
     }
 
 
