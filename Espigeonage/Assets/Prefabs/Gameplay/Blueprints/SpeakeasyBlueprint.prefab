@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 774634966052905518, guid: f56f9ed6e2fbc624b888382d9e5665db, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 987921645399151582, guid: f56f9ed6e2fbc624b888382d9e5665db, type: 3}
       propertyPath: m_Name
       value: SpeakeasyBlueprint
@@ -119,6 +123,14 @@ PrefabInstance:
     - target: {fileID: 6270200049435130875, guid: f56f9ed6e2fbc624b888382d9e5665db, type: 3}
       propertyPath: cellSize.y
       value: 0.0645
+      objectReference: {fileID: 0}
+    - target: {fileID: 8068992802392942742, guid: f56f9ed6e2fbc624b888382d9e5665db, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8068992802392942742, guid: f56f9ed6e2fbc624b888382d9e5665db, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
