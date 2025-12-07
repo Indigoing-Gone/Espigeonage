@@ -1922,11 +1922,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f99d9bf3dd1cfc46a263b5745c01197, type: 3}
---- !u!4 &747337588 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3655814252767533417, guid: 1f99d9bf3dd1cfc46a263b5745c01197, type: 3}
-  m_PrefabInstance: {fileID: 747337587}
-  m_PrefabAsset: {fileID: 0}
 --- !u!43 &761515216
 Mesh:
   m_ObjectHideFlags: 0
@@ -3303,11 +3298,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f99d9bf3dd1cfc46a263b5745c01197, type: 3}
---- !u!4 &1421875647 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3655814252767533417, guid: 1f99d9bf3dd1cfc46a263b5745c01197, type: 3}
-  m_PrefabInstance: {fileID: 1421875646}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1460198495
 GameObject:
   m_ObjectHideFlags: 0
@@ -3390,14 +3380,14 @@ MonoBehaviour:
   - {fileID: 4900000, guid: afb92d93ef6ed21429bd7de6f46a8b74, type: 3}
   - {fileID: 4900000, guid: 95ab39e9ec63c4d4d92e505d4092fddc, type: 3}
   puzzleNotes:
-  - Your first mission is on Wednesday or something idk lmao
-  - Your second mission is ummmm ummm impossible
+  - {fileID: 0}
+  - {fileID: 0}
   notePrefab: {fileID: 5973618503926903076, guid: dce5141bc90f35244be1c6f31c4a2d61, type: 3}
   pigeonPrefab: {fileID: 2111521147069488232, guid: 1f99d9bf3dd1cfc46a263b5745c01197, type: 3}
-  pigeonStart: {fileID: 1421875647}
-  pigeonEnd: {fileID: 747337588}
-  successText: Mission success!
-  failureText: Mission failure
+  toPerchSpline: {fileID: 0}
+  toAgentSpline: {fileID: 0}
+  successNote: {fileID: 0}
+  failureNote: {fileID: 0}
   timeToNextPigeon: 1
 --- !u!1 &1539992563
 GameObject:
@@ -3639,6 +3629,63 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1001 &1627977498
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1062782806617730596, guid: f810bace6f49b1345bebeae7de1bd888, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.9233552
+      objectReference: {fileID: 0}
+    - target: {fileID: 1062782806617730596, guid: f810bace6f49b1345bebeae7de1bd888, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5000005
+      objectReference: {fileID: 0}
+    - target: {fileID: 1062782806617730596, guid: f810bace6f49b1345bebeae7de1bd888, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.9992704
+      objectReference: {fileID: 0}
+    - target: {fileID: 1062782806617730596, guid: f810bace6f49b1345bebeae7de1bd888, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1062782806617730596, guid: f810bace6f49b1345bebeae7de1bd888, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1062782806617730596, guid: f810bace6f49b1345bebeae7de1bd888, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1062782806617730596, guid: f810bace6f49b1345bebeae7de1bd888, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1062782806617730596, guid: f810bace6f49b1345bebeae7de1bd888, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1062782806617730596, guid: f810bace6f49b1345bebeae7de1bd888, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1062782806617730596, guid: f810bace6f49b1345bebeae7de1bd888, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292874287121244914, guid: f810bace6f49b1345bebeae7de1bd888, type: 3}
+      propertyPath: m_Name
+      value: SpeakeasyBlueprint
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f810bace6f49b1345bebeae7de1bd888, type: 3}
 --- !u!1 &1649882622
 GameObject:
   m_ObjectHideFlags: 0
@@ -4486,3 +4533,4 @@ SceneRoots:
   - {fileID: 747337587}
   - {fileID: 1421875646}
   - {fileID: 1361125738}
+  - {fileID: 1627977498}
