@@ -1,3 +1,5 @@
+#if UNITY_EDITOR
+
 using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEditor;
@@ -30,3 +32,5 @@ public class BoardTester : MonoBehaviour
         if (blueprint != null) Debug.Log("Path resulted in " + board.EvaluatePath(blueprint.SpyPath));
     }
 }
+
+#endif
