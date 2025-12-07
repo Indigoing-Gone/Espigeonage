@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 551153470011496741}
   - component: {fileID: 5342520852018823318}
   - component: {fileID: 6391381213847148873}
+  - component: {fileID: 5089810603471569014}
   m_Layer: 0
   m_Name: Pigeon
   m_TagString: Untagged
@@ -123,6 +124,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flyTime: 5
+--- !u!114 &5089810603471569014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2111521147069488232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29a074d529cf945029ef7cf40540c9df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Target: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_LoopMode: 0
+  m_Method: 1
+  m_Duration: 1
+  m_MaxSpeed: 5
+  m_EasingMode: 3
+  m_AlignmentMode: 1
+  m_ObjectForwardAxis: 5
+  m_ObjectUpAxis: 1
+  m_StartOffset: 0
 --- !u!1001 &5950082288049886423
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Splines;
 using UnityEngine.UI;
     
 public class GameManager : MonoBehaviour
@@ -15,15 +16,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] private bool retryUntilSuccess;
     [SerializeField] private int puzzlesToWin;
     [SerializeField] private List<TextAsset> puzzleFiles;
-    [SerializeField] private List<string> puzzleNotes;
+    [SerializeField] private List<GameObject> puzzleNotes;
 
     [SerializeField] private GameObject notePrefab;
     [SerializeField] private GameObject pigeonPrefab;
-    [SerializeField] private Transform pigeonStart;
-    [SerializeField] private Transform pigeonEnd;
+    [SerializeField] private SplineContainer toPerchSpline;
+    [SerializeField] private SplineContainer toAgentSpline;
 
-    [SerializeField] private string successText;
-    [SerializeField] private string failureText;
+    [SerializeField] private GameObject successNote;
+    [SerializeField] private GameObject failureNote;
 
     [SerializeField] private float timeToNextPigeon;
 
@@ -60,7 +61,7 @@ public class GameManager : MonoBehaviour
     {
         Pigeon pigeon = Instantiate(pigeonPrefab).GetComponent<Pigeon>();
         yield return null;
-        pigeon.Init(CreateNote(puzzleNotes[0]), pigeonStart, pigeonEnd);
+        pigeon.Init(CreateNote(puzzleNotes[0]), toPerchSpline, toAgentSpline);
         yield break;
     }
 
@@ -74,10 +75,9 @@ public class GameManager : MonoBehaviour
 
     #region Game
 
-    private IGrabbable CreateNote(string _text)
+    private IGrabbable CreateNote(GameObject _notePrefab)
     {
-        GameObject _note = Instantiate(notePrefab);
-        _note.GetComponentInChildren<TextMeshProUGUI>().text = _text;
+        GameObject _note = Instantiate(_notePrefab);
         return _note.GetComponent<IGrabbable>();
     }
 
@@ -106,13 +106,13 @@ public class GameManager : MonoBehaviour
 
         MissionResult?.Invoke(result);
 
-        StartCoroutine(PigeonTransitionRoutine(result ? successText : failureText, false));
+        StartCoroutine(PigeonTransitionRoutine(result ? successNote : failureNote, false));
     }
 
-    private IEnumerator PigeonTransitionRoutine(string _noteText, bool _isMission)
+    private IEnumerator PigeonTransitionRoutine(GameObject _notePrefab, bool _isMission)
     {
         yield return new WaitForSeconds(timeToNextPigeon);
-        SendNote.Invoke(CreateNote(_noteText), _isMission);
+        SendNote.Invoke(CreateNote(_notePrefab), _isMission);
     }
 
     private void OnGameEnd(bool result)

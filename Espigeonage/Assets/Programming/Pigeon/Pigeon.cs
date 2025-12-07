@@ -3,15 +3,17 @@ using System.Collections;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Splines;
 
 public class Pigeon : MonoBehaviour
 {
     public static Action PigeonReady;
 
-    [SerializeField] private float flyTime;
-    private Transform startTransform;
-    private Transform perchTransform;
+    private SplineContainer toPerch;
+    private SplineContainer toAgent;
+    private bool perched = false;
 
+    private SplineAnimate splineAnimator;
     private MissionGrabber missionGrabber;
 
     private bool hasMission = true;
@@ -34,10 +36,12 @@ public class Pigeon : MonoBehaviour
 
     #region Init
 
-    public void Init(IGrabbable _note, Transform _start, Transform _end)
+    public void Init(IGrabbable _note, SplineContainer _toPerch, SplineContainer _toAgent)
     {
-        startTransform = _start;
-        perchTransform = _end;
+        toPerch = _toPerch;
+        toAgent = _toAgent;
+        splineAnimator = GetComponent<SplineAnimate>();
+        splineAnimator.Loop = SplineAnimate.LoopMode.Once;
         missionGrabber = GetComponentInChildren<MissionGrabber>();
         GiveNote(_note, true);
     }
@@ -52,7 +56,7 @@ public class Pigeon : MonoBehaviour
         missionGrabber.SetGrabbable(_note);
         missionGrabber.Grab();
 
-        StartCoroutine(FlyRoutine(startTransform, perchTransform));
+        StartCoroutine(GiveNoteRoutine());
     }
 
     private void DestroyHeldNote()
@@ -70,32 +74,20 @@ public class Pigeon : MonoBehaviour
         //SoundManager.Instance.PlaySFX(SoundManager.SFXType.PIGEON, transform.position);
     }
 
-    // Easing function for the pigeon's movement from start to end transform
-    private float PigeonEase(float _per)
+    private IEnumerator FlyRoutine(SplineContainer _route)
     {
-        // Cubic easing (can be changed)
-        return 1.0f - Mathf.Pow(1.0f - _per, 3);
-    }
-
-    private IEnumerator FlyRoutine(Transform _start, Transform _end)
-    {
-        transform.SetPositionAndRotation(_start.position, _start.rotation);
+        splineAnimator.Container = _route;
         Coo();
-        for (float i = 0; i < flyTime; i += Time.deltaTime)
-        {
-            float per = PigeonEase(i / flyTime);
-            transform.SetPositionAndRotation(Vector3.Lerp(_start.position, _end.position, per),
-                                             Quaternion.Lerp(_start.rotation, _end.rotation, per));
-            yield return null;
-        }
-        transform.SetPositionAndRotation(_end.position, _end.rotation);
+        splineAnimator.Restart(false);
+        splineAnimator.Play();
+        yield return new WaitWhile(() => splineAnimator.IsPlaying);
         Coo();
         yield break;
     }
 
     public void OnSendPigeon()
     {
-        if (transform.position != perchTransform.position || 
+        if (!perched || 
            (hasMission && !missionGrabber.HasGrabbable)) return;
         FlyAway();
     }
@@ -103,11 +95,18 @@ public class Pigeon : MonoBehaviour
     public void FlyAway()
     {
         StartCoroutine(FlyAwayRoutine());
+        perched = false;
+    }
+
+    private IEnumerator GiveNoteRoutine()
+    {
+        yield return StartCoroutine(FlyRoutine(toPerch));
+        perched = true;
     }
 
     private IEnumerator FlyAwayRoutine()
     {
-        yield return StartCoroutine(FlyRoutine(perchTransform, startTransform));
+        yield return StartCoroutine(FlyRoutine(toAgent));
 
         if (hasMission)
         {
