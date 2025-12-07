@@ -19653,7 +19653,7 @@ MonoBehaviour:
   sfxSource: {fileID: 330585549}
   objPickUp: {fileID: 8300000, guid: 8ddc4a778bf368e40a158bed4a963ada, type: 3}
   objPlaceShelf: {fileID: 8300000, guid: f48d0c6b5dde178478f81e5ad3263b13, type: 3}
-  objPlaceDesk: {fileID: 8300000, guid: ae003170bccc4a5448da6e7ac3938de7, type: 3}
+  objPlaceDesk: {fileID: 8300000, guid: 764bfb3f5b5d3644d87425624fc77ab4, type: 3}
   moveSounds:
   - {fileID: 8300000, guid: 480bc43d1e593b542833cd830a772a64, type: 3}
   - {fileID: 8300000, guid: b31bef84f2da7814599d7d267b212b4b, type: 3}
