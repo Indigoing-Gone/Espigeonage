@@ -10,13 +10,6 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Draggable))]
 public class Book : MonoBehaviour
 {
-    [Serializable]
-    struct PageData
-    {
-        public Texture2D image;
-        [TextArea(3, 10)] public string text;
-    }
-
     [Header("Components")]
     private Grabbable grabbable;
 
@@ -29,11 +22,10 @@ public class Book : MonoBehaviour
     [SerializeField] private GameObject rightPage;
     [SerializeField] private GameObject cover;
 
-    private RawImage leftImage;
-    private RawImage rightImage;
-
     private TextMeshProUGUI leftText;
     private TextMeshProUGUI rightText;
+    private RawImage leftImage;
+    private RawImage rightImage;
 
     [Header("Book")]
     [SerializeField] private int pagePairIndex = 0;
