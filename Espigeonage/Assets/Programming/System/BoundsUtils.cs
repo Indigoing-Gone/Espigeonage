@@ -91,7 +91,7 @@ public static class BoundsUtils
     {
         return new Vector3(
             _bounds.center.x,
-            _bounds.center.y,
+            _bounds.min.y,
             _bounds.min.z
         );
     }
