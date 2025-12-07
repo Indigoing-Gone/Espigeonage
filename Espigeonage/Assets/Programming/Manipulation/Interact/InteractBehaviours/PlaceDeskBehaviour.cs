@@ -17,6 +17,7 @@ public class PlaceDeskBehaviour : InteractionBehaviour
 
         IGrabbable _grabbable = _grabber.Release();
         _grabbable.SetTransform(_desk.DropLocation.position, Quaternion.identity);
+        SoundManager.Instance.PlaySFX(SoundManager.SFXType.OBJ_PLACE_DESK);
 
         _grabbableObject.TryGetComponent<Blueprint>(out Blueprint _blueprint);
         if (_blueprint == null) return;

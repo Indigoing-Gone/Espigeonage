@@ -10,6 +10,7 @@ public class InteractorGrabBehaviour : InteractionBehaviour
         if (_grabbable == null || _grabber == null) return;
 
         _grabber.SetGrabbable(_grabbable);
+        SoundManager.Instance.PlaySFX(SoundManager.SFXType.OBJ_PICKUP);
     }
 
     public override bool Verify(MonoBehaviour _interactable, Interactor _interactor)
@@ -20,5 +21,4 @@ public class InteractorGrabBehaviour : InteractionBehaviour
 
         return _grabber.CanGrab(_grabbable);
     }
-
 }
