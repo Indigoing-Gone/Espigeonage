@@ -19659,8 +19659,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b31bef84f2da7814599d7d267b212b4b, type: 3}
   - {fileID: 8300000, guid: e320f87a7abc5e74fb7f108aaa4b6395, type: 3}
   undo: {fileID: 8300000, guid: 7662cce22429de74e9b216078eb9fb6d, type: 3}
-  openBook: {fileID: 8300000, guid: 0b37fe3b3513b1f409db9dd7dde36f24, type: 3}
-  flipPage: {fileID: 8300000, guid: f4f720b3a77759d4b93fdbd9e6dc6ee9, type: 3}
+  flipPage: {fileID: 8300000, guid: 0b37fe3b3513b1f409db9dd7dde36f24, type: 3}
   closeBook: {fileID: 8300000, guid: d3a53956e60d20246b96d60079ef5944, type: 3}
   pigeonSounds:
   - {fileID: 8300000, guid: e7bcd1704dba7de4293f8e9b8bb857dc, type: 3}
