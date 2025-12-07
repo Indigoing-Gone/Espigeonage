@@ -13,6 +13,7 @@ public class InteractableGrabBehaviour : InteractionBehaviour
         IGrabbable _grabbable = _interactorGrabber.Release();
         _interactableGrabber.SetGrabbable(_grabbable);
         _interactableGrabber.Grab();
+        SoundManager.Instance.PlaySFX(SoundManager.SFXType.OBJ_PLACE_SHELF);
     }
 
     public override bool Verify(MonoBehaviour _interactable, Interactor _interactor)

@@ -76,6 +76,9 @@ public class Book : MonoBehaviour
 
     private void UpdateBookVisuals()
     {
+        if(pagePairIndex == 0) SoundManager.Instance.PlaySFX(SoundManager.SFXType.CLOSE_BOOK);
+        else SoundManager.Instance.PlaySFX(SoundManager.SFXType.FLIP_PAGE);
+
         //Open/Close Book
         bookClose.SetActive(pagePairIndex == 0);
         bookOpen.SetActive(pagePairIndex > 0);
