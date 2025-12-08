@@ -743,7 +743,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1845286325}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 657c9c784884bf244bb0691798f34128, type: 3}
       propertyPath: m_LocalPosition.x
@@ -798,6 +798,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 657c9c784884bf244bb0691798f34128, type: 3}
+--- !u!4 &24784726 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 657c9c784884bf244bb0691798f34128, type: 3}
+  m_PrefabInstance: {fileID: 24784725}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &28774404
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23053,11 +23058,11 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1845286325}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 657c9c784884bf244bb0691798f34128, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.88215
+      value: 0.88215005
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 657c9c784884bf244bb0691798f34128, type: 3}
       propertyPath: m_LocalScale.y
@@ -23065,7 +23070,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 657c9c784884bf244bb0691798f34128, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.88215
+      value: 0.88215005
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 657c9c784884bf244bb0691798f34128, type: 3}
       propertyPath: m_LocalPosition.x
@@ -23120,6 +23125,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 657c9c784884bf244bb0691798f34128, type: 3}
+--- !u!4 &1233945921 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 657c9c784884bf244bb0691798f34128, type: 3}
+  m_PrefabInstance: {fileID: 1233945920}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1241549297
 GameObject:
   m_ObjectHideFlags: 0
@@ -29535,11 +29545,11 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1845286325}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 657c9c784884bf244bb0691798f34128, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.88215
+      value: 0.88215005
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 657c9c784884bf244bb0691798f34128, type: 3}
       propertyPath: m_LocalScale.y
@@ -29547,7 +29557,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 657c9c784884bf244bb0691798f34128, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.88215
+      value: 0.88215005
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 657c9c784884bf244bb0691798f34128, type: 3}
       propertyPath: m_LocalPosition.x
@@ -29599,6 +29609,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 657c9c784884bf244bb0691798f34128, type: 3}
+--- !u!4 &1625474701 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 657c9c784884bf244bb0691798f34128, type: 3}
+  m_PrefabInstance: {fileID: 1625474700}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1628250092 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 99ef4eceb32648f4aa87d06fff5667c4, type: 3}
@@ -33665,6 +33680,9 @@ Transform:
   - {fileID: 1820337732}
   - {fileID: 1542247850}
   - {fileID: 681544240}
+  - {fileID: 24784726}
+  - {fileID: 1233945921}
+  - {fileID: 1625474701}
   m_Father: {fileID: 327973893}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1853391519 stripped
@@ -39084,7 +39102,4 @@ SceneRoots:
   - {fileID: 2058928987}
   - {fileID: 1017319685}
   - {fileID: 2003565004}
-  - {fileID: 24784725}
-  - {fileID: 1233945920}
-  - {fileID: 1625474700}
   - {fileID: 1076087170}
