@@ -1,0 +1,89 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &4116639675771345373
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4149599624834132359, guid: 65bb05c044fce4e47b1932f2b25f35dc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4149599624834132359, guid: 65bb05c044fce4e47b1932f2b25f35dc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4149599624834132359, guid: 65bb05c044fce4e47b1932f2b25f35dc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4149599624834132359, guid: 65bb05c044fce4e47b1932f2b25f35dc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4149599624834132359, guid: 65bb05c044fce4e47b1932f2b25f35dc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4149599624834132359, guid: 65bb05c044fce4e47b1932f2b25f35dc, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4149599624834132359, guid: 65bb05c044fce4e47b1932f2b25f35dc, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4149599624834132359, guid: 65bb05c044fce4e47b1932f2b25f35dc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4149599624834132359, guid: 65bb05c044fce4e47b1932f2b25f35dc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4149599624834132359, guid: 65bb05c044fce4e47b1932f2b25f35dc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5039014938537833571, guid: 65bb05c044fce4e47b1932f2b25f35dc, type: 3}
+      propertyPath: m_Name
+      value: BookstoreGuards
+      objectReference: {fileID: 0}
+    - target: {fileID: 5584456545367877786, guid: 65bb05c044fce4e47b1932f2b25f35dc, type: 3}
+      propertyPath: pageData.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5584456545367877786, guid: 65bb05c044fce4e47b1932f2b25f35dc, type: 3}
+      propertyPath: pageData.Array.data[0].text
+      value: Bearcat Burrow Bookstore Shifts
+      objectReference: {fileID: 0}
+    - target: {fileID: 5584456545367877786, guid: 65bb05c044fce4e47b1932f2b25f35dc, type: 3}
+      propertyPath: pageData.Array.data[1].text
+      value: 'Bookstore Rotations-
+
+
+        Monday: Bruce/A4, facing North
+
+        Tuesday:
+        Davie/B5, facing West
+
+        Wednesday:  Ron/C2, facing North'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5584456545367877786, guid: 65bb05c044fce4e47b1932f2b25f35dc, type: 3}
+      propertyPath: pageData.Array.data[2].text
+      value: "Thursday: Grant/A1, facing East\nFriday: Irvine/E3, facing South\n\nWhoever\u2019s
+        not working the store should be keeping things peachy in the back"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5584456545367877786, guid: 65bb05c044fce4e47b1932f2b25f35dc, type: 3}
+      propertyPath: pageData.Array.data[3].text
+      value: "Friday: Irvine/E3, facing South\n\nWhoever\u2019s not working the store
+        should be keeping things peachy in the back"
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 65bb05c044fce4e47b1932f2b25f35dc, type: 3}
