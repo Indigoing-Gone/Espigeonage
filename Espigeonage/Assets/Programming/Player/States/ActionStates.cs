@@ -41,6 +41,7 @@ class GrabbingState : BaseState<PlayerData>
     {
         ctx.Grabber.Grab();
         ctx.Input.ExitEvent += ctx.Grabber.ToggleInspecting;
+        ctx.PlayerUI.SetSecondaryTooltip("[RMB] Inspect", true);
 
         ctx.Interactor.SetActionState(ActionState.Grabbing);
     }
@@ -48,6 +49,7 @@ class GrabbingState : BaseState<PlayerData>
     public override void ExitState()
     {
         ctx.Input.ExitEvent -= ctx.Grabber.ToggleInspecting;
+        ctx.PlayerUI.SetSecondaryTooltip("NULL", false);
 
         ctx.Interactor.SetActionState(ActionState.None);
     }
@@ -66,6 +68,7 @@ class NotDraggingState : BaseState<PlayerData>
     public override void EnterState()
     {
         ctx.Input.ExitEvent += ctx.ExitDesk;
+        ctx.PlayerUI.SetSecondaryTooltip("[RMB] Exit Desk", true);
 
         ctx.Interactor.SetActionState(ActionState.NotDragging);
     }
@@ -73,6 +76,7 @@ class NotDraggingState : BaseState<PlayerData>
     public override void ExitState()
     {
         ctx.Input.ExitEvent -= ctx.ExitDesk;
+        ctx.PlayerUI.SetSecondaryTooltip("NULL", false);
 
         ctx.Interactor.SetActionState(ActionState.None);
     }
@@ -125,6 +129,7 @@ class InspectingState : BaseState<PlayerData>
         ctx.Grabber.Inspect();
 
         ctx.Input.ExitEvent += ctx.Grabber.ToggleInspecting;
+        ctx.PlayerUI.SetSecondaryTooltip("[RMB] Stop Inspecting", true);
 
         ctx.Interactor.SetActionState(ActionState.Inspecting);
     }
@@ -132,6 +137,7 @@ class InspectingState : BaseState<PlayerData>
     public override void ExitState()
     {
         ctx.Input.ExitEvent -= ctx.Grabber.ToggleInspecting;
+        ctx.PlayerUI.SetSecondaryTooltip("NULL", false);
 
         ctx.Interactor.SetActionState(ActionState.None);
     }

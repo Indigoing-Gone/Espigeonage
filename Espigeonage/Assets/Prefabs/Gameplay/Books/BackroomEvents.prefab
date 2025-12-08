@@ -8,6 +8,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1235994012171463794, guid: 65bb05c044fce4e47b1932f2b25f35dc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2015706665028507831, guid: 65bb05c044fce4e47b1932f2b25f35dc, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 1e6a99a9bb3be6f468d75d26bd112ae5, type: 2}
+    - target: {fileID: 2103404956054677237, guid: 65bb05c044fce4e47b1932f2b25f35dc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4149599624834132359, guid: 65bb05c044fce4e47b1932f2b25f35dc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -88,6 +100,14 @@ PrefabInstance:
       propertyPath: pageData.Array.data[3].text
       value: "*Don\u2019t forget, Lady Jane performing, bring in extra table from
         the storeroom"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6456198468916003918, guid: 65bb05c044fce4e47b1932f2b25f35dc, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ac43c0493c2252b48b90eba817ba408d, type: 2}
+    - target: {fileID: 6824827228959911183, guid: 65bb05c044fce4e47b1932f2b25f35dc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

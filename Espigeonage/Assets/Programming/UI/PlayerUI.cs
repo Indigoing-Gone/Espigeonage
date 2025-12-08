@@ -1,5 +1,6 @@
 using System;
 using TMPro;
+using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,7 +10,11 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] private RawImage cursorImage;
     private RectTransform cursorTransform;
     private RectTransform cursorCanvasTransform;
-    [SerializeField] private TextMeshProUGUI tooltipText;
+
+    [SerializeField] private GameObject interactTooltip;
+    [SerializeField] private GameObject secondaryTooltip;
+    private TextMeshProUGUI interactTooltipText;
+    private TextMeshProUGUI secondaryTooltipText;
 
     [Header("Display Data")]
     [SerializeField] private Texture2D[] cursorTextures;
@@ -20,6 +25,9 @@ public class PlayerUI : MonoBehaviour
         cursorCanvasTransform = cursorTransform.parent.GetComponent<RectTransform>();
         cursorTransform.parent.GetComponent<Canvas>().worldCamera = Camera.main;
         Cursor.visible = false;
+
+        interactTooltipText = interactTooltip.GetComponentInChildren<TextMeshProUGUI>();
+        secondaryTooltipText = secondaryTooltip.GetComponentInChildren<TextMeshProUGUI>();
     }
 
     public void SetCursorPosition(Vector2 _position)
@@ -32,22 +40,25 @@ public class PlayerUI : MonoBehaviour
 
     private void SetCursorVisual(CursorType _cursorType) => cursorImage.texture = cursorTextures[(int)_cursorType];
 
-    private void SetTooltip(string _tooltip)
-    {
-        tooltipText.text = _tooltip;
-    }
-
     public void SetDefaultUI()
     {
         SetCursorVisual(CursorType.Point);
-        SetTooltip("DEFAULT");
-        tooltipText.enabled = false;
+        interactTooltipText.text = "DEFAULT";
+
+        interactTooltip.SetActive(false);
     }
 
     public void ApplyDisplayData(InteractionData _interaction)
     {
         SetCursorVisual(_interaction.cursorType);
-        SetTooltip(_interaction.tooltip);
-        tooltipText.enabled = true;
+        interactTooltipText.text = _interaction.tooltip;
+
+        interactTooltip.SetActive(true);
+    }
+
+    public void SetSecondaryTooltip(string _tooltip, bool _enabled)
+    {
+        secondaryTooltipText.text = _tooltip;
+        secondaryTooltip.SetActive(_enabled);
     }
 }

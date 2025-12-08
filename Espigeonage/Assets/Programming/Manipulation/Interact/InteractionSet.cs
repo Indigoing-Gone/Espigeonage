@@ -6,7 +6,9 @@ public enum CursorType
 {
     Point = 0,
     Grab = 1,
-    Release = 2
+    Release = 2,
+    Draw = 3,
+    Send = 4,
 }
 
 [Serializable]

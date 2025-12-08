@@ -319,11 +319,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cursorImage: {fileID: 5870532187088233296}
-  tooltipText: {fileID: 7159761930174750004}
+  interactTooltip: {fileID: 6593179325316709622}
+  secondaryTooltip: {fileID: 8332574261718953890}
   cursorTextures:
   - {fileID: 2800000, guid: 0b3ab0e8ab2d3a34fb57b654c6908f28, type: 3}
   - {fileID: 2800000, guid: 248b6d417526a94438d228e391931622, type: 3}
   - {fileID: 2800000, guid: 2a897a042e9638a4a9b2e6d85af1fd1c, type: 3}
+  - {fileID: 2800000, guid: cf29c345d489fe546b3d3c5e69895bc7, type: 3}
+  - {fileID: 2800000, guid: 5f96947c11a9d1648b5ce85d54964f7d, type: 3}
 --- !u!114 &7321090777541796707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -785,19 +788,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7159761930174750004 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 149239311553569695, guid: 6f304494ffe91a444834ba83f0293a86, type: 3}
+--- !u!1 &6593179325316709622 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4193146456421515869, guid: 6f304494ffe91a444834ba83f0293a86, type: 3}
   m_PrefabInstance: {fileID: 7011719612165455531}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &7932437430385854604 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1106491356629153319, guid: 6f304494ffe91a444834ba83f0293a86, type: 3}
+  m_PrefabInstance: {fileID: 7011719612165455531}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8332574261718953890 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1363994695110283529, guid: 6f304494ffe91a444834ba83f0293a86, type: 3}
   m_PrefabInstance: {fileID: 7011719612165455531}
   m_PrefabAsset: {fileID: 0}
