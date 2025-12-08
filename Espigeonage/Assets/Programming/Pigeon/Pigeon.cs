@@ -111,8 +111,9 @@ public class Pigeon : MonoBehaviour
         if (hasMission)
         {
             missionGrabber.CompleteMission();
-            hasMission = false;
+            //hasMission = false;
             DestroyHeldNote();
+            PigeonReady.Invoke();
         }
         else
         {

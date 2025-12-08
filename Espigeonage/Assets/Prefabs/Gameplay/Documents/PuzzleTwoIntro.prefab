@@ -1,0 +1,107 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &6349010694094446459
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4103355668005726959, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4103355668005726959, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4103355668005726959, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4103355668005726959, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4103355668005726959, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4103355668005726959, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4103355668005726959, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4103355668005726959, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4103355668005726959, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4103355668005726959, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4103355668005726959, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4103355668005726959, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4103355668005726959, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4103355668005726959, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7281634247693047768, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
+      propertyPath: pageData.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7281634247693047768, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
+      propertyPath: pageData.Array.data[0].text
+      value: "Dear Mr. D,\r\n\tI got through! There\u2019s a whole big room where
+        the back room should be. I only got a quick look inside, but it looked like
+        some sort of dance hall. Didn\u2019t seem like the type of place I\u2019d
+        be able to blend in, so I\u2019m gonna send Lena now that I know the place."
+      objectReference: {fileID: 0}
+    - target: {fileID: 7281634247693047768, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
+      propertyPath: pageData.Array.data[1].text
+      value: "Seems much more her speed with all the fancy dressed ladies and loud
+        music. It\u2019s also definitely the sort of thing that Clancy would want
+        to know about. I did learn that there was a real rowdy rub on Friday (some
+        famous singer is performing), so there\u2019ll be plenty of cover that day."
+      objectReference: {fileID: 0}
+    - target: {fileID: 7281634247693047768, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
+      propertyPath: pageData.Array.data[2].text
+      value: "It\u2019s likely our best bet for a clean mission. Not sure where you\u2019ll
+        find the plans for this place, but I bet it\u2019s buried somewhere in your
+        papers. Maybe on some older plans that you got your hands on before they\u2019d
+        had a chance to edit them? I couldn\u2019t see anywhere specific that we
+        want to check out,"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7281634247693047768, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
+      propertyPath: pageData.Array.data[3].text
+      value: "so it\u2019s probably best to let Lena get a look at the whole place.
+        And if I know her at all, you should definitely let her explore the dance
+        floor in her walkabout. Send your plans along to Lena when you have them.\n\nCharlie"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8766661101128409647, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
+      propertyPath: m_Name
+      value: PuzzleTwoIntro
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}

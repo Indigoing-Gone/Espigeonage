@@ -106,7 +106,7 @@ public class GameManager : MonoBehaviour
 
         MissionResult?.Invoke(result);
 
-        StartCoroutine(PigeonTransitionRoutine(result ? successNote : failureNote, false));
+        //StartCoroutine(PigeonTransitionRoutine(result ? successNote : failureNote, false));
     }
 
     private IEnumerator PigeonTransitionRoutine(GameObject _notePrefab, bool _isMission)

@@ -34215,7 +34215,7 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 835a3733cb5e7574f8562e69bab05532, type: 3}
   puzzleNotes:
   - {fileID: 6633890654706820139, guid: 07bd0532d0c32bf45bc8cd718199b063, type: 3}
-  - {fileID: 5973618503926903076, guid: dce5141bc90f35244be1c6f31c4a2d61, type: 3}
+  - {fileID: 2428944625908170068, guid: 7c65b987fc9e9064d94107dad97a9fad, type: 3}
   notePrefab: {fileID: 5973618503926903076, guid: dce5141bc90f35244be1c6f31c4a2d61, type: 3}
   pigeonPrefab: {fileID: 2111521147069488232, guid: 1f99d9bf3dd1cfc46a263b5745c01197, type: 3}
   toPerchSpline: {fileID: 235996619}
