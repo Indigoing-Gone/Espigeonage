@@ -2,16 +2,16 @@ using UnityEngine;
 
 public static class BoundsUtils
 {
-    public static bool TryGetLocalBoundsSelf(Transform _root, out Bounds _bounds)
+    public static bool TryGetLocalBoundsSelf(Transform _root, Transform _space, out Bounds _bounds)
     {
         var _renderers = _root.GetComponents<MeshRenderer>();
-        return TryGetLocalBounds(_renderers, _root, out _bounds);
+        return TryGetLocalBounds(_renderers, _space, out _bounds);
     }
 
-    public static bool TryGetLocalBoundsChildren(Transform _root, out Bounds _bounds)
+    public static bool TryGetLocalBoundsChildren(Transform _root, Transform _space, out Bounds _bounds)
     {
         var renderers = _root.GetComponentsInChildren<MeshRenderer>();
-        return TryGetLocalBounds(renderers, _root, out _bounds);
+        return TryGetLocalBounds(renderers, _space, out _bounds);
     }
 
     private static bool TryGetLocalBounds(Renderer[] _renderers, Transform _space, out Bounds _bounds)

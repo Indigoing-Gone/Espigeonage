@@ -19,6 +19,7 @@ public struct GrabData
     public Transform location;
     public bool disableCollider;
     public bool swapModel;
+    public bool rotateObject;
 }
 
 public class Grabber : MonoBehaviour

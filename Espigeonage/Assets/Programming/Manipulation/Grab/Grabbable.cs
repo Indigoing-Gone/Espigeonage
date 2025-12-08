@@ -14,6 +14,7 @@ public class Grabbable : MonoBehaviour, IGrabbable
     [SerializeField] private bool isDynamic = true;
     [SerializeField] private GrabbableType type;
     public GrabbableType Type => type;
+    [SerializeField] Vector3 grabbedRotation;
 
     public event Action<bool> GrabbedStatus;
 
@@ -35,7 +36,8 @@ public class Grabbable : MonoBehaviour, IGrabbable
         //Handle parent and position
         rb.isKinematic = true;
         transform.parent = _grabData.location;
-        SetTransform(Vector3.zero, Quaternion.identity);
+        Quaternion _rotation = _grabData.rotateObject ? Quaternion.Euler(grabbedRotation) : Quaternion.identity;
+        SetTransform(Vector3.zero, _rotation);
         
         //Handle collider modification
         if(col) col.enabled = !_grabData.disableCollider;
@@ -78,8 +80,8 @@ public class Grabbable : MonoBehaviour, IGrabbable
         if (_bounds == null) return;
         Transform _boundsTransform = _bounds.transform;
 
-        if (!BoundsUtils.TryGetLocalBoundsChildren(_boundsTransform, out Bounds _alignBounds) || 
-            !BoundsUtils.TryGetLocalBoundsChildren(transform, out Bounds _selfBounds)) return;
+        if (!BoundsUtils.TryGetLocalBoundsChildren(_boundsTransform, _boundsTransform, out Bounds _alignBounds) || 
+            !BoundsUtils.TryGetLocalBoundsChildren(transform, transform, out Bounds _selfBounds)) return;
 
         Vector3 _boundingAlignPoint = Vector3.zero, _selfAlignPoint = Vector3.zero;
 

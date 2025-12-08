@@ -285,12 +285,14 @@ MonoBehaviour:
     location: {fileID: 4730364155229674000}
     disableCollider: 1
     swapModel: 0
+    rotateObject: 1
   vaildGrabbables: -1
   grabbableAlignment: 3
   inspectData:
     location: {fileID: 1878398450660261131}
     disableCollider: 0
     swapModel: 0
+    rotateObject: 1
 --- !u!114 &5454298019726916445
 MonoBehaviour:
   m_ObjectHideFlags: 0

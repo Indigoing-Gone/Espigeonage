@@ -24215,8 +24215,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2506708154632920682, guid: 682020c55bf1c00499fb131e6efb26e7, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.2
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4658895483147346164, guid: 682020c55bf1c00499fb131e6efb26e7, type: 3}
       propertyPath: m_Name

@@ -49,7 +49,10 @@ public class Book : MonoBehaviour
 
         leftImage = leftPage.GetComponent<RawImage>();
         rightImage = rightPage.GetComponent<RawImage>();
+    }
 
+    private void Start()
+    {
         UpdateBookVisuals();
     }
 

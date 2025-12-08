@@ -15,7 +15,7 @@ public class SwapGrabBehaviour : InteractionBehaviour
 
         _grabber.SetGrabbable(_newGrabbable);
         _grabber.Grab();
-        SoundManager.Instance.PlaySFX(SoundManager.SFXType.OBJ_PICKUP);
+        SoundManager.Instance.PlaySFX(SoundManager.SFXType.OBJ_PLACE_SHELF);
     }
 
     public override bool Verify(MonoBehaviour _interactable, Interactor _interactor)
