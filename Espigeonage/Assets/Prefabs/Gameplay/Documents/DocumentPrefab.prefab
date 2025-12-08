@@ -1001,7 +1001,7 @@ MonoBehaviour:
   defaultModel: {fileID: 0}
   grabbedModel: {fileID: 0}
   isDynamic: 1
-  type: 1
+  type: 2
   grabbedRotation: {x: 0, y: 0, z: 0}
 --- !u!114 &5518210629809395807
 MonoBehaviour:
