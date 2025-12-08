@@ -1,0 +1,121 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &2718273900179555844
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4103355668005726959, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4103355668005726959, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4103355668005726959, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4103355668005726959, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4103355668005726959, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4103355668005726959, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4103355668005726959, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4103355668005726959, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4103355668005726959, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4103355668005726959, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7281634247693047768, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
+      propertyPath: pageData.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7281634247693047768, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
+      propertyPath: pageData.Array.data[0].text
+      value: "Hello there, Mr.  D'Amboise!\r\n\r\n\tI dare say it\u2019s been some
+        time since I\u2019ve heard from you last, so I figured I\u2019d more likely
+        be the one to extend the courtesy of a letter, and here we are. Been awful
+        quiet as of late, but I\u2019ve only just recently come into some knowledge
+        that may be of interest to us. I seem to recall our services being employed
+        by that old Clancy to keep our peepers pricked for anything that may be providing
+        unneeded competition for them."
+      objectReference: {fileID: 0}
+    - target: {fileID: 7281634247693047768, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
+      propertyPath: pageData.Array.data[1].text
+      value: "I seem to recall them offering to pay awful well if we found anything,
+        too.\r\n\tAs it happens, I was making my rounds down 16th Street when I saw
+        a man whom I have not had the displeasure of acquainting myself with in some
+        time. Old trouble boy of mine. Don\u2019t remember who he might have been
+        affiliated with, but seeing him around acting all shady is a sure sign of
+        something amiss."
+      objectReference: {fileID: 0}
+    - target: {fileID: 7281634247693047768, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
+      propertyPath: pageData.Array.data[2].text
+      value: "All I can give you for now is his name, Ronald, but I\u2019ll be waiting
+        if anything breaks bad. I\u2019m doubtful anything will make its way to the
+        street, so it might be in our best interest to get some of our more hands-on
+        associates into the building. Looks like some sort of bookshop? Place called
+        Bearcat Burrow; look it up in one of those books of yours and maybe you\u2019ll
+        find something worthwhile."
+      objectReference: {fileID: 0}
+    - target: {fileID: 7281634247693047768, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
+      propertyPath: pageData.Array.data[3].text
+      value: "But for now, I\u2019m afraid the night beckons to me once again. I\u2019ll
+        look forward to our next correspondence, which better be from you to me.
+        I am a lady, after all.\r\n\r\nCiao,\r\nLena"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7281634247693047768, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
+      propertyPath: pageData.Array.data[4].text
+      value: "Dear Mr. D,\r\n\r\n\tLena told me about that bookshop what caught her
+        eye today. I snuck in, got a look around, and I caught the name of the guy
+        running things. He\u2019s called Alister. Not sure if you\u2019ve heard of
+        him? I haven\u2019t, but he might be involved with the folks Lena spotted
+        hanging around the front of the place. Don\u2019t have too much to tell you
+        beyond that--there was a guy in there giving me dirty looks and I didn\u2019t
+        want to test his patience."
+      objectReference: {fileID: 0}
+    - target: {fileID: 7281634247693047768, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
+      propertyPath: pageData.Array.data[5].text
+      value: "Especially if Lena\u2019s right about what\u2019s going on here. Definitely
+        think she\u2019s on the right track based on how quick they wanted me out
+        of there. Wednesday is probably the earliest I could come back to check things
+        out without them remembering me, but I might need some direction. Mark up
+        one of those blueprints of yours and send it my way if you can. Looked like
+        something funny was going on in the back left corner? Probably be good to
+        check that out. "
+      objectReference: {fileID: 0}
+    - target: {fileID: 7281634247693047768, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
+      propertyPath: pageData.Array.data[6].text
+      value: "Look forward to hearing from you soon!  \n\nCharlie"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8766661101128409647, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
+      propertyPath: m_Name
+      value: PuzzleOneIntro
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}

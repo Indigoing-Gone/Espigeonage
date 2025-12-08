@@ -18,6 +18,7 @@ public class Document : MonoBehaviour
     [Header("Components")]
     [SerializeField] private GameObject page;
     private TextMeshProUGUI pageText;
+    [SerializeField] private TextMeshProUGUI pageCountText;
     private RawImage pageImage;
 
     [Header("Pages")]
@@ -50,5 +51,7 @@ public class Document : MonoBehaviour
     {
         pageText.text = pageData.ElementAtOrDefault(pageIndex).text;
         pageImage.texture = pageData.ElementAtOrDefault(pageIndex).image;
+
+        pageCountText.text = $"{pageIndex + 1}/{pageData.Count}";
     }
 }
