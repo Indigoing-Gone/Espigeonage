@@ -81,7 +81,10 @@ public class PlayerData : MonoBehaviour
 
         MovementComponent.Orientation = cameraOrientation;
         CameraComponent.Orientation = cameraOrientation;
+    }
 
+    private void Start()
+    {
         PlayerUI.SetDefaultUI();
     }
 

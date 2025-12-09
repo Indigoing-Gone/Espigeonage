@@ -96,6 +96,14 @@ PrefabInstance:
         And if I know her at all, you should definitely let her explore the dance
         floor in her walkabout. Send your plans along to Lena when you have them.\n\nCharlie"
       objectReference: {fileID: 0}
+    - target: {fileID: 8126872563991681825, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
+      propertyPath: m_fontSize
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8126872563991681825, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8766661101128409647, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
       propertyPath: m_Name
       value: PuzzleTwoIntro
