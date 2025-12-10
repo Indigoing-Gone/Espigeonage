@@ -74,33 +74,25 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5584456545367877786, guid: 65bb05c044fce4e47b1932f2b25f35dc, type: 3}
       propertyPath: pageData.Array.data[1].text
-      value: 'Table Arrangements
-
-
-        Monday: E7, H1
-
-        Tuesday: H4, K2
-
-        Wednesday:
-        C7, A6
-
-        Thursday: H4, K2
-
-        Friday*: K4, H3, C6
-
-        Weekend:
-        C7, J3'
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5584456545367877786, guid: 65bb05c044fce4e47b1932f2b25f35dc, type: 3}
       propertyPath: pageData.Array.data[2].text
-      value: "*Don\u2019t forget, Lady Jane performing, bring in extra table from
-        the storeroom"
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5584456545367877786, guid: 65bb05c044fce4e47b1932f2b25f35dc, type: 3}
       propertyPath: pageData.Array.data[3].text
       value: "*Don\u2019t forget, Lady Jane performing, bring in extra table from
         the storeroom"
       objectReference: {fileID: 0}
+    - target: {fileID: 5584456545367877786, guid: 65bb05c044fce4e47b1932f2b25f35dc, type: 3}
+      propertyPath: pageData.Array.data[1].image
+      value: 
+      objectReference: {fileID: 2800000, guid: c6e566cdb7cdca04ea2b63ee2838d10d, type: 3}
+    - target: {fileID: 5584456545367877786, guid: 65bb05c044fce4e47b1932f2b25f35dc, type: 3}
+      propertyPath: pageData.Array.data[2].image
+      value: 
+      objectReference: {fileID: 2800000, guid: ca7aa5fd693aee84c94b98118d58b5b0, type: 3}
     - target: {fileID: 6456198468916003918, guid: 65bb05c044fce4e47b1932f2b25f35dc, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 

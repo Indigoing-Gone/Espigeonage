@@ -54,9 +54,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7281634247693047768, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
       propertyPath: pageData.Array.data[0].text
-      value: "Reminder: Check window for new letters. \r\n(WASD to move, M1 to pick
-        up items, M2 to inspect held items)"
+      value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7281634247693047768, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
+      propertyPath: pageData.Array.data[0].image
+      value: 
+      objectReference: {fileID: 2800000, guid: 8915b0474ee454f4496c835b81a2590a, type: 3}
     - target: {fileID: 8766661101128409647, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
       propertyPath: m_Name
       value: Tutorial

@@ -66,29 +66,25 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7281634247693047768, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
       propertyPath: pageData.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7281634247693047768, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
       propertyPath: pageData.Array.data[0].text
-      value: "Dear Mr. D,\r\n\tI got through! There\u2019s a whole big room where
-        the back room should be. I only got a quick look inside, but it looked like
-        some sort of dance hall. Didn\u2019t seem like the type of place I\u2019d
-        be able to blend in, so I\u2019m gonna send Lena now that I know the place."
+      value: '
+
+'
       objectReference: {fileID: 0}
     - target: {fileID: 7281634247693047768, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
       propertyPath: pageData.Array.data[1].text
-      value: "Seems much more her speed with all the fancy dressed ladies and loud
-        music. It\u2019s also definitely the sort of thing that Clancy would want
-        to know about. I did learn that there was a real rowdy rub on Friday (some
-        famous singer is performing), so there\u2019ll be plenty of cover that day."
+      value: '
+
+'
       objectReference: {fileID: 0}
     - target: {fileID: 7281634247693047768, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
       propertyPath: pageData.Array.data[2].text
-      value: "It\u2019s likely our best bet for a clean mission. Not sure where you\u2019ll
-        find the plans for this place, but I bet it\u2019s buried somewhere in your
-        papers. Maybe on some older plans that you got your hands on before they\u2019d
-        had a chance to edit them? I couldn\u2019t see anywhere specific that we
-        want to check out,"
+      value: '
+
+'
       objectReference: {fileID: 0}
     - target: {fileID: 7281634247693047768, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
       propertyPath: pageData.Array.data[3].text
@@ -96,6 +92,18 @@ PrefabInstance:
         And if I know her at all, you should definitely let her explore the dance
         floor in her walkabout. Send your plans along to Lena when you have them.\n\nCharlie"
       objectReference: {fileID: 0}
+    - target: {fileID: 7281634247693047768, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
+      propertyPath: pageData.Array.data[0].image
+      value: 
+      objectReference: {fileID: 2800000, guid: eba6bd53debd93f4d9850d00665d2608, type: 3}
+    - target: {fileID: 7281634247693047768, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
+      propertyPath: pageData.Array.data[1].image
+      value: 
+      objectReference: {fileID: 2800000, guid: e3be78fd742b52a48b8b01ad757fba5f, type: 3}
+    - target: {fileID: 7281634247693047768, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
+      propertyPath: pageData.Array.data[2].image
+      value: 
+      objectReference: {fileID: 2800000, guid: 0656d7cfea06d2e4b98aa8988e33baf0, type: 3}
     - target: {fileID: 8126872563991681825, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
       propertyPath: m_fontSize
       value: 7

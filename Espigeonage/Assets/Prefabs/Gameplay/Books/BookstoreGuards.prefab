@@ -66,7 +66,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5584456545367877786, guid: 65bb05c044fce4e47b1932f2b25f35dc, type: 3}
       propertyPath: pageData.Array.size
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5584456545367877786, guid: 65bb05c044fce4e47b1932f2b25f35dc, type: 3}
       propertyPath: pageData.Array.data[0].text
@@ -74,26 +74,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5584456545367877786, guid: 65bb05c044fce4e47b1932f2b25f35dc, type: 3}
       propertyPath: pageData.Array.data[1].text
-      value: 'Bookstore Rotations-
-
-
-        Monday: Bruce/A4, facing North
-
-        Tuesday:
-        Davie/B5, facing West
-
-        Wednesday:  Ron/C2, facing North'
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5584456545367877786, guid: 65bb05c044fce4e47b1932f2b25f35dc, type: 3}
       propertyPath: pageData.Array.data[2].text
-      value: "Thursday: Grant/A1, facing East\nFriday: Irvine/E3, facing South\n\nWhoever\u2019s
-        not working the store should be keeping things peachy in the back"
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5584456545367877786, guid: 65bb05c044fce4e47b1932f2b25f35dc, type: 3}
       propertyPath: pageData.Array.data[3].text
-      value: "Friday: Irvine/E3, facing South\n\nWhoever\u2019s not working the store
-        should be keeping things peachy in the back"
+      value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5584456545367877786, guid: 65bb05c044fce4e47b1932f2b25f35dc, type: 3}
+      propertyPath: pageData.Array.data[1].image
+      value: 
+      objectReference: {fileID: 2800000, guid: ffa62fc2e66f78d4481ae67da37967ef, type: 3}
+    - target: {fileID: 5584456545367877786, guid: 65bb05c044fce4e47b1932f2b25f35dc, type: 3}
+      propertyPath: pageData.Array.data[2].image
+      value: 
+      objectReference: {fileID: 2800000, guid: 1b1fae74452afd9469fe7a82312adb4c, type: 3}
+    - target: {fileID: 5584456545367877786, guid: 65bb05c044fce4e47b1932f2b25f35dc, type: 3}
+      propertyPath: pageData.Array.data[3].image
+      value: 
+      objectReference: {fileID: 2800000, guid: 3dcea4ee82fdc4343ae628f64b970bd7, type: 3}
+    - target: {fileID: 5584456545367877786, guid: 65bb05c044fce4e47b1932f2b25f35dc, type: 3}
+      propertyPath: pageData.Array.data[4].image
+      value: 
+      objectReference: {fileID: 2800000, guid: 45ec492251270654dbc906cece54072a, type: 3}
     - target: {fileID: 6456198468916003918, guid: 65bb05c044fce4e47b1932f2b25f35dc, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 

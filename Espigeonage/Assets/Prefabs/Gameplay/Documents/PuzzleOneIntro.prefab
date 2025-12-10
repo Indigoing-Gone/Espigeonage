@@ -74,62 +74,60 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7281634247693047768, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
       propertyPath: pageData.Array.data[0].text
-      value: "Hello there, Mr.  D'Amboise!\r\n\r\n\tI dare say it\u2019s been some
-        time since I\u2019ve heard from you last, so I figured I\u2019d more likely
-        be the one to extend the courtesy of a letter, and here we are. Been awful
-        quiet as of late, but I\u2019ve only just recently come into some knowledge
-        that may be of interest to us. I seem to recall our services being employed
-        by that old Clancy to keep our peepers pricked for anything that may be providing
-        unneeded competition for them."
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7281634247693047768, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
       propertyPath: pageData.Array.data[1].text
-      value: "I seem to recall them offering to pay awful well if we found anything,
-        too.\r\n\tAs it happens, I was making my rounds down 16th Street when I saw
-        a man whom I have not had the displeasure of acquainting myself with in some
-        time. Old trouble boy of mine. Don\u2019t remember who he might have been
-        affiliated with, but seeing him around acting all shady is a sure sign of
-        something amiss."
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7281634247693047768, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
       propertyPath: pageData.Array.data[2].text
-      value: "All I can give you for now is his name, Ronald, but I\u2019ll be waiting
-        if anything breaks bad. I\u2019m doubtful anything will make its way to the
-        street, so it might be in our best interest to get some of our more hands-on
-        associates into the building. Looks like some sort of bookshop? Place called
-        Bearcat Burrow; look it up in one of those books of yours and maybe you\u2019ll
-        find something worthwhile."
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7281634247693047768, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
       propertyPath: pageData.Array.data[3].text
-      value: "But for now, I\u2019m afraid the night beckons to me once again. I\u2019ll
-        look forward to our next correspondence, which better be from you to me.
-        I am a lady, after all.\r\n\r\nCiao,\r\nLena"
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7281634247693047768, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
       propertyPath: pageData.Array.data[4].text
-      value: "Dear Mr. D,\r\n\r\n\tLena told me about that bookshop what caught her
-        eye today. I snuck in, got a look around, and I caught the name of the guy
-        running things. He\u2019s called Alister. Not sure if you\u2019ve heard of
-        him? I haven\u2019t, but he might be involved with the folks Lena spotted
-        hanging around the front of the place. Don\u2019t have too much to tell you
-        beyond that--there was a guy in there giving me dirty looks and I didn\u2019t
-        want to test his patience."
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7281634247693047768, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
       propertyPath: pageData.Array.data[5].text
-      value: "Especially if Lena\u2019s right about what\u2019s going on here. Definitely
-        think she\u2019s on the right track based on how quick they wanted me out
-        of there. Wednesday is probably the earliest I could come back to check things
-        out without them remembering me, but I might need some direction. Mark up
-        one of those blueprints of yours and send it my way if you can. Looked like
-        something funny was going on in the back left corner? Probably be good to
-        check that out. "
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7281634247693047768, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
       propertyPath: pageData.Array.data[6].text
-      value: "Look forward to hearing from you soon!  \n\nCharlie"
+      value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7281634247693047768, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
+      propertyPath: pageData.Array.data[0].image
+      value: 
+      objectReference: {fileID: 2800000, guid: 7d598d3982fb8394bab40d9f8342cc09, type: 3}
+    - target: {fileID: 7281634247693047768, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
+      propertyPath: pageData.Array.data[1].image
+      value: 
+      objectReference: {fileID: 2800000, guid: 86e86bc0a8c975b44b7071901855dfc2, type: 3}
+    - target: {fileID: 7281634247693047768, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
+      propertyPath: pageData.Array.data[2].image
+      value: 
+      objectReference: {fileID: 2800000, guid: a26634e01dd916d4da98f0a4f7f4283d, type: 3}
+    - target: {fileID: 7281634247693047768, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
+      propertyPath: pageData.Array.data[3].image
+      value: 
+      objectReference: {fileID: 2800000, guid: d63dafa2ad5d06f4eaa53c31c16241ba, type: 3}
+    - target: {fileID: 7281634247693047768, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
+      propertyPath: pageData.Array.data[4].image
+      value: 
+      objectReference: {fileID: 2800000, guid: eba6bd53debd93f4d9850d00665d2608, type: 3}
+    - target: {fileID: 7281634247693047768, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
+      propertyPath: pageData.Array.data[5].image
+      value: 
+      objectReference: {fileID: 2800000, guid: e3be78fd742b52a48b8b01ad757fba5f, type: 3}
+    - target: {fileID: 7281634247693047768, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
+      propertyPath: pageData.Array.data[6].image
+      value: 
+      objectReference: {fileID: 2800000, guid: 0656d7cfea06d2e4b98aa8988e33baf0, type: 3}
     - target: {fileID: 8126872563991681825, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
       propertyPath: m_text
       value: "Hello there, Mr.  D'Amboise!\n\n\tI dare say it\u2019s been some time

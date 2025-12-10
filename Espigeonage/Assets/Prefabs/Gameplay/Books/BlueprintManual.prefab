@@ -74,23 +74,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5584456545367877786, guid: 65bb05c044fce4e47b1932f2b25f35dc, type: 3}
       propertyPath: pageData.Array.data[1].text
-      value: 'Marking up a blueprint is as simple as clicking and dragging, and pressing
-        shift to toggle the eraser. '
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5584456545367877786, guid: 65bb05c044fce4e47b1932f2b25f35dc, type: 3}
       propertyPath: pageData.Array.data[2].text
-      value: Use WASD to plan out paths.
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5584456545367877786, guid: 65bb05c044fce4e47b1932f2b25f35dc, type: 3}
       propertyPath: pageData.Array.data[3].text
-      value: Greyed out boxes represent furniture and cannot be moved through, and
-        solid white lines represent walls and also cannot be moved through. Striped
-        boxes must be moved through.
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5584456545367877786, guid: 65bb05c044fce4e47b1932f2b25f35dc, type: 3}
       propertyPath: pageData.Array.data[4].text
-      value: One tile = 5ft
+      value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5584456545367877786, guid: 65bb05c044fce4e47b1932f2b25f35dc, type: 3}
+      propertyPath: pageData.Array.data[1].image
+      value: 
+      objectReference: {fileID: 2800000, guid: 221c78725c4fbef4babe6da92fdef2cb, type: 3}
+    - target: {fileID: 5584456545367877786, guid: 65bb05c044fce4e47b1932f2b25f35dc, type: 3}
+      propertyPath: pageData.Array.data[2].image
+      value: 
+      objectReference: {fileID: 2800000, guid: c71b8055f2bdff844a9a5a77fcabc71f, type: 3}
+    - target: {fileID: 5584456545367877786, guid: 65bb05c044fce4e47b1932f2b25f35dc, type: 3}
+      propertyPath: pageData.Array.data[3].image
+      value: 
+      objectReference: {fileID: 2800000, guid: 5dd7a54258603084f87e731b833df6f0, type: 3}
+    - target: {fileID: 5584456545367877786, guid: 65bb05c044fce4e47b1932f2b25f35dc, type: 3}
+      propertyPath: pageData.Array.data[4].image
+      value: 
+      objectReference: {fileID: 2800000, guid: 37fc7810d6912e748912eedca5b07280, type: 3}
     - target: {fileID: 6456198468916003918, guid: 65bb05c044fce4e47b1932f2b25f35dc, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
