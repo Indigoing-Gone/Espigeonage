@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5342520852018823318}
   - component: {fileID: 6391381213847148873}
   - component: {fileID: 5089810603471569014}
+  - component: {fileID: 1184451023715215475}
   m_Layer: 0
   m_Name: Pigeon
   m_TagString: Untagged
@@ -147,6 +148,28 @@ MonoBehaviour:
   m_ObjectForwardAxis: 5
   m_ObjectUpAxis: 1
   m_StartOffset: 0
+--- !u!95 &1184451023715215475
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2111521147069488232}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f9ea27ca3e22771438f60b6716d25fc0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6882832976283210510
 GameObject:
   m_ObjectHideFlags: 0

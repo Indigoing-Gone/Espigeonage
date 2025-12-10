@@ -13,6 +13,7 @@ public class Pigeon : MonoBehaviour
     private SplineContainer toAgent;
     private bool perched = false;
 
+    private Animator animator;
     private SplineAnimate splineAnimator;
     private MissionGrabber missionGrabber;
 
@@ -40,6 +41,7 @@ public class Pigeon : MonoBehaviour
     {
         toPerch = _toPerch;
         toAgent = _toAgent;
+        animator = GetComponent<Animator>();
         splineAnimator = GetComponent<SplineAnimate>();
         splineAnimator.Loop = SplineAnimate.LoopMode.Once;
         missionGrabber = GetComponentInChildren<MissionGrabber>();
@@ -71,7 +73,7 @@ public class Pigeon : MonoBehaviour
     
     private void Coo()
     {
-        //SoundManager.Instance.PlaySFX(SoundManager.SFXType.PIGEON, transform.position);
+        SoundManager.Instance.PlaySFX(SoundManager.SFXType.PIGEON);
     }
 
     private IEnumerator FlyRoutine(SplineContainer _route)
@@ -80,7 +82,9 @@ public class Pigeon : MonoBehaviour
         Coo();
         splineAnimator.Restart(false);
         splineAnimator.Play();
+        animator.Play("Fly", 0);
         yield return new WaitWhile(() => splineAnimator.IsPlaying);
+        animator.Play("Idle", 0);
         Coo();
         yield break;
     }
