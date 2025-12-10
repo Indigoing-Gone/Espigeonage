@@ -79,13 +79,11 @@ public class Pigeon : MonoBehaviour
     private IEnumerator FlyRoutine(SplineContainer _route)
     {
         splineAnimator.Container = _route;
-        Coo();
         splineAnimator.Restart(false);
         splineAnimator.Play();
         animator.Play("Fly", 0);
         yield return new WaitWhile(() => splineAnimator.IsPlaying);
         animator.Play("Idle", 0);
-        Coo();
         yield break;
     }
 
@@ -98,6 +96,7 @@ public class Pigeon : MonoBehaviour
 
     public void FlyAway()
     {
+        Coo();
         StartCoroutine(FlyAwayRoutine());
         perched = false;
     }
@@ -105,6 +104,7 @@ public class Pigeon : MonoBehaviour
     private IEnumerator GiveNoteRoutine()
     {
         yield return StartCoroutine(FlyRoutine(toPerch));
+        Coo();
         perched = true;
     }
 
