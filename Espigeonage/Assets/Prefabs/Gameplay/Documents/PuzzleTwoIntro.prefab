@@ -95,15 +95,15 @@ PrefabInstance:
     - target: {fileID: 7281634247693047768, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
       propertyPath: pageData.Array.data[0].image
       value: 
-      objectReference: {fileID: 2800000, guid: eba6bd53debd93f4d9850d00665d2608, type: 3}
+      objectReference: {fileID: 2800000, guid: 07d77aabf05718e47a956b697a14bf2a, type: 3}
     - target: {fileID: 7281634247693047768, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
       propertyPath: pageData.Array.data[1].image
       value: 
-      objectReference: {fileID: 2800000, guid: e3be78fd742b52a48b8b01ad757fba5f, type: 3}
+      objectReference: {fileID: 2800000, guid: 22a3ac36452c6274fab3e4bc8e8b5652, type: 3}
     - target: {fileID: 7281634247693047768, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
       propertyPath: pageData.Array.data[2].image
       value: 
-      objectReference: {fileID: 2800000, guid: 0656d7cfea06d2e4b98aa8988e33baf0, type: 3}
+      objectReference: {fileID: 2800000, guid: cddc5656be7a55c4698802d545ba220c, type: 3}
     - target: {fileID: 8126872563991681825, guid: bad6b6899ebfeee46a4de53b2c0aa36b, type: 3}
       propertyPath: m_fontSize
       value: 7
