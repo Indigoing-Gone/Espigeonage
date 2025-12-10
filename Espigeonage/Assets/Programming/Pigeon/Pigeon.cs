@@ -41,7 +41,7 @@ public class Pigeon : MonoBehaviour
     {
         toPerch = _toPerch;
         toAgent = _toAgent;
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
         splineAnimator = GetComponent<SplineAnimate>();
         splineAnimator.Loop = SplineAnimate.LoopMode.Once;
         missionGrabber = GetComponentInChildren<MissionGrabber>();
@@ -81,9 +81,9 @@ public class Pigeon : MonoBehaviour
         splineAnimator.Container = _route;
         splineAnimator.Restart(false);
         splineAnimator.Play();
-        animator.Play("Fly", 0);
+        animator.SetBool("IsFlying", true);
         yield return new WaitWhile(() => splineAnimator.IsPlaying);
-        animator.Play("Idle", 0);
+        animator.SetBool("IsFlying", false);
         yield break;
     }
 
