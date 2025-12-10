@@ -100,3 +100,4 @@ InitTestScene*.unity*
 
 # Ignore builds
 /Build*/
+*.zip
