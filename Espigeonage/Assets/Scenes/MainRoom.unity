@@ -19791,7 +19791,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: fc1e6dd36967655478dc50c32e37e3fe, type: 3}
   - {fileID: 8300000, guid: 511f288b5444d394c9599f1e1aec5d73, type: 3}
   - {fileID: 8300000, guid: ed89ea5c278d18f40b6a0f8959d5f9e9, type: 3}
-  - {fileID: 8300000, guid: 7fc2bb22d6c28fc4fa4afd7ffcf4e5e3, type: 3}
   - {fileID: 8300000, guid: 842f030ff8226d34daf864e25302f441, type: 3}
   bgmSource: {fileID: 1017885184}
   officeBGM: {fileID: 0}
