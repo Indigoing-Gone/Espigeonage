@@ -28,6 +28,7 @@ public class InteractionSet : ScriptableObject
 
     public void Initilize()
     {
+        //Generate dict from list -- no duplicates allowed as an object cant do two things at once
         interactionDict = new Dictionary<ActionState, InteractionData>();
         foreach (InteractionData interaction in interactions)
             interactionDict[interaction.requiredState] = interaction;

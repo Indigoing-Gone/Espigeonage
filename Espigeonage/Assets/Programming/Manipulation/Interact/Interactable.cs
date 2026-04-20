@@ -8,12 +8,14 @@ public class Interactable : MonoBehaviour, IInteractable
 
     public void Interact(Interactor _interactor, ActionState _currentActionState)
     {
+        //Find interaction for the current state and run it
         if (!TryFindInteraction(_currentActionState, out InteractionData _foundInteraction)) return;
         _foundInteraction.behaviour.Execute(this, _interactor);
     }
 
     public bool TryFindInteraction(ActionState _requiredState, out InteractionData _inputInteraction)
     {
+        //Find interaction for the current state and return it
         bool _result = interactions.TryFindInteraction(_requiredState, out InteractionData _foundInteraction);
         _inputInteraction = _foundInteraction;
         return _result;
